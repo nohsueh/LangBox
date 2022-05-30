@@ -1,0 +1,33 @@
+﻿<Application x:Class="LangBox.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LangBox"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="c0" Color="#1b262c" />
+        <SolidColorBrush x:Key="c1" Color="#6b778d" />
+        <SolidColorBrush x:Key="c2" Color="#1687a7" />
+        <SolidColorBrush x:Key="c3" Color="#f2f4f6" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource c3}" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+
+        <!-- 点击链接样式-->
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource c2}" />
+            <Style.Triggers>
+                <!--鼠标经过-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource c3}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource c2}" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </Application.Resources>
+</Application>
