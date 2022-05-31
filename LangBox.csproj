@@ -14,4 +14,8 @@
     <Page Remove="test\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="eetest\" />
+  </ItemGroup>
+
 </Project>
