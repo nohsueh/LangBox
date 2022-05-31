@@ -8,5 +8,9 @@ namespace LangBox
 {
     internal class test
     {
+        void TestWrite()
+        {
+            Console.WriteLine("hello");
+        }
     }
 }
