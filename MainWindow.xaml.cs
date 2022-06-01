@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using LangBox.Operaters;
+using LangBox.Pages;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LangBox
 {
@@ -32,10 +23,10 @@ namespace LangBox
                 bool hasUpdate = UpdateChecker.HasUpdate();
                 if (hasUpdate)
                 {
-                    MessageBoxResult r = MessageBox.Show("发现更新，这个版本可能已经不可以用了喵\n是否前往更新？", "更新提示", MessageBoxButton.YesNo);
+                    MessageBoxResult r = MessageBox.Show("发现最新版\n是否前往更新？", "更新提示", MessageBoxButton.YesNo);
                     if (r == MessageBoxResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/SDchao/AutoVsCEnv_WPF/releases/latest");
+                        Process.Start("https://github.com/NOhsueh/LangBox/releases/latest");
                     }
                 }
             });
