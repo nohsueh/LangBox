@@ -18,7 +18,7 @@ namespace LangBox.Operaters
 
             Trace.WriteLine(content);
 
-            Regex regex = new Regex("/ NOhsueh / LangBox / releases / tag / (.*)");
+            Regex regex = new Regex("href=\"/NOhsueh/LangBox/releases/tag/(.*)\" data-view-component=\"true\"");
             Match match = regex.Match(content);
 
             Trace.WriteLine(version);

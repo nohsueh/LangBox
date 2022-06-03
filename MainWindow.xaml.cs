@@ -1,6 +1,5 @@
 ﻿using LangBox.Operaters;
 using LangBox.Pages;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -26,7 +25,7 @@ namespace LangBox
                     MessageBoxResult r = MessageBox.Show("发现最新版\n是否前往更新？", "更新提示", MessageBoxButton.YesNo);
                     if (r == MessageBoxResult.Yes)
                     {
-                        Process.Start("https://github.com/NOhsueh/LangBox/releases/latest");
+                        System.Diagnostics.Process.Start("explorer.exe", "https://github.com/NOhsueh/LangBox/releases/latest");
                     }
                 }
             });
