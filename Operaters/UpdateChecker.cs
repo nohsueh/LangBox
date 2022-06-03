@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,20 +10,23 @@ namespace LangBox.Operaters
     internal class UpdateChecker
     {
         private const string version = "V0.0.0";
-        private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";//连不进github
-
+        private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";
 
         public static bool HasUpdate()
         {
             string content = ReadHttpSourceCode(checkPage);
-            Trace.WriteLine(content);//测试
-            Regex regex = new("/ NOhsueh / LangBox / releases / tag / (.*)");
+
+            Trace.WriteLine(content);
+
+            Regex regex = new Regex("/ NOhsueh / LangBox / releases / tag / (.*)");
             Match match = regex.Match(content);
+
+            Trace.WriteLine(version);
 
             if (match.Success)
             {
 
-                Trace.WriteLine("success");//测试
+                Trace.WriteLine("success");
 
                 string nowVersion = match.Groups[1].Value;
                 if (string.Compare(version,nowVersion) < 0)
