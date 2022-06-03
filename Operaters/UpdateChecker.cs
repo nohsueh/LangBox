@@ -9,22 +9,20 @@ namespace LangBox.Operaters
     internal class UpdateChecker
     {
         private const string version = "V0.0.0";
-        private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";
+        private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";//连不进github
+
 
         public static bool HasUpdate()
         {
             string content = ReadHttpSourceCode(checkPage);
-            Trace.WriteLine(content);
-
-            Regex regex = new Regex("/NOhsueh/LangBox/releases/tag/(.*)");
+            Trace.WriteLine(content);//测试
+            Regex regex = new("/ NOhsueh / LangBox / releases / tag / (.*)");
             Match match = regex.Match(content);
-
-            Trace.WriteLine(version);
 
             if (match.Success)
             {
 
-                Trace.WriteLine("success");
+                Trace.WriteLine("success");//测试
 
                 string nowVersion = match.Groups[1].Value;
                 if (string.Compare(version,nowVersion) < 0)
@@ -38,7 +36,7 @@ namespace LangBox.Operaters
             HttpWebRequest request = WebRequest.CreateHttp(url);
             request.Method = "GET";
             request.Timeout = 10000;
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.53";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36 Edg/102.0.1245.30";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(new BufferedStream(response.GetResponseStream()), Encoding.UTF8);
             string content = reader.ReadToEnd();
