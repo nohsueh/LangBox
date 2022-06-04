@@ -7,25 +7,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Welcome">
-    <TabControl TabStripPlacement="Top" Margin="0, 0, 0, 10">
-  <TabItem Name="tabIitemContent" Header="TabItem with Buttons">
-    <StackPanel>
-      <Button Content="_OK"/>
-      <Button Content="_Cancel"/>
-    </StackPanel>
-  </TabItem>
+    <TabControl TabStripPlacement="Top" Background="White" BorderBrush="#FFFBFBFB" >
+        <TabItem Name="tabIitemContent" Header="TabItem with Buttons" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+            <StackPanel>
+                <Button Content="_OK"/>
+                <Button Content="_Cancel"/>
+            </StackPanel>
+        </TabItem>
 
-  <TabItem Name="backgroundcolor" Header="Background">
-    <TabItem.Content>Background property information goes here.</TabItem.Content>
-  </TabItem>
+        <TabItem Name="backgroundcolor" Header="Background" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+            <TabItem.Content>Background property information goes here.</TabItem.Content>
+        </TabItem>
 
-  <TabItem Name="foregroundcolor" Header="Foreground">
-    <TabItem.Content>Foreground property information goes here.</TabItem.Content>
-  </TabItem>
+        <TabItem Name="foregroundcolor" Header="Foreground" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
+            <TabItem.Content>Foreground property information goes here.</TabItem.Content>
+        </TabItem>
 
-  <TabItem Name="bordercolor" Header="BorderColor">
-    <TabItem.Content>Border color property information goes here.</TabItem.Content>
-  </TabItem>
-</TabControl>
+        <TabItem Name="bordercolor" Header="BorderColor" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
+            <TabItem.Content>Border color property information goes here.</TabItem.Content>
+        </TabItem>
+    </TabControl>
 
 </Page>
