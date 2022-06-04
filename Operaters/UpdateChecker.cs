@@ -9,7 +9,7 @@ namespace LangBox.Operaters
 {
     internal class UpdateChecker
     {
-        private const string version = "V0.0.0";
+        private const string version = "V0.0.1";
         private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";
 
         public static bool HasUpdate()

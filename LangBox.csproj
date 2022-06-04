@@ -19,4 +19,8 @@
     <Content Include="Images\appicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
 </Project>
