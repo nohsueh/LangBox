@@ -4,10 +4,10 @@
              xmlns:local="clr-namespace:LangBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="c0" Color="#1b262c" />
+        <SolidColorBrush x:Key="c0" Color="#fbfbfb" />
         <SolidColorBrush x:Key="c1" Color="#6b778d" />
-        <SolidColorBrush x:Key="c2" Color="#1687a7" />
-        <SolidColorBrush x:Key="c3" Color="#f2f4f6" />
+        <SolidColorBrush x:Key="c2" Color="#0066cc" />
+        <SolidColorBrush x:Key="c3" Color="#212121" />
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource c3}" />
@@ -25,9 +25,10 @@
             </Style.Triggers>
         </Style>
 
+        <!-- 按钮样式-->
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource c2}" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{StaticResource c0}" />
+            <Setter Property="BorderThickness" Value="{StaticResource c2}" />
         </Style>
     </Application.Resources>
 </Application>

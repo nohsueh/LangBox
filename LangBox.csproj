@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\appicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,14 @@
     <EmbeddedResource Remove="test\**" />
     <None Remove="test\**" />
     <Page Remove="test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\appicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
   </ItemGroup>
 
 </Project>

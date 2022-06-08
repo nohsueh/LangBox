@@ -8,4 +8,5 @@
         Title="MainWindow" Height="450" Width="800"
         Background="{StaticResource c0}"
         Loaded="Window_Loaded">
+	<StackPanel/>
 </Window>
