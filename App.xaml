@@ -28,7 +28,7 @@
         <!-- 按钮样式-->
         <Style TargetType="Button">
             <Setter Property="Background" Value="{StaticResource c0}" />
-            <Setter Property="BorderThickness" Value="{StaticResource c2}" />
+            <Setter Property="BorderThickness" Value="1" />
         </Style>
     </Application.Resources>
 </Application>
