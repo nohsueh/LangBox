@@ -17,12 +17,6 @@
         <!-- 点击链接样式-->
         <Style TargetType="Hyperlink">
             <Setter Property="Foreground" Value="{StaticResource c2}" />
-            <Style.Triggers>
-                <!--鼠标经过-->
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource c3}" />
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <!-- 按钮样式-->

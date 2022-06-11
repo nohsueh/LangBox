@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace LangBox.Pages
         public Welcome()
         {
             InitializeComponent();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = sender as Hyperlink;
+            Process.Start(new ProcessStartInfo("explorer.exe", link.NavigateUri.AbsoluteUri));
+
         }
     }
 }

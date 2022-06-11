@@ -12,6 +12,10 @@
             <StackPanel>
                 <Button Content="_OK"/>
                 <Button Content="_Cancel"/>
+                <TextBlock>
+                    <Hyperlink NavigateUri="http://www.github.com" 
+                    Click="Hyperlink_Click">GitHub</Hyperlink>
+                </TextBlock>
             </StackPanel>
         </TabItem>
 
