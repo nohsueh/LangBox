@@ -7,30 +7,281 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Welcome">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-    <TabControl TabStripPlacement="Top"  BorderBrush="#FFFBFBFB" >
-        <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
-            <StackPanel Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TabControl TabStripPlacement="Top">
+            <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
                 <StackPanel Margin="10,5">
+                    <TextBlock>Select some programming language you prefer.</TextBlock>
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
-                    <WrapPanel Name="LangSelect"  Margin="20,5">
-                        <CheckBox Name="C" IsChecked="True">C</CheckBox>
-                        <CheckBox Name="CPlusPlus" >C++</CheckBox>
-                        <CheckBox Name="Python" >Python</CheckBox>
-                        <CheckBox Name="Java" >Java</CheckBox>
-                        <CheckBox Name="CSharp">C#</CheckBox>
-                    </WrapPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
+                        <WrapPanel Name="LangSelect"  Margin="20,5">
+                            <CheckBox Name="C" IsChecked="True">C</CheckBox>
+                            <CheckBox Name="CPlusPlus">C++</CheckBox>
+                            <CheckBox Name="Python">Python</CheckBox>
+                            <CheckBox Name="Java">Java</CheckBox>
+                            <CheckBox Name="CSharp">C#</CheckBox>
+                            <CheckBox Name="Name1">TEST</CheckBox>
+                            <CheckBox Name="Name2">TEST</CheckBox>
+                            <CheckBox Name="Name3">TEST</CheckBox>
+                            <CheckBox Name="Name4">TEST</CheckBox>
+                            <CheckBox Name="Name5">TEST</CheckBox>
+                            <CheckBox Name="Name6">TEST</CheckBox>
+                            <CheckBox Name="Name7">TEST</CheckBox>
+                            <CheckBox Name="Name8">TEST</CheckBox>
+                            <CheckBox Name="Name9">TEST</CheckBox>
+                            <CheckBox Name="Name10">TEST</CheckBox>
+                            <CheckBox Name="Name12">TEST</CheckBox>
+                            <CheckBox Name="Name13">TEST</CheckBox>
+                            <CheckBox Name="Name14">TEST</CheckBox>
+                            <CheckBox Name="Name15">TEST</CheckBox>
+                            <CheckBox Name="Name16">TEST</CheckBox>
+                            <CheckBox Name="Name17">TEST</CheckBox>
+                            <CheckBox Name="Name18">TEST</CheckBox>
+                            <CheckBox Name="Name19">TEST</CheckBox>
+                            <CheckBox Name="Name20">TEST</CheckBox>
+                            <CheckBox Name="Name21">TEST</CheckBox>
+                            <CheckBox Name="Name22">TEST</CheckBox>
+                            <CheckBox Name="Name23">TEST</CheckBox>
+                            <CheckBox Name="Name24">TEST</CheckBox>
+                            <CheckBox Name="Name25">TEST</CheckBox>
+                            <CheckBox Name="Name26">TEST</CheckBox>
+                            <CheckBox Name="Name27">TEST</CheckBox>
+                            <CheckBox Name="Name28">TEST</CheckBox>
+                            <CheckBox Name="Name29">TEST</CheckBox>
+                            <CheckBox Name="Name30">TEST</CheckBox>
+                            <CheckBox Name="Name31">TEST</CheckBox>
+                            <CheckBox Name="Name32">TEST</CheckBox>
+                            <CheckBox Name="Name33">TEST</CheckBox>
+                            <CheckBox Name="Name34">TEST</CheckBox>
+                            <CheckBox Name="Name35">TEST</CheckBox>
+                            <CheckBox Name="Name36">TEST</CheckBox>
+                            <CheckBox Name="Name37">TEST</CheckBox>
+                            <CheckBox Name="Name38">TEST</CheckBox>
+                            <CheckBox Name="Name39">TEST</CheckBox>
+                            <CheckBox Name="Name40">TEST</CheckBox>
+                            <CheckBox Name="Name41">TEST</CheckBox>
+                            <CheckBox Name="Name42">TEST</CheckBox>
+                            <CheckBox Name="Name43">TEST</CheckBox>
+                            <CheckBox Name="Name44">TEST</CheckBox>
+                            <CheckBox Name="Name45">TEST</CheckBox>
+                            <CheckBox Name="Name46">TEST</CheckBox>
+                            <CheckBox Name="Name47">TEST</CheckBox>
+                            <CheckBox Name="Name48">TEST</CheckBox>
+                            <CheckBox Name="Name49">TEST</CheckBox>
+                            <CheckBox Name="Name50">TEST</CheckBox>
+                            <CheckBox Name="Name51">TEST</CheckBox>
+                            <CheckBox Name="Name52">TEST</CheckBox>
+                            <CheckBox Name="Name53">TEST</CheckBox>
+                            <CheckBox Name="Name54">TEST</CheckBox>
+                            <CheckBox Name="Name55">TEST</CheckBox>
+                            <CheckBox Name="Name56">TEST</CheckBox>
+                            <CheckBox Name="Name57">TEST</CheckBox>
+                            <CheckBox Name="Name58">TEST</CheckBox>
+                            <CheckBox Name="Name59">TEST</CheckBox>
+                            <CheckBox Name="Name60">TEST</CheckBox>
+                            <CheckBox Name="Name61">TEST</CheckBox>
+                            <CheckBox Name="Name62">TEST</CheckBox>
+                            <CheckBox Name="Name63">TEST</CheckBox>
+                            <CheckBox Name="Name64">TEST</CheckBox>
+                            <CheckBox Name="Name65">TEST</CheckBox>
+                            <CheckBox Name="Name66">TEST</CheckBox>
+                            <CheckBox Name="Name67">TEST</CheckBox>
+                            <CheckBox Name="Name68">TEST</CheckBox>
+                            <CheckBox Name="Name69">TEST</CheckBox>
+                            <CheckBox Name="Name70">TEST</CheckBox>
+                            <CheckBox Name="Name71">TEST</CheckBox>
+                            <CheckBox Name="Name72">TEST</CheckBox>
+                            <CheckBox Name="Name73">TEST</CheckBox>
+                            <CheckBox Name="Name74">TEST</CheckBox>
+                            <CheckBox Name="Name75">TEST</CheckBox>
+                            <CheckBox Name="Name76">TEST</CheckBox>
+                            <CheckBox Name="Name77">TEST</CheckBox>
+                            <CheckBox Name="Name78">TEST</CheckBox>
+                            <CheckBox Name="Name79">TEST</CheckBox>
+                            <CheckBox Name="Name80">TEST</CheckBox>
+                            <CheckBox Name="Name81">TEST</CheckBox>
+                            <CheckBox Name="Name82">TEST</CheckBox>
+                            <CheckBox Name="Name83">TEST</CheckBox>
+                            <CheckBox Name="Name84">TEST</CheckBox>
+                            <CheckBox Name="Name85">TEST</CheckBox>
+                            <CheckBox Name="Name86">TEST</CheckBox>
+                            <CheckBox Name="Name87">TEST</CheckBox>
+                            <CheckBox Name="Name88">TEST</CheckBox>
+                            <CheckBox Name="Name89">TEST</CheckBox>
+                            <CheckBox Name="Name90">TEST</CheckBox>
+                            <CheckBox Name="Name91">TEST</CheckBox>
+                            <CheckBox Name="Name92">TEST</CheckBox>
+                            <CheckBox Name="Name93">TEST</CheckBox>
+                            <CheckBox Name="Name94">TEST</CheckBox>
+                            <CheckBox Name="Name95">TEST</CheckBox>
+                            <CheckBox Name="Name96">TEST</CheckBox>
+                            <CheckBox Name="Name97">TEST</CheckBox>
+                            <CheckBox Name="Name98">TEST</CheckBox>
+                            <CheckBox Name="Name99">TEST</CheckBox>
+                            <CheckBox Name="Name100">TEST</CheckBox>
+                            <CheckBox Name="Name101">TEST</CheckBox>
+                            <CheckBox Name="Name102">TEST</CheckBox>
+                            <CheckBox Name="Name103">TEST</CheckBox>
+                            <CheckBox Name="Name104">TEST</CheckBox>
+                            <CheckBox Name="Name105">TEST</CheckBox>
+                            <CheckBox Name="Name106">TEST</CheckBox>
+                            <CheckBox Name="Name107">TEST</CheckBox>
+                            <CheckBox Name="Name108">TEST</CheckBox>
+                            <CheckBox Name="Name109">TEST</CheckBox>
+                            <CheckBox Name="Name110">TEST</CheckBox>
+                            <CheckBox Name="Name111">TEST</CheckBox>
+                            <CheckBox Name="Name112">TEST</CheckBox>
+                            <CheckBox Name="Name113">TEST</CheckBox>
+                            <CheckBox Name="Name114">TEST</CheckBox>
+                            <CheckBox Name="Name115">TEST</CheckBox>
+                            <CheckBox Name="Name116">TEST</CheckBox>
+                            <CheckBox Name="Name117">TEST</CheckBox>
+                            <CheckBox Name="Name118">TEST</CheckBox>
+                            <CheckBox Name="Name119">TEST</CheckBox>
+                            <CheckBox Name="Name120">TEST</CheckBox>
+                            <CheckBox Name="Name121">TEST</CheckBox>
+                            <CheckBox Name="Name122">TEST</CheckBox>
+                            <CheckBox Name="Name123">TEST</CheckBox>
+                            <CheckBox Name="Name124">TEST</CheckBox>
+                            <CheckBox Name="Name125">TEST</CheckBox>
+                            <CheckBox Name="Name126">TEST</CheckBox>
+                            <CheckBox Name="Name127">TEST</CheckBox>
+                            <CheckBox Name="Name128">TEST</CheckBox>
+                            <CheckBox Name="Name129">TEST</CheckBox>
+                            <CheckBox Name="Name130">TEST</CheckBox>
+                            <CheckBox Name="Name131">TEST</CheckBox>
+                            <CheckBox Name="Name132">TEST</CheckBox>
+                            <CheckBox Name="Name133">TEST</CheckBox>
+                            <CheckBox Name="Name134">TEST</CheckBox>
+                            <CheckBox Name="Name135">TEST</CheckBox>
+                            <CheckBox Name="Name136">TEST</CheckBox>
+                            <CheckBox Name="Name137">TEST</CheckBox>
+                            <CheckBox Name="Name138">TEST</CheckBox>
+                            <CheckBox Name="Name139">TEST</CheckBox>
+                            <CheckBox Name="Name140">TEST</CheckBox>
+                            <CheckBox Name="Name141">TEST</CheckBox>
+                            <CheckBox Name="Name142">TEST</CheckBox>
+                            <CheckBox Name="Name143">TEST</CheckBox>
+                            <CheckBox Name="Name144">TEST</CheckBox>
+                            <CheckBox Name="Name145">TEST</CheckBox>
+                            <CheckBox Name="Name146">TEST</CheckBox>
+                            <CheckBox Name="Name147">TEST</CheckBox>
+                            <CheckBox Name="Name148">TEST</CheckBox>
+                            <CheckBox Name="Name149">TEST</CheckBox>
+                            <CheckBox Name="Name150">TEST</CheckBox>
+                            <CheckBox Name="Name151">TEST</CheckBox>
+                            <CheckBox Name="Name152">TEST</CheckBox>
+                            <CheckBox Name="Name153">TEST</CheckBox>
+                            <CheckBox Name="Name154">TEST</CheckBox>
+                            <CheckBox Name="Name155">TEST</CheckBox>
+                            <CheckBox Name="Name156">TEST</CheckBox>
+                            <CheckBox Name="Name157">TEST</CheckBox>
+                            <CheckBox Name="Name158">TEST</CheckBox>
+                            <CheckBox Name="Name159">TEST</CheckBox>
+                            <CheckBox Name="Name160">TEST</CheckBox>
+                            <CheckBox Name="Name161">TEST</CheckBox>
+                            <CheckBox Name="Name162">TEST</CheckBox>
+                            <CheckBox Name="Name163">TEST</CheckBox>
+                            <CheckBox Name="Name164">TEST</CheckBox>
+                            <CheckBox Name="Name165">TEST</CheckBox>
+                            <CheckBox Name="Name166">TEST</CheckBox>
+                            <CheckBox Name="Name167">TEST</CheckBox>
+                            <CheckBox Name="Name168">TEST</CheckBox>
+                            <CheckBox Name="Name169">TEST</CheckBox>
+                            <CheckBox Name="Name170">TEST</CheckBox>
+                            <CheckBox Name="Name171">TEST</CheckBox>
+                            <CheckBox Name="Name172">TEST</CheckBox>
+                            <CheckBox Name="Name173">TEST</CheckBox>
+                            <CheckBox Name="Name174">TEST</CheckBox>
+                            <CheckBox Name="Name175">TEST</CheckBox>
+                            <CheckBox Name="Name176">TEST</CheckBox>
+                            <CheckBox Name="Name177">TEST</CheckBox>
+                            <CheckBox Name="Name178">TEST</CheckBox>
+                            <CheckBox Name="Name179">TEST</CheckBox>
+                            <CheckBox Name="Name180">TEST</CheckBox>
+                            <CheckBox Name="Name181">TEST</CheckBox>
+                            <CheckBox Name="Name182">TEST</CheckBox>
+                            <CheckBox Name="Name183">TEST</CheckBox>
+                            <CheckBox Name="Name184">TEST</CheckBox>
+                            <CheckBox Name="Name185">TEST</CheckBox>
+                            <CheckBox Name="Name186">TEST</CheckBox>
+                            <CheckBox Name="Name187">TEST</CheckBox>
+                            <CheckBox Name="Name188">TEST</CheckBox>
+                            <CheckBox Name="Name189">TEST</CheckBox>
+                            <CheckBox Name="Name190">TEST</CheckBox>
+                            <CheckBox Name="Name191">TEST</CheckBox>
+                            <CheckBox Name="Name192">TEST</CheckBox>
+                            <CheckBox Name="Name193">TEST</CheckBox>
+                            <CheckBox Name="Name194">TEST</CheckBox>
+                            <CheckBox Name="Name195">TEST</CheckBox>
+                            <CheckBox Name="Name196">TEST</CheckBox>
+                            <CheckBox Name="Name197">TEST</CheckBox>
+                            <CheckBox Name="Name198">TEST</CheckBox>
+                            <CheckBox Name="Name199">TEST</CheckBox>
+                            <CheckBox Name="Name200">TEST</CheckBox>
+                            <CheckBox Name="Name201">TEST</CheckBox>
+                            <CheckBox Name="Name202">TEST</CheckBox>
+                            <CheckBox Name="Name203">TEST</CheckBox>
+                            <CheckBox Name="Name204">TEST</CheckBox>
+                            <CheckBox Name="Name205">TEST</CheckBox>
+                            <CheckBox Name="Name206">TEST</CheckBox>
+                            <CheckBox Name="Name207">TEST</CheckBox>
+                            <CheckBox Name="Name208">TEST</CheckBox>
+                            <CheckBox Name="Name209">TEST</CheckBox>
+                            <CheckBox Name="Name210">TEST</CheckBox>
+                            <CheckBox Name="Name211">TEST</CheckBox>
+                            <CheckBox Name="Name212">TEST</CheckBox>
+                            <CheckBox Name="Name213">TEST</CheckBox>
+                            <CheckBox Name="Name214">TEST</CheckBox>
+                            <CheckBox Name="Name215">TEST</CheckBox>
+                            <CheckBox Name="Name216">TEST</CheckBox>
+                            <CheckBox Name="Name217">TEST</CheckBox>
+                            <CheckBox Name="Name218">TEST</CheckBox>
+                            <CheckBox Name="Name219">TEST</CheckBox>
+                            <CheckBox Name="Name220">TEST</CheckBox>
+                            <CheckBox Name="Name221">TEST</CheckBox>
+                            <CheckBox Name="Name222">TEST</CheckBox>
+                            <CheckBox Name="Name223">TEST</CheckBox>
+                            <CheckBox Name="Name224">TEST</CheckBox>
+                            <CheckBox Name="Name225">TEST</CheckBox>
+                            <CheckBox Name="Name226">TEST</CheckBox>
+                            <CheckBox Name="Name227">TEST</CheckBox>
+                            <CheckBox Name="Name228">TEST</CheckBox>
+                            <CheckBox Name="Name229">TEST</CheckBox>
+                            <CheckBox Name="Name230">TEST</CheckBox>
+                            <CheckBox Name="Name231">TEST</CheckBox>
+                            <CheckBox Name="Name232">TEST</CheckBox>
+                            <CheckBox Name="Name233">TEST</CheckBox>
+                        </WrapPanel>
+                    </ScrollViewer>
                 </StackPanel>
-            </StackPanel>
-        </TabItem>
+            </TabItem>
 
-        <TabItem Name="IDEs" Header="IDEs" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
-            <TabItem.Content>推荐IDE</TabItem.Content>
-        </TabItem>
+            <TabItem Name="IDEs" Header="IDEs" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+                <TabItem.Content>推荐IDE</TabItem.Content>
+            </TabItem>
 
-        <TabItem Name="Allocation" Header="Allocation" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
-            <TabItem.Content>分配位置</TabItem.Content>
-        </TabItem>
-    </TabControl>
+            <TabItem Name="Allocation" Header="Allocation" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
+                <TabItem.Content>分配位置</TabItem.Content>
+            </TabItem>
+        </TabControl>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" 
+                   Block.TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">
+            显示安装位置，操作提示
+        </TextBlock>
+
+    </Grid>
+
 
 </Page>
