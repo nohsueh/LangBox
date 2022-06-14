@@ -7,28 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Welcome">
-    <TabControl TabStripPlacement="Top" Background="White" BorderBrush="#FFFBFBFB" >
-        <TabItem Name="tabIitemContent" Header="TabItem with Buttons" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
-            <StackPanel>
-                <Button Content="_OK"/>
-                <Button Content="_Cancel"/>
-                <TextBlock>
-                    <Hyperlink NavigateUri="http://www.github.com" 
-                    Click="Hyperlink_Click">GitHub</Hyperlink>
-                </TextBlock>
+
+    <TabControl TabStripPlacement="Top"  BorderBrush="#FFFBFBFB" >
+        <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+            <StackPanel Margin="10">
+                <StackPanel Margin="10,5">
+                    <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
+                    <WrapPanel Name="LangSelect"  Margin="20,5">
+                        <CheckBox Name="C" IsChecked="True">C</CheckBox>
+                        <CheckBox Name="CPlusPlus" >C++</CheckBox>
+                        <CheckBox Name="Python" >Python</CheckBox>
+                        <CheckBox Name="Java" >Java</CheckBox>
+                        <CheckBox Name="CSharp">C#</CheckBox>
+                    </WrapPanel>
+                </StackPanel>
             </StackPanel>
         </TabItem>
 
-        <TabItem Name="backgroundcolor" Header="Background" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
-            <TabItem.Content>Background property information goes here.</TabItem.Content>
+        <TabItem Name="IDEs" Header="IDEs" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+            <TabItem.Content>推荐IDE</TabItem.Content>
         </TabItem>
 
-        <TabItem Name="foregroundcolor" Header="Foreground" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
-            <TabItem.Content>Foreground property information goes here.</TabItem.Content>
-        </TabItem>
-
-        <TabItem Name="bordercolor" Header="BorderColor" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
-            <TabItem.Content>Border color property information goes here.</TabItem.Content>
+        <TabItem Name="Allocation" Header="Allocation" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
+            <TabItem.Content>分配位置</TabItem.Content>
         </TabItem>
     </TabControl>
 

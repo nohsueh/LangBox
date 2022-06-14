@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LangBox.Pages
 {
@@ -31,6 +20,20 @@ namespace LangBox.Pages
             Hyperlink link = sender as Hyperlink;
             Process.Start(new ProcessStartInfo("explorer.exe", link.NavigateUri.AbsoluteUri));
 
+        }
+
+        private void SelectAll_Checked(object sender, RoutedEventArgs e)
+        {
+            bool flag = SelectAll.IsChecked == true ? true : false;
+            for (int i = 0; i < LangSelect.Children.Count; i++)
+            {
+                var item = LangSelect.Children[i];
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    checkBoxItem.IsChecked = flag;
+                }
+            }
         }
     }
 }

@@ -9,25 +9,17 @@ namespace LangBox.Operaters
 {
     internal class UpdateChecker
     {
-        private const string version = "V0.0.1";
+        private const string version = "V0.0.2";
         private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";
 
         public static bool HasUpdate()
         {
             string content = ReadHttpSourceCode(checkPage);
-
-            Trace.WriteLine(content);
-
             Regex regex = new Regex("href=\"/NOhsueh/LangBox/releases/tag/(.*)\" data-view-component=\"true\"");
             Match match = regex.Match(content);
 
-            Trace.WriteLine(version);
-
             if (match.Success)
             {
-
-                Trace.WriteLine("success");
-
                 string nowVersion = match.Groups[1].Value;
                 if (string.Compare(version,nowVersion) < 0)
                     return true;
