@@ -4,27 +4,30 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 
 namespace LangBox.Pages
 {
     /// <summary>
-    /// Welcome.xaml 的交互逻辑
+    /// MainPage.xaml 的交互逻辑
     /// </summary>
-    public partial class Welcome : Page
+    public partial class MainPage : Page
     {
-        public Welcome()
+        public static string SelectedLangPath { get; set; }
+        public static string GitHubPath = "www.github.com";
+
+        public MainPage()
         {
             InitializeComponent();
+            PathInput.SetBinding(TextBox.TextProperty, "SelectedLangPath");
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            Hyperlink link = sender as Hyperlink;
-            Process.Start(new ProcessStartInfo("explorer.exe", link.NavigateUri.AbsoluteUri));
+            Process.Start("explorer.exe", GitHubPath);
 
         }
 
+        //全选
         private void SelectAll_Checked(object sender, RoutedEventArgs e)
         {
             bool flag = SelectAll.IsChecked == true ? true : false;
@@ -36,6 +39,29 @@ namespace LangBox.Pages
                     CheckBox checkBoxItem = (CheckBox)item;
                     checkBoxItem.IsChecked = flag;
                 }
+            }
+        }
+
+        //点击浏览
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+            dialog.SelectedPath = SelectedLangPath;
+            dialog.ShowDialog();
+            PathInput.Text = dialog.SelectedPath;
+            PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        //改变文本框内容
+        private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (PathCheck(PathInput.Text))
+            {
+                InstallButton.IsEnabled = true;
+            }
+            else
+            {
+                InstallButton.IsEnabled = false;
             }
         }
 
@@ -63,15 +89,6 @@ namespace LangBox.Pages
             if (regex.Match(text).Success)
                 return true;
             return false;
-        }
-
-        private void Browse_Click(object sender, RoutedEventArgs e)
-        {
-            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
-            dialog.SelectedPath = SelectedGccPath;
-            dialog.ShowDialog();
-            PathInput.Text = dialog.SelectedPath;
-            PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }
