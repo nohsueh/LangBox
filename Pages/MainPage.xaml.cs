@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using Ookii.Dialogs.Wpf;
+using System.Diagnostics;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -34,6 +37,41 @@ namespace LangBox.Pages
                     checkBoxItem.IsChecked = flag;
                 }
             }
+        }
+
+        private bool PathCheck(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                PathError.Text = "路径不存在";
+                return false;
+            }
+
+            if (InculdeIllegal(path))
+            {
+                PathError.Text = "路径包含空格或特殊符号";
+                return false;
+            }
+
+            PathError.Text = "";
+            return true;
+        }
+
+        private bool InculdeIllegal(string text)
+        {
+            Regex regex = new Regex(@"[^a-zA-Z0-9:_\\]");
+            if (regex.Match(text).Success)
+                return true;
+            return false;
+        }
+
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+            dialog.SelectedPath = SelectedGccPath;
+            dialog.ShowDialog();
+            PathInput.Text = dialog.SelectedPath;
+            PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }
