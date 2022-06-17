@@ -35,7 +35,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Name="IDEs" Header="IDEs" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
+            <TabItem Name="IDE" Header="IDE" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
                 <TabItem.Content>推荐IDE</TabItem.Content>
             </TabItem>
 

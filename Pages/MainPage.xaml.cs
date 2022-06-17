@@ -69,13 +69,13 @@ namespace LangBox.Pages
         {
             if (!Directory.Exists(path))
             {
-                PathError.Text = "路径不存在";
+                PathError.Text = "The path does not exist.";
                 return false;
             }
 
             if (InculdeIllegal(path))
             {
-                PathError.Text = "路径包含空格或特殊符号";
+                PathError.Text = "The path contains spaces or special symbols.";
                 return false;
             }
 
