@@ -30,7 +30,7 @@ namespace LangBox
                 }
             });
             task.Start();
-            this.Content = new Welcome();
+            this.Content = new MainPage();
         }
     }
 }

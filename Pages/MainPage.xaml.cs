@@ -1,28 +1,94 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ookii.Dialogs.Wpf;
+using System.Diagnostics;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LangBox.Pages
 {
     /// <summary>
-    /// Welcome.xaml 的交互逻辑
+    /// MainPage.xaml 的交互逻辑
     /// </summary>
-    public partial class Welcome : Page
+    public partial class MainPage : Page
     {
-        public Welcome()
+        public static string SelectedLangPath { get; set; }
+        public static string GitHubPath = "www.github.com";
+
+        public MainPage()
         {
             InitializeComponent();
+            PathInput.SetBinding(TextBox.TextProperty, "SelectedLangPath");
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", GitHubPath);
+
+        }
+
+        //全选
+        private void SelectAll_Checked(object sender, RoutedEventArgs e)
+        {
+            bool flag = SelectAll.IsChecked == true ? true : false;
+            for (int i = 0; i < LangSelect.Children.Count; i++)
+            {
+                var item = LangSelect.Children[i];
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    checkBoxItem.IsChecked = flag;
+                }
+            }
+        }
+
+        //点击浏览
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+            dialog.SelectedPath = SelectedLangPath;
+            dialog.ShowDialog();
+            PathInput.Text = dialog.SelectedPath;
+            PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        //改变文本框内容
+        private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (PathCheck(PathInput.Text))
+            {
+                InstallButton.IsEnabled = true;
+            }
+            else
+            {
+                InstallButton.IsEnabled = false;
+            }
+        }
+
+        private bool PathCheck(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                PathError.Text = "路径不存在";
+                return false;
+            }
+
+            if (InculdeIllegal(path))
+            {
+                PathError.Text = "路径包含空格或特殊符号";
+                return false;
+            }
+
+            PathError.Text = "";
+            return true;
+        }
+
+        private bool InculdeIllegal(string text)
+        {
+            Regex regex = new Regex(@"[^a-zA-Z0-9:_\\]");
+            if (regex.Match(text).Success)
+                return true;
+            return false;
         }
     }
 }
