@@ -22,7 +22,7 @@
             <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
-                    
+
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                         <WrapPanel Name="LangSelect"  Margin="20,5">
                             <CheckBox Name="C" IsChecked="True">C</CheckBox>
@@ -40,30 +40,42 @@
             </TabItem>
 
             <TabItem Name="Allocation" Header="Allocation" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
-                <StackPanel Margin="10,5">
-                    <TextBlock TextAlignment="Left">Programming Languages</TextBlock>
-                    
-                    <WrapPanel>
-                        <TextBox Height="18px" Name="PathInput" TextChanged="PathInput_TextChanged" Width="445">C:\Program Files\LangBox\lang</TextBox>
-                        <Button Margin="5 0 10 0" VerticalAlignment="Center"  Click="Browse_Click">Browse</Button>
-                    </WrapPanel>
-                    
-                    <TextBlock 
-                       Name="PathError"
-                       TextAlignment="Left"
-                       Foreground="Red">
-                        PErr
-                    </TextBlock>
+                <StackPanel x:Name="SelectPath" Margin="10,5" Orientation="Vertical">
+
+
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="2*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" TextAlignment="Left">Programming Languages</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" Margin="0 5 10 5" TextChanged="PathInput_TextChanged" >C:\Program Files\LangBox\lang</TextBox>
+                        <Button Grid.Row="1" Grid.Column="1" Margin="5 0 10 0" MaxWidth="67" VerticalAlignment="Center"  Click="Browse_Click">Browse</Button>
+                        <TextBlock 
+                            Name="PathValidity"
+                            Grid.Row="3"
+                            TextAlignment="Left"
+                            Foreground="Red">
+                            PErr
+                        </TextBlock>
+                    </Grid>
+
+
                 </StackPanel>
             </TabItem>
         </TabControl>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" 
+        <TextBlock Name="AllocatedPath"  Grid.Row="1" Grid.Column="0" 
                    Block.TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Hyperlink Click="Hyperlink_Click">GitHub</Hyperlink>
-            显示安装位置，操作提示
         </TextBlock>
-        
+
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" >要求的总空间 *MB</TextBlock>
             <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center">Install</Button>
