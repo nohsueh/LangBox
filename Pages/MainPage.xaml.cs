@@ -19,12 +19,12 @@ namespace LangBox.Pages
         {
             InitializeComponent();
             PathInput.SetBinding(TextBox.TextProperty, "SelectedLangPath");
+            SelectedPath.SetBinding(TextBox.TextProperty, "SelectedLangPath");
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("explorer.exe", GitHubPath);
-
         }
 
         //全选

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LangBox.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Welcome">
+      Title="MainPage">
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="2*"></RowDefinition>
@@ -17,8 +17,11 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-        <TabControl TabStripPlacement="Top">
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" >要求的总空间 *MB</TextBlock>
+            <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center">Install</Button>
+        </StackPanel>
+        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
             <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="#FFFBFBFB" Background="#FFFBFBFB">
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
@@ -39,34 +42,35 @@
             </TabItem>
 
             <TabItem Name="Allocation" Header="Allocation" Background="#FFFBFBFB" BorderBrush="#FFFBFBFB">
-                <StackPanel Margin="10,5">
-                    <TextBlock TextAlignment="Left">Programming Languages</TextBlock>
-                    <WrapPanel>
-
-                        <TextBox Height="18px" Name="PathInput" TextChanged="PathInput_TextChanged" Width="445">C:\Program Files\LangBox\lang</TextBox>
-                        <Button Margin="5 0 10 0" VerticalAlignment="Center"  Click="Browse_Click">Browse</Button>
-                    </WrapPanel>
-
-
-                    <TextBlock 
+                <Grid Margin="10,5">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" TextAlignment="Left">Installation Path</TextBlock>
+                    <TextBlock Grid.Row="2"
                        Name="PathError"
                        TextAlignment="Left"
                        Foreground="Red">
                         路径不存在
                     </TextBlock>
-                </StackPanel>
+                    <TextBox Grid.Row="1" Grid.Column="0"  Margin="0 5 10 5" Name="PathInput" TextChanged="PathInput_TextChanged" Width="445">C:\Program Files\LangBox\lang</TextBox>
+                    <Button Grid.Row="1" Grid.Column="1" Margin="5 0 10 0" VerticalAlignment="Center"  Click="Browse_Click">Browse</Button>
+                </Grid>
             </TabItem>
         </TabControl>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" 
+        <TextBlock Grid.Row="1" Grid.Column="0" Name="SelectedPath"
                    Block.TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">
             安装位置：C:\Program Files\LangBox\lang
             <Hyperlink Click="Hyperlink_Click">GitHub</Hyperlink>
         </TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" >要求的总空间 *MB</TextBlock>
-            <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center">Install</Button>
-        </StackPanel>
+        
     </Grid>
 
 
