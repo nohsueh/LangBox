@@ -55,32 +55,32 @@ namespace LangBox.Pages
         //改变文本框内容
         private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (PathCheck(PathInput.Text))
-            //{
-            //    InstallButton.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    InstallButton.IsEnabled = false;
-            //}
-            //AllocatedPath.Text = PathInput.Text;
+            if (PathCheck(PathInput.Text))
+            {
+                InstallButton.IsEnabled = true;
+            }
+            else
+            {
+                InstallButton.IsEnabled = false;
+            }
+            SelectedPath.Text = "安装位置："+PathInput.Text;
         }
 
         private bool PathCheck(string path)
         {
-            //if (!Directory.Exists(path))
-            //{
-            //    PathValidity.Text = "The path does not exist.";
-            //    return false;
-            //}
+            if (!Directory.Exists(path))
+            {
+                PathValidity.Text = "The path does not exist.";
+                return false;
+            }
 
-            //if (InculdeIllegal(path))
-            //{
-            //    PathValidity.Text = "The path contains spaces or special symbols.";
-            //    return false;
-            //}
+            if (InculdeIllegal(path))
+            {
+                PathValidity.Text = "The path contains spaces or special symbols.";
+                return false;
+            }
 
-            //PathValidity.Text = "";
+            PathValidity.Text = "";
             return true;
         }
 

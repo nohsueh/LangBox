@@ -23,6 +23,11 @@
         <Style TargetType="Button">
             <Setter Property="Background" Value="{StaticResource c0}" />
             <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{StaticResource c1}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>
