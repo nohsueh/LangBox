@@ -10,5 +10,4 @@
         MinHeight="225" MinWidth="400"
         Background="{StaticResource c0}"
         Loaded="Window_Loaded">
-	<StackPanel/>
 </Window>

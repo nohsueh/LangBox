@@ -60,8 +60,8 @@
 
         <TextBlock Grid.Row="1" Grid.Column="0" 
                    Block.TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Hyperlink Click="CheckVideo_Click">GitHub</Hyperlink>
-            显示安装位置，操作提示
+            安装位置：C:\Program Files\LangBox\lang
+            <Hyperlink Click="Hyperlink_Click">GitHub</Hyperlink>
         </TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" >要求的总空间 *MB</TextBlock>
