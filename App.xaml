@@ -4,11 +4,12 @@
              xmlns:local="clr-namespace:LangBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="c0" Color="#FFFBFBFB" />
-        <SolidColorBrush x:Key="c1" Color="#6b778d" />
+        <SolidColorBrush x:Key="c0" Color="#C0C0C0" />
+        <SolidColorBrush x:Key="c1" Color="#FFFBFBFB" />
         <SolidColorBrush x:Key="c2" Color="#0066cc" />
         <SolidColorBrush x:Key="c3" Color="#212121" />
-
+        <SolidColorBrush x:Key="c4" Color="#A9A9A9" />
+        
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource c3}" />
             <Setter Property="TextAlignment" Value="Center" />
@@ -17,12 +18,17 @@
         <!-- 点击链接样式-->
         <Style TargetType="Hyperlink">
             <Setter Property="Foreground" Value="{StaticResource c2}" />
+            <Style.Triggers>
+                <!--鼠标经过-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource c3}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <!-- 按钮样式-->
         <Style TargetType="Button">
             <Setter Property="Background" Value="{StaticResource c0}" />
-            <Setter Property="BorderThickness" Value="1" />
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="{StaticResource c1}"/>

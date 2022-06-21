@@ -13,13 +13,12 @@ namespace LangBox.Pages
     public partial class MainPage : Page
     {
         public static string SelectedLangPath { get; set; }
-        public static string GitHubPath = "www.github.com";
+        public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
 
         public MainPage()
         {
             InitializeComponent();
             PathInput.SetBinding(TextBox.TextProperty, "SelectedLangPath");
-            SelectedPath.SetBinding(TextBox.TextProperty, "SelectedLangPath");
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -42,7 +41,7 @@ namespace LangBox.Pages
             }
         }
 
-        //点击浏览
+        //点击浏览文件
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
@@ -58,12 +57,13 @@ namespace LangBox.Pages
             if (PathCheck(PathInput.Text))
             {
                 InstallButton.IsEnabled = true;
+                SelectedPath.Text = "Installation Location：" + PathInput.Text;
             }
             else
             {
                 InstallButton.IsEnabled = false;
+                SelectedPath.Text = "PathError";
             }
-            SelectedPath.Text = "安装位置："+PathInput.Text;
         }
 
         private bool PathCheck(string path)
@@ -90,6 +90,11 @@ namespace LangBox.Pages
             if (regex.Match(text).Success)
                 return true;
             return false;
+        }
+
+        private void Install_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
