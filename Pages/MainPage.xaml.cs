@@ -57,7 +57,7 @@ namespace LangBox.Pages
             if (PathCheck(PathInput.Text))
             {
                 InstallButton.IsEnabled = true;
-                SelectedPath.Text = "Installation Location：" + PathInput.Text;
+                SelectedPath.Text = "Installation Location: " + PathInput.Text;
             }
             else
             {
@@ -86,7 +86,7 @@ namespace LangBox.Pages
 
         private bool InculdeIllegal(string text)
         {
-            Regex regex = new Regex(@"[^a-zA-Z0-9:_\\]");
+            Regex regex = new Regex(@"^[^\/\:\*\?\""\<\>\|\,]+$");
             if (regex.Match(text).Success)
                 return true;
             return false;
