@@ -4,14 +4,13 @@
              xmlns:local="clr-namespace:LangBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="c0" Color="#C0C0C0" />
-        <SolidColorBrush x:Key="c1" Color="#FFFBFBFB" />
-        <SolidColorBrush x:Key="c2" Color="#0066cc" />
+        <SolidColorBrush x:Key="c0" Color="#FFFBFBFB" />
+        <SolidColorBrush x:Key="c1" Color="#B0C4DE" />
+        <SolidColorBrush x:Key="c2" Color="#1E90FF" />
         <SolidColorBrush x:Key="c3" Color="#212121" />
-        <SolidColorBrush x:Key="c4" Color="#A9A9A9" />
-        
+
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource c3}" />
+            <Setter Property="Foreground" Value="{StaticResource c3}"/>
             <Setter Property="TextAlignment" Value="Center" />
         </Style>
 
@@ -28,10 +27,10 @@
 
         <!-- 按钮样式-->
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource c0}" />
+            <Setter Property="Background" Value="{StaticResource c1}" />
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{StaticResource c1}"/>
+                    <Setter Property="BorderThickness"  Value="0 0 0 0"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
