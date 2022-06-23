@@ -39,11 +39,11 @@ namespace LangBox.Pages
                     checkBoxItem.IsChecked = flag;
                 }
             }
-            LangSelect_Click(sender, e);
+            LangSelect_Check(sender, e);
         }
 
         //检查勾选的语言
-        private void LangSelect_Click(object sender, RoutedEventArgs e)
+        private void LangSelect_Check(object sender, RoutedEventArgs e)
         {
             foreach (var item in LangSelect.Children)
             {
@@ -127,6 +127,11 @@ namespace LangBox.Pages
         private void Install_Click(object sender, RoutedEventArgs e)
         {
             Trace.WriteLine(PathInput.Text);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LangSelect_Check(sender, e);
         }
     }
 }
