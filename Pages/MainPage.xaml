@@ -27,7 +27,7 @@
         </DockPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock Name="SpaceRequired" VerticalAlignment="Center" HorizontalAlignment="Stretch" ></TextBlock>
-            <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="Install_Click" Width="64" Height="36" Visibility="Visible" BorderThickness="1,1,1,1">Install</Button>
+            <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="InstallButton_Click" Width="64" Height="36" Visibility="Visible" BorderThickness="1,1,1,1">Install</Button>
         </StackPanel>
         <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
             <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">

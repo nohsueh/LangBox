@@ -17,6 +17,7 @@ namespace LangBox.Pages
         public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         public static Dictionary<string, bool> LangMap = new Dictionary<string, bool>();
 
+
         public MainPage()
         {
             InitializeComponent();
@@ -124,9 +125,9 @@ namespace LangBox.Pages
             return false;
         }
 
-        private void Install_Click(object sender, RoutedEventArgs e)
+        private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine(PathInput.Text);
+            Installer.Start(LangMap, SelectedPath.Text);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
