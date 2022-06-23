@@ -26,21 +26,20 @@
             </TextBlock>
         </DockPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" >要求的总空间 *MB</TextBlock>
+            <TextBlock Name="SpaceRequired" VerticalAlignment="Center" HorizontalAlignment="Stretch" >1MB space required</TextBlock>
             <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="Install_Click" Width="64" Height="36" Visibility="Visible" BorderThickness="1,1,1,1">Install</Button>
         </StackPanel>
         <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
             <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
-
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                         <WrapPanel Name="LangSelect"  Margin="20,5">
-                            <CheckBox Name="C" IsChecked="True">C</CheckBox>
-                            <CheckBox Name="CPlusPlus">C++</CheckBox>
-                            <CheckBox Name="Python">Python</CheckBox>
-                            <CheckBox Name="Java">Java</CheckBox>
-                            <CheckBox Name="CSharp">C#</CheckBox>
+                            <CheckBox Name="C" IsChecked="True" Click="LangSelect_Click">C</CheckBox>
+                            <CheckBox Name="CPlusPlus" Click="LangSelect_Click">C++</CheckBox>
+                            <CheckBox Name="Python" Click="LangSelect_Click">Python</CheckBox>
+                            <CheckBox Name="Java" Click="LangSelect_Click">Java</CheckBox>
+                            <CheckBox Name="CSharp" Click="LangSelect_Click">C#</CheckBox>
                         </WrapPanel>
                     </ScrollViewer>
                 </StackPanel>
