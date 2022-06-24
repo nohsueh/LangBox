@@ -16,11 +16,34 @@ namespace LangBox.Pages
     {
         public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         public static Dictionary<string, bool> LangMap = new Dictionary<string, bool>();
-        private static string oldPath = @"D:\LangBox Files";
+        IniFiles ini = new IniFiles(Process.GetCurrentProcess().MainModule.FileName + @"\config.INI");
 
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeSelection();
+            LangSelect_Update(sender, e);
+        }
+
+        //利用ini文件初始化
+        private void InitializeSelection()
+        {
+            if(ini.ExistINIFile())//验证是否存在文件，存在就读取
+            {
+                PathInput.Text = ini.IniReadValue("Path", "LangBoxPath");
+                foreach (var item in LangSelect.Children)
+                {
+                    if (item is CheckBox)
+                    {
+                        CheckBox checkBoxItem = (CheckBox)item;
+                        checkBoxItem.IsChecked = ini.IniReadValue("LangMap", checkBoxItem.Name)=="true"?true:false;
+                    }
+                }
+            }
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -40,11 +63,11 @@ namespace LangBox.Pages
                     checkBoxItem.IsChecked = flag;
                 }
             }
-            LangSelect_Check(sender, e);
+            LangSelect_Update(sender, e);
         }
 
-        //检查勾选的语言
-        private void LangSelect_Check(object sender, RoutedEventArgs e)
+        //检查勾选的语言，更新LangMap
+        private void LangSelect_Update(object sender, RoutedEventArgs e)
         {
             foreach (var item in LangSelect.Children)
             {
@@ -106,7 +129,13 @@ namespace LangBox.Pages
                 PathValidity.Text = "The path contains spaces or special symbols.";
                 return false;
             }
-            else if (!Directory.Exists(path)|| path == oldPath)
+            else if (!Directory.Exists(path))
+            {
+                PathValidity.Text = "";
+                return true;
+            }
+            //存在ini文件且与以前的路径一样
+            else if (ini.ExistINIFile() && path == ini.IniReadValue("Path", "LangBoxPath"))
             {
                 PathValidity.Text = "";
                 return true;
@@ -131,13 +160,13 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            oldPath = PathInput.Text;
-            Installer.Start(LangMap, oldPath);
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            LangSelect_Check(sender, e);
+            string LangBoxPath = PathInput.Text;
+            ini.IniWriteValue("Path", "LangBoxPath", LangBoxPath);
+            foreach (var kvp in LangMap)
+            {
+                ini.IniWriteValue("LangMap", kvp.Key, kvp.Value == true ? "true" : "false");
+            }
+            Installer.Start(LangMap, LangBoxPath);
         }
     }
 }

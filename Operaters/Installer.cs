@@ -9,7 +9,7 @@ namespace LangBox.Operaters
 {
     internal class Installer
     {
-        private static string langPath = "lang";
+        private static string langPath = @"\lang";
 
         public static void Start(Dictionary<string, bool> langMap, string langboxPath)
         {
@@ -18,7 +18,7 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(langboxPath);
             }
             //langboxPath下无文件或文件夹
-            string temp = Path.Combine(langboxPath, langPath);
+            string temp = langboxPath+langPath;
             Directory.CreateDirectory(temp);
         }
     }
