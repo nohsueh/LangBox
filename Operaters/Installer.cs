@@ -9,12 +9,17 @@ namespace LangBox.Operaters
 {
     internal class Installer
     {
-        public static void Start(Dictionary<string, bool> langmap, string path)
+        private static string langPath = "lang";
+
+        public static void Start(Dictionary<string, bool> langMap, string langboxPath)
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(langboxPath))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(langboxPath);
             }
+            //langboxPath下无文件或文件夹
+            string temp = Path.Combine(langboxPath, langPath);
+            Directory.CreateDirectory(temp);
         }
     }
 }

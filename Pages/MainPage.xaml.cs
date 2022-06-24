@@ -16,7 +16,7 @@ namespace LangBox.Pages
     {
         public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         public static Dictionary<string, bool> LangMap = new Dictionary<string, bool>();
-
+        private static string oldPath = @"D:\LangBox Files";
 
         public MainPage()
         {
@@ -106,7 +106,7 @@ namespace LangBox.Pages
                 PathValidity.Text = "The path contains spaces or special symbols.";
                 return false;
             }
-            else if (!Directory.Exists(path))
+            else if (!Directory.Exists(path)|| path == oldPath)
             {
                 PathValidity.Text = "";
                 return true;
@@ -131,8 +131,8 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            string LangPath = PathInput.Text;
-            Installer.Start(LangMap, LangPath);
+            oldPath = PathInput.Text;
+            Installer.Start(LangMap, oldPath);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
