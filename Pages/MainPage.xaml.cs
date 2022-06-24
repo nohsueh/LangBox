@@ -103,13 +103,17 @@ namespace LangBox.Pages
         {
             if (!Directory.Exists(path))
             {
-                PathValidity.Text = "The path does not exist.";
-                return false;
+                PathValidity.Text = "";
+                return true;
             }
-
             if (InculdeIllegal(path))
             {
                 PathValidity.Text = "The path contains spaces or special symbols.";
+                return false;
+            }
+            if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
+            {
+                PathValidity.Text = "The folder is not empty.";
                 return false;
             }
 
@@ -127,7 +131,8 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            Installer.Start(LangMap, SelectedPath.Text);
+            string LangPath = PathInput.Text;
+            Installer.Start(LangMap, LangPath);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
