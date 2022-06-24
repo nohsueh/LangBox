@@ -101,17 +101,17 @@ namespace LangBox.Pages
 
         private bool PathCheck(string path)
         {
-            if (!Directory.Exists(path))
-            {
-                PathValidity.Text = "";
-                return true;
-            }
             if (InculdeIllegal(path))
             {
                 PathValidity.Text = "The path contains spaces or special symbols.";
                 return false;
             }
-            if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
+            else if (!Directory.Exists(path))
+            {
+                PathValidity.Text = "";
+                return true;
+            }
+            else if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
             {
                 PathValidity.Text = "The folder is not empty.";
                 return false;
@@ -123,8 +123,8 @@ namespace LangBox.Pages
 
         private bool InculdeIllegal(string text)
         {
-            Regex regex = new Regex(@"^[^\/\:\*\?\""\<\>\|\,]+$");
-            if (regex.Match(text).Success)
+            Regex regex = new Regex(@"^([a-zA-Z]:\\)([-\u4e00-\u9fa5\w\s.()~!@#$%^&()\[\]{}+=]+\\?)*$");
+            if (!regex.Match(text).Success)
                 return true;
             return false;
         }
