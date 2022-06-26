@@ -21,11 +21,11 @@ namespace LangBox.Pages
         public MainPage()
         {
             InitializeComponent();
+            InitializeSelection();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeSelection();
             LangSelect_Update(sender, e);
         }
 
