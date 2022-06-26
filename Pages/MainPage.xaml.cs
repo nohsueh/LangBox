@@ -1,6 +1,8 @@
 ﻿using LangBox.Operaters;
 using Ookii.Dialogs.Wpf;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -16,6 +18,8 @@ namespace LangBox.Pages
     {
         private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         private static ConfigHelper cfg = new ConfigHelper();
+        private BackgroundWorker worker;
+
 
         public MainPage()
         {
@@ -141,9 +145,67 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            string FilesPath = PathInput.Text;
             cfg.SetFilesPath(PathInput.Text);
-            Installer.Start(cfg.GetLangMap(), FilesPath);
+
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += StartInstall;
+            worker.ProgressChanged += ProgressChanged;
+            worker.RunWorkerCompleted += WorkerCompleted;
+            worker.RunWorkerAsync();
+
+            
+        }
+
+        private void StartInstall(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Installer installer = new Installer(cfg.GetLangMap(), cfg.GetFilesPath());
+                installer.OnProgressChangeEvent += ProgressChangeSend;
+                installer.Start();
+            }
+            catch (Exception err)
+            {
+                //发生异常
+            }
+        }
+
+        // 收到Installer的事件调用，将内容发送给worker
+        private void ProgressChangeSend(string text)
+        {
+            worker.ReportProgress(0, text);
+        }
+
+        //worker处理进度
+        private void ProgressChanged(object sender, ProgressChangedEventArgs args)
+        {
+            WorkingWith.Text = args.UserState as string;
+        }
+
+        private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
+        {
+            //完成或取消或异常后的工作
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool b)
+        {
+            worker.Dispose();
+            this.Dispose(b);
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (worker.IsBusy)
+            {
+                worker.CancelAsync();
+            }
         }
     }
 }
