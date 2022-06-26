@@ -13,13 +13,11 @@ namespace LangBox.Operaters
 
         public static void Start(Dictionary<string, bool> langMap, string langboxPath)
         {
-            if (!Directory.Exists(langboxPath))
-            {
-                Directory.CreateDirectory(langboxPath);
-            }
-            //langboxPath下无文件或文件夹
             string temp = langboxPath+langPath;
-            Directory.CreateDirectory(temp);
+            if (!Directory.Exists(temp))
+            {
+                Directory.CreateDirectory(temp);
+            }
         }
     }
 }
