@@ -20,12 +20,13 @@ namespace LangBox.Pages
         public MainPage()
         {
             InitializeComponent();
-            InitializeLangSelect();
-            InitializePathInput();
+            InitializeConfig();
         }
 
-        private void InitializeLangSelect()
+        private void InitializeConfig()
         {
+            PathInput.Text = cfg.GetFilesPath();
+
             Dictionary<string, bool> LangMap = cfg.GetLangMap();
             foreach (var item in LangSelect.Children)
             {
@@ -37,11 +38,6 @@ namespace LangBox.Pages
             }
 
             SpaceRequiredShow();
-        }
-
-        private void InitializePathInput()
-        {
-            PathInput.Text = cfg.GetFilesPath();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

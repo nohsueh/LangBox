@@ -70,5 +70,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <ProgressBar Grid.Row="0" Grid.Column="1" Name="InstallProgress" HorizontalAlignment="Center" Height="10" Margin="0,21,0,0" VerticalAlignment="Top" Width="225"/>
     </Grid>
 </Page>
