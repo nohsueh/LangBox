@@ -14,17 +14,34 @@ namespace LangBox.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
-        public static Dictionary<string, bool> LangMap = new Dictionary<string, bool>();
+        private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
+        private static ConfigHelper cfg = new ConfigHelper();
 
         public MainPage()
         {
             InitializeComponent();
+            InitializeLangSelect();
+            InitializePathInput();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void InitializeLangSelect()
         {
-            LangSelect_Update(sender, e);
+            Dictionary<string, bool> LangMap = cfg.GetLangMap();
+            foreach (var item in LangSelect.Children)
+            {
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    checkBoxItem.IsChecked = LangMap[checkBoxItem.Name];
+                }
+            }
+
+            SpaceRequiredShow();
+        }
+
+        private void InitializePathInput()
+        {
+            PathInput.Text = cfg.GetFilesPath();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -58,14 +75,7 @@ namespace LangBox.Pages
                     string LMkey = checkBoxItem.Name;
                     bool LMvalue = (bool)checkBoxItem.IsChecked;
 
-                    if (LangMap.ContainsKey(LMkey))
-                    {
-                        LangMap[LMkey] = LMvalue;
-                    }
-                    else
-                    {
-                        LangMap.Add(LMkey, LMvalue);
-                    }
+                    cfg.SetLangMap(LMkey, LMvalue);
                 }
             }
 
@@ -75,7 +85,7 @@ namespace LangBox.Pages
         //改变所需总空间显示
         private void SpaceRequiredShow()
         {
-            int TotalSpace = SpaceCounter.SpaceRequired(LangMap);
+            int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
         }
 
@@ -110,7 +120,7 @@ namespace LangBox.Pages
                 PathValidity.Text = "The path contains spaces or special symbols.";
                 return false;
             }
-            else if (!Directory.Exists(path))
+            else if (!Directory.Exists(path) || path == cfg.GetFilesPath())
             {
                 PathValidity.Text = "";
                 return true;
@@ -136,7 +146,8 @@ namespace LangBox.Pages
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
             string FilesPath = PathInput.Text;
-            Installer.Start(LangMap, FilesPath);
+            cfg.SetFilesPath(PathInput.Text);
+            Installer.Start(cfg.GetLangMap(), FilesPath);
         }
     }
 }

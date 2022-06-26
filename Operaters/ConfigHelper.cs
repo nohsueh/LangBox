@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -15,7 +14,7 @@ namespace LangBox.Operaters
         private static string configFilename = @"config.json";
 
         //初始化
-        ConfigHelper()
+        public ConfigHelper()
         {
             Config config = Json2Model();
 
