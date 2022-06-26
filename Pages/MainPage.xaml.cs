@@ -16,34 +16,15 @@ namespace LangBox.Pages
     {
         public static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         public static Dictionary<string, bool> LangMap = new Dictionary<string, bool>();
-        IniFiles ini = new IniFiles(Process.GetCurrentProcess().MainModule.FileName + @"\config.INI");
 
         public MainPage()
         {
             InitializeComponent();
-            InitializeSelection();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LangSelect_Update(sender, e);
-        }
-
-        //利用ini文件初始化
-        private void InitializeSelection()
-        {
-            if(ini.ExistINIFile())//验证是否存在文件，存在就读取
-            {
-                PathInput.Text = ini.IniReadValue("Path", "LangBoxPath");
-                foreach (var item in LangSelect.Children)
-                {
-                    if (item is CheckBox)
-                    {
-                        CheckBox checkBoxItem = (CheckBox)item;
-                        checkBoxItem.IsChecked = ini.IniReadValue("LangMap", checkBoxItem.Name)=="true"?true:false;
-                    }
-                }
-            }
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -134,12 +115,6 @@ namespace LangBox.Pages
                 PathValidity.Text = "";
                 return true;
             }
-            //存在ini文件且与以前的路径一样
-            else if (ini.ExistINIFile() && path == ini.IniReadValue("Path", "LangBoxPath"))
-            {
-                PathValidity.Text = "";
-                return true;
-            }
             else if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
             {
                 PathValidity.Text = "The folder is not empty.";
@@ -161,11 +136,6 @@ namespace LangBox.Pages
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
             string LangBoxPath = PathInput.Text;
-            ini.IniWriteValue("Path", "LangBoxPath", LangBoxPath);
-            foreach (var kvp in LangMap)
-            {
-                ini.IniWriteValue("LangMap", kvp.Key, kvp.Value == true ? "true" : "false");
-            }
             Installer.Start(LangMap, LangBoxPath);
         }
     }
