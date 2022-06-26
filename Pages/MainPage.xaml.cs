@@ -135,8 +135,8 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            string LangBoxPath = PathInput.Text;
-            Installer.Start(LangMap, LangBoxPath);
+            string FilesPath = PathInput.Text;
+            Installer.Start(LangMap, FilesPath);
         }
     }
 }

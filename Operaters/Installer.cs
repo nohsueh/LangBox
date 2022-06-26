@@ -11,9 +11,9 @@ namespace LangBox.Operaters
     {
         private static string langPath = @"\lang";
 
-        public static void Start(Dictionary<string, bool> langMap, string langboxPath)
+        public static void Start(Dictionary<string, bool> langMap, string FilesPath)
         {
-            string temp = langboxPath+langPath;
+            string temp = FilesPath + langPath;
             if (!Directory.Exists(temp))
             {
                 Directory.CreateDirectory(temp);
