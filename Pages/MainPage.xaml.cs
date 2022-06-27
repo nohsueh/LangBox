@@ -154,14 +154,14 @@ namespace LangBox.Pages
             worker.ProgressChanged += ProgressChanged;
             worker.RunWorkerCompleted += WorkerCompleted;
             worker.RunWorkerAsync();
-
-            
         }
 
-        private void StartInstall(object sender, RoutedEventArgs e)
+        private void StartInstall(object sender, DoWorkEventArgs e)
         {
             try
             {
+                WorkingProgress.Visibility = Visibility.Visible;
+
                 Installer installer = new Installer(cfg.GetLangMap(), cfg.GetFilesPath());
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.Start();
@@ -182,6 +182,7 @@ namespace LangBox.Pages
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
             WorkingWith.Text = args.UserState as string;
+            WorkingProgress.Value = 50;
         }
 
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)

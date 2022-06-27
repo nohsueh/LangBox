@@ -8,6 +8,7 @@ namespace LangBox.Operaters
     {
         class Config
         {
+            public string Version { get; set; }
             public string? FilesPath { get; set; }
             public Dictionary<string, bool>? LangMap { get; set; }
         }
@@ -17,6 +18,8 @@ namespace LangBox.Operaters
         public ConfigHelper()
         {
             Config config = Json2Model();
+
+            config.Version = @"V0.1.1";
 
             if (config.FilesPath == null)
             {
@@ -54,6 +57,20 @@ namespace LangBox.Operaters
             string str = JsonConvert.SerializeObject(config); //转为字符串
             File.WriteAllText(configFilename, str);
         }
+
+        public string GetVersion()
+        {
+
+            string version = Json2Model().Version;
+            return version;
+        }
+
+        //public void SetVersion(string version)
+        //{
+        //    Config cfg = Json2Model();
+        //    cfg.Version = version;
+        //    Model2Json(cfg);
+        //}
 
         public string GetFilesPath()
         {

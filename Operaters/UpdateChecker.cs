@@ -9,7 +9,7 @@ namespace LangBox.Operaters
 {
     internal class UpdateChecker
     {
-        private const string version = "V0.1.0";
+        private static ConfigHelper cfg = new ConfigHelper();
         private const string checkPage = "https://github.com/NOhsueh/LangBox/releases/latest";
 
         public static bool HasUpdate()
@@ -21,6 +21,7 @@ namespace LangBox.Operaters
             if (match.Success)
             {
                 string nowVersion = match.Groups[1].Value;
+                string version = cfg.GetVersion();
                 if (string.Compare(version,nowVersion) < 0)
                     return true;
             }
