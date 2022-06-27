@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LangBox.Operaters
 {
-    internal class Installer
+    internal class InstallHelper
     {
         private static string langPath = @"\lang";
         private Dictionary<string,bool> langMap;
@@ -24,7 +24,7 @@ namespace LangBox.Operaters
         /// </summary>
         public event OnProgressChangeHandler OnProgressChangeEvent;
 
-        public Installer(Dictionary<string, bool> langMap, string filesPath)
+        public InstallHelper(Dictionary<string, bool> langMap, string filesPath)
         {
             this.langMap = langMap;
             this.filesPath = filesPath;
@@ -36,6 +36,29 @@ namespace LangBox.Operaters
             if (!Directory.Exists(temp))
             {
                 Directory.CreateDirectory(temp);
+            }
+            foreach(string lang in langMap.Keys)
+            {
+                if (lang == "C")
+                {
+
+                }
+                if (lang == "CPlusPlus")
+                {
+
+                }
+                if (lang == "Python")
+                {
+
+                }
+                if (lang == "Java")
+                {
+
+                }
+                if (lang == "CSharp")
+                {
+
+                }
             }
         }
     }

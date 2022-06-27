@@ -71,6 +71,6 @@
             </TabItem>
         </TabControl>
         <ProgressBar Grid.Row="0" Grid.Column="1" Name="WorkingProgress" HorizontalAlignment="Center" Height="10" Margin="0,21,0,0" VerticalAlignment="Top" Width="225" Visibility="Hidden" />
-        <TextBlock Grid.Column="1" Name="WorkingWith" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="1" Name="WorkingWith" HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
     </Grid>
 </Page>

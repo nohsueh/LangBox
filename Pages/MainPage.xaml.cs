@@ -98,7 +98,7 @@ namespace LangBox.Pages
             PathInput.Text = dialog.SelectedPath;
         }
 
-        //改变文本框内容
+        //改变左下文本框内容
         private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (PathCheck(PathInput.Text))
@@ -145,6 +145,7 @@ namespace LangBox.Pages
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
+            //配置
             cfg.SetFilesPath(PathInput.Text);
 
             worker = new BackgroundWorker();
@@ -162,7 +163,7 @@ namespace LangBox.Pages
             {
                 WorkingProgress.Visibility = Visibility.Visible;
 
-                Installer installer = new Installer(cfg.GetLangMap(), cfg.GetFilesPath());
+                InstallHelper installer = new InstallHelper(cfg.GetLangMap(), cfg.GetFilesPath());
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.Start();
             }
