@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LangBox.Operaters.Installers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace LangBox.Operaters
     internal class InstallHelper
     {
         private static string langPath = @"\lang";
-        private Dictionary<string,bool> langMap;
+        private Dictionary<string, bool> langMap;
         private string filesPath;
-
+        private string operation;
         /// <summary>
         /// 显示进度委托
         /// </summary>
@@ -37,29 +38,42 @@ namespace LangBox.Operaters
             {
                 Directory.CreateDirectory(temp);
             }
-            foreach(string lang in langMap.Keys)
+            foreach (string lang in langMap.Keys)
             {
-                if (lang == "C")
+                if (lang == "C_CPP")
                 {
-
-                }
-                if (lang == "CPlusPlus")
-                {
-
+                    C_CPPInstaller c_cppInstaller = new C_CPPInstaller();
                 }
                 if (lang == "Python")
                 {
-
+                    PythonInstaller pythonInstaller = new PythonInstaller();
                 }
                 if (lang == "Java")
                 {
-
+                    JavaInstaller javaInstaller = new JavaInstaller();
                 }
                 if (lang == "CSharp")
                 {
-
+                    CSharpInstaller csharpInstaller = new CSharpInstaller();
                 }
             }
+        }
+
+        private void ChangeProgress(string newOperation)
+        {
+            operation = newOperation;
+            UpdateProgress();
+        }
+
+        private void UpdateProgress()
+        {
+            OnProgressChangeEvent(operation);
+        }
+
+        private void UpdateDownloadProgress(string percent, string speed, string eta)
+        {
+            string showString = operation + " (" + percent + ") " + speed + "/s 预计剩余: " + eta;
+            OnProgressChangeEvent(showString);
         }
     }
 }

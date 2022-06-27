@@ -33,8 +33,7 @@
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                         <WrapPanel Name="LangSelect"  Margin="20,5">
-                            <CheckBox Name="C" IsChecked="True" Click="LangSelect_Update">C</CheckBox>
-                            <CheckBox Name="CPlusPlus" Click="LangSelect_Update">C++</CheckBox>
+                            <CheckBox Name="C_CPP" Click="LangSelect_Update">C/C++</CheckBox>
                             <CheckBox Name="Python" Click="LangSelect_Update">Python</CheckBox>
                             <CheckBox Name="Java" Click="LangSelect_Update">Java</CheckBox>
                             <CheckBox Name="CSharp" Click="LangSelect_Update">C#</CheckBox>

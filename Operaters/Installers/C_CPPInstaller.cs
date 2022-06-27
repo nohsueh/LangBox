@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LangBox.Operaters.Installers
 {
-    internal class CPlusPlusInstaller
+    internal class C_CPPInstaller
     {
     }
 }
