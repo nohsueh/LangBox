@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,33 +9,35 @@ namespace LangBox.Operaters.Installers
 {
     internal class JavaInstaller
     {
-        private string operation;
+        string filePath;
 
         /// <summary>
         /// 显示进度委托
         /// </summary>
         /// <param name="progressText">进度信息字符串</param>
-        public delegate void OnProgressChangeHandler(String progressText);
+        public delegate void OnProgressChangeHandler();
 
         /// <summary>
         /// 当进度变化时的事件操作
         /// </summary>
         public event OnProgressChangeHandler OnProgressChangeEvent;
 
+        public JavaInstaller(string filePath)
+        {
+            this.filePath = filePath;
+        }
+
         public void Start()
         {
-            ChangeProgress("配置Java环境");
-        }
+            Logger logger = new Logger("debug.log");
+            logger.Info("start install Java.");
 
-        private void ChangeProgress(string newOperation)
-        {
-            operation = newOperation;
-            UpdateProgress();
-        }
+            if (!Directory.Exists(filePath + @"\Java"))
+            {
+                Directory.CreateDirectory(filePath + @"\Java");
+            }
 
-        private void UpdateProgress()
-        {
-            OnProgressChangeEvent(operation);
+            OnProgressChangeEvent();
         }
     }
 }

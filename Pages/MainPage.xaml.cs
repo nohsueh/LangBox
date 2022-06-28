@@ -19,7 +19,7 @@ namespace LangBox.Pages
         private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         private static ConfigHelper cfg = new ConfigHelper();
         private BackgroundWorker worker;
-
+        ProgressList pl = new ProgressList();
 
         public MainPage()
         {
@@ -41,6 +41,7 @@ namespace LangBox.Pages
                 }
             }
 
+            pl.SetProgressList(LangMap);
             SpaceRequiredShow();
         }
 
@@ -79,12 +80,15 @@ namespace LangBox.Pages
                 }
             }
 
+            pl.SetProgressList(cfg.GetLangMap());
+
             SpaceRequiredShow();
         }
 
-        //改变所需总空间显示
+        //改变所需总空间显示，以及所以操作
         private void SpaceRequiredShow()
         {
+            WorkingWith.Text = pl.AllText();
             int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
         }
@@ -147,6 +151,7 @@ namespace LangBox.Pages
         {
             //配置
             cfg.SetFilesPath(PathInput.Text);
+            WorkingProgress.Visibility = Visibility.Visible;
 
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
@@ -161,8 +166,6 @@ namespace LangBox.Pages
         {
             try
             {
-                WorkingProgress.Visibility = Visibility.Visible;
-
                 IniInstaller installer = new IniInstaller(cfg.GetLangMap(), cfg.GetFilesPath());
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.Start();
@@ -174,9 +177,11 @@ namespace LangBox.Pages
         }
 
         // 收到Installer的事件调用，将内容发送给worker
-        private void ProgressChangeSend(int percentProgress, string text)
+        private void ProgressChangeSend()
         {
-            worker.ReportProgress(percentProgress, text);
+            pl.RemoveFirst();
+            int rest = pl.GetProgressList().Count;
+            worker.ReportProgress(100-100/rest, pl.AllText());
         }
 
         //worker处理进度
@@ -188,7 +193,8 @@ namespace LangBox.Pages
 
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
         {
-            //完成或取消或异常后的工作
+            WorkingWith.Text = "installed successfully!";
+            WorkingProgress.Value = 100;
         }
 
         public void Dispose()

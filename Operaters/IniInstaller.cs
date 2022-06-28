@@ -1,10 +1,6 @@
 ﻿using LangBox.Operaters.Installers;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LangBox.Operaters
 {
@@ -18,7 +14,7 @@ namespace LangBox.Operaters
         /// 显示进度委托
         /// </summary>
         /// <param name="progressText">进度信息字符串</param>
-        public delegate void OnProgressChangeHandler(int percentProgress,string progressText);
+        public delegate void OnProgressChangeHandler();
 
         /// <summary>
         /// 当进度变化时的事件操作
@@ -42,26 +38,26 @@ namespace LangBox.Operaters
             {
                 if (lang == "C_CPP" && langMap[lang])
                 {
-                    C_CPPInstaller c_cppInstaller = new C_CPPInstaller();
-                    c_cppInstaller.OnProgressChangeEvent += ChangeProgress;
+                    C_CPPInstaller c_cppInstaller = new C_CPPInstaller(temp);
+                    c_cppInstaller.OnProgressChangeEvent += UpdateProgress;
                     c_cppInstaller.Start();
                 }
                 if (lang == "Python" && langMap[lang])
                 {
-                    PythonInstaller pythonInstaller = new PythonInstaller();
-                    pythonInstaller.OnProgressChangeEvent += ChangeProgress;
+                    PythonInstaller pythonInstaller = new PythonInstaller(temp);
+                    pythonInstaller.OnProgressChangeEvent += UpdateProgress;
                     pythonInstaller.Start();
                 }
                 if (lang == "Java" && langMap[lang])
                 {
-                    JavaInstaller javaInstaller = new JavaInstaller();
-                    javaInstaller.OnProgressChangeEvent += ChangeProgress;
+                    JavaInstaller javaInstaller = new JavaInstaller(temp);
+                    javaInstaller.OnProgressChangeEvent += UpdateProgress;
                     javaInstaller.Start();
                 }
                 if (lang == "CSharp" && langMap[lang])
                 {
-                    CSharpInstaller csharpInstaller = new CSharpInstaller();
-                    csharpInstaller.OnProgressChangeEvent += ChangeProgress;
+                    CSharpInstaller csharpInstaller = new CSharpInstaller(temp);
+                    csharpInstaller.OnProgressChangeEvent += UpdateProgress;
                     csharpInstaller.Start();
                 }
             }
@@ -69,15 +65,9 @@ namespace LangBox.Operaters
             }
         
 
-        private void ChangeProgress(string newOperation)
-        {
-            operation = newOperation;
-            UpdateProgress();
-        }
-
         private void UpdateProgress()
         {
-            OnProgressChangeEvent(percentProgress, operation);
+            OnProgressChangeEvent();
         }
 
         //private void UpdateDownloadProgress(string percent, string speed, string eta)
