@@ -23,7 +23,7 @@ namespace LangBox.Operaters.Installers
 
         public void Start()
         {
-            ChangeProgress("");
+            ChangeProgress("配置Python环境");
         }
 
         private void ChangeProgress(string newOperation)

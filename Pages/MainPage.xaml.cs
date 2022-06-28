@@ -174,16 +174,16 @@ namespace LangBox.Pages
         }
 
         // 收到Installer的事件调用，将内容发送给worker
-        private void ProgressChangeSend(string text)
+        private void ProgressChangeSend(int percentProgress, string text)
         {
-            worker.ReportProgress(0, text);
+            worker.ReportProgress(percentProgress, text);
         }
 
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
             WorkingWith.Text = args.UserState as string;
-            WorkingProgress.Value = 50;
+            WorkingProgress.Value = (int)sender;
         }
 
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)

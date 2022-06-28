@@ -23,7 +23,7 @@ namespace LangBox.Operaters.Installers
 
         public void Start()
         {
-            ChangeProgress("");
+            ChangeProgress("配置Java环境");
         }
 
         private void ChangeProgress(string newOperation)

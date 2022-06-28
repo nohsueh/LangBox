@@ -14,7 +14,7 @@ namespace LangBox.Operaters.Installers
         /// 显示进度委托
         /// </summary>
         /// <param name="progressText">进度信息字符串</param>
-        public delegate void OnProgressChangeHandler(String progressText);
+        public delegate void OnProgressChangeHandler(string progressText);
 
         /// <summary>
         /// 当进度变化时的事件操作
@@ -23,7 +23,7 @@ namespace LangBox.Operaters.Installers
 
         public void Start()
         {
-            ChangeProgress("");
+            ChangeProgress("配置C/C++环境");
         }
 
         private void ChangeProgress(string newOperation)
