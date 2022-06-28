@@ -163,7 +163,7 @@ namespace LangBox.Pages
             {
                 WorkingProgress.Visibility = Visibility.Visible;
 
-                InstallHelper installer = new InstallHelper(cfg.GetLangMap(), cfg.GetFilesPath());
+                IniInstaller installer = new IniInstaller(cfg.GetLangMap(), cfg.GetFilesPath());
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.Start();
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LangBox.Operaters
 {
-    internal class InstallHelper
+    internal class IniInstaller
     {
         private static string langPath = @"\lang";
         private Dictionary<string, bool> langMap;
@@ -25,7 +25,7 @@ namespace LangBox.Operaters
         /// </summary>
         public event OnProgressChangeHandler OnProgressChangeEvent;
 
-        public InstallHelper(Dictionary<string, bool> langMap, string filesPath)
+        public IniInstaller(Dictionary<string, bool> langMap, string filesPath)
         {
             this.langMap = langMap;
             this.filesPath = filesPath;
@@ -38,26 +38,30 @@ namespace LangBox.Operaters
             {
                 Directory.CreateDirectory(temp);
             }
-            foreach (string lang in langMap.Keys)
+            foreach(var lang in langMap.Keys)
             {
-                if (lang == "C_CPP")
+                if (lang == "C_CPP" && langMap[lang])
                 {
                     C_CPPInstaller c_cppInstaller = new C_CPPInstaller();
+                    c_cppInstaller.OnProgressChangeEvent += ChangeProgress;
+                    c_cppInstaller.Start();
                 }
-                if (lang == "Python")
+                if (lang == "Python" && langMap[lang])
                 {
                     PythonInstaller pythonInstaller = new PythonInstaller();
                 }
-                if (lang == "Java")
+                if (lang == "Java" && langMap[lang])
                 {
                     JavaInstaller javaInstaller = new JavaInstaller();
                 }
-                if (lang == "CSharp")
+                if (lang == "CSharp" && langMap[lang])
                 {
                     CSharpInstaller csharpInstaller = new CSharpInstaller();
                 }
             }
-        }
+                
+            }
+        
 
         private void ChangeProgress(string newOperation)
         {
