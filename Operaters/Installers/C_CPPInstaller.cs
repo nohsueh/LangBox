@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace LangBox.Operaters.Installers
 {
     internal class C_CPPInstaller
     {
-        string filePath;
+        private string filePath;
         /// <summary>
         /// 显示进度委托
         /// </summary>
@@ -23,7 +24,7 @@ namespace LangBox.Operaters.Installers
 
         public C_CPPInstaller(string filePath)
         {
-            this.filePath = filePath;
+            this.filePath = filePath+@"\C_CPP\";
         }
 
         public void Start()
@@ -31,12 +32,23 @@ namespace LangBox.Operaters.Installers
             Logger logger = new Logger("debug.log");
             logger.Info("start install C/C++.");
 
-            if (!Directory.Exists(filePath+@"\C_CPP"))
-            {
-                Directory.CreateDirectory(filePath + @"\C_CPP");
-            }
+            DownloadFile_URL("mingw-get-setup.exe", "https://mirrors.gigenet.com/OSDN//mingw/68260/mingw-get-setup.exe", filePath);
 
             OnProgressChangeEvent();
         }
+
+        private void DownloadFile_URL(string fileName,string url,string filePath)
+        {
+            WebClient wc = new WebClient();
+            if (File.Exists(filePath + fileName))
+            {
+                File.Delete(filePath + fileName);
+            }
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            wc.DownloadFile(url, filePath + fileName);
+        }
     }
-}
+}   
