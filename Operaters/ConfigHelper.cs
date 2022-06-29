@@ -19,7 +19,7 @@ namespace LangBox.Operaters
         {
             Config config = Json2Model();
 
-            config.Version = @"V0.1.1";
+            config.Version = @"V0.1.2";
 
             if (config.FilesPath == null)
             {
