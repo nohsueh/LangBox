@@ -6,10 +6,8 @@ namespace LangBox.Operaters
 {
     internal class IniInstaller
     {
-        private static string langPath = @"\lang";
         private Dictionary<string, bool> langMap;
         private string filesPath;
-        private string operation;
         /// <summary>
         /// 显示进度委托
         /// </summary>
@@ -29,34 +27,33 @@ namespace LangBox.Operaters
 
         public void Start()
         {
-            string temp = filesPath + langPath;
-            if (!Directory.Exists(temp))
+            if (!Directory.Exists(filesPath))
             {
-                Directory.CreateDirectory(temp);
+                Directory.CreateDirectory(filesPath);
             }
             foreach(var lang in langMap.Keys)
             {
                 if (lang == "C_CPP" && langMap[lang])
                 {
-                    C_CPPInstaller c_cppInstaller = new C_CPPInstaller(temp);
+                    C_CPPInstaller c_cppInstaller = new C_CPPInstaller(filesPath);
                     c_cppInstaller.OnProgressChangeEvent += UpdateProgress;
                     c_cppInstaller.Start();
                 }
                 if (lang == "Python" && langMap[lang])
                 {
-                    PythonInstaller pythonInstaller = new PythonInstaller(temp);
+                    PythonInstaller pythonInstaller = new PythonInstaller(filesPath);
                     pythonInstaller.OnProgressChangeEvent += UpdateProgress;
                     pythonInstaller.Start();
                 }
                 if (lang == "Java" && langMap[lang])
                 {
-                    JavaInstaller javaInstaller = new JavaInstaller(temp);
+                    JavaInstaller javaInstaller = new JavaInstaller(filesPath);
                     javaInstaller.OnProgressChangeEvent += UpdateProgress;
                     javaInstaller.Start();
                 }
                 if (lang == "CSharp" && langMap[lang])
                 {
-                    CSharpInstaller csharpInstaller = new CSharpInstaller(temp);
+                    CSharpInstaller csharpInstaller = new CSharpInstaller(filesPath);
                     csharpInstaller.OnProgressChangeEvent += UpdateProgress;
                     csharpInstaller.Start();
                 }
