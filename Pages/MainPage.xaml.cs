@@ -18,8 +18,9 @@ namespace LangBox.Pages
     {
         private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         private static ConfigHelper cfg = new ConfigHelper();
-        private BackgroundWorker worker;
+        private BackgroundWorker worker = new BackgroundWorker();
         ProgressList pl = new ProgressList();
+        private int percentProgress = 0;
 
         public MainPage()
         {
@@ -42,7 +43,7 @@ namespace LangBox.Pages
             }
 
             pl.SetProgressList(LangMap);
-            SpaceRequiredShow();
+            LangInfoShow();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -82,15 +83,26 @@ namespace LangBox.Pages
 
             pl.SetProgressList(cfg.GetLangMap());
 
-            SpaceRequiredShow();
+            LangInfoShow();
         }
 
-        //改变所需总空间显示，以及所以操作
-        private void SpaceRequiredShow()
+        //改变跟选择语言有关的显示
+        private void LangInfoShow()
         {
             WorkingWith.Text = pl.AllText();
+
             int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
+
+            bool ButtonState = false;
+            foreach(var kvp in cfg.GetLangMap())
+            {
+                if(kvp.Value == true)
+                {
+                    ButtonState = true;
+                }
+            }
+            ModifyButton.IsEnabled = ButtonState;
         }
 
         //点击浏览文件
@@ -107,12 +119,12 @@ namespace LangBox.Pages
         {
             if (PathCheck(PathInput.Text))
             {
-                InstallButton.IsEnabled = true;
+                ModifyButton.IsEnabled = true;
                 SelectedPath.Text = "Installation Location: " + PathInput.Text;
             }
             else
             {
-                InstallButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
                 SelectedPath.Text = "PathError";
             }
         }
@@ -147,26 +159,26 @@ namespace LangBox.Pages
             return false;
         }
 
-        private void InstallButton_Click(object sender, RoutedEventArgs e)
+        private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             //配置
             cfg.SetFilesPath(PathInput.Text);
             WorkingProgress.Visibility = Visibility.Visible;
 
-            worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
-            worker.DoWork += StartInstall;
+            worker.DoWork += StartModify;
             worker.ProgressChanged += ProgressChanged;
             worker.RunWorkerCompleted += WorkerCompleted;
             worker.RunWorkerAsync();
         }
 
-        private void StartInstall(object sender, DoWorkEventArgs e)
+        //worker处理的事情
+        private void StartModify(object sender, DoWorkEventArgs args)
         {
             try
             {
-                IniInstaller installer = new IniInstaller(cfg.GetLangMap(), cfg.GetFilesPath());
+                ManageHelper installer = new ManageHelper(cfg.GetLangMap(), cfg.GetFilesPath());
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.Start();
             }
@@ -179,33 +191,20 @@ namespace LangBox.Pages
         // 收到Installer的事件调用，将内容发送给worker
         private void ProgressChangeSend()
         {
-            pl.RemoveFirst();
-            int rest = pl.GetProgressList().Count;
-            worker.ReportProgress(100-100/rest, pl.AllText());
+            worker.ReportProgress((int)(-100 * Math.Exp(-percentProgress++)));
         }
 
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
-            WorkingWith.Text = args.UserState as string;
             WorkingProgress.Value = (int)sender;
         }
 
+        //worker完成或停止
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
         {
-            WorkingWith.Text = "installed successfully!";
+            WorkingWith.Text = "Modified successfully!";
             WorkingProgress.Value = 100;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool b)
-        {
-            worker.Dispose();
-            this.Dispose(b);
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -214,11 +213,6 @@ namespace LangBox.Pages
             {
                 worker.CancelAsync();
             }
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

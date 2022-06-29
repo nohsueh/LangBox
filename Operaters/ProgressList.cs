@@ -10,10 +10,6 @@ namespace LangBox.Operaters
     {
         private LinkedList<string> list = new LinkedList<string>();
 
-        public LinkedList<string> GetProgressList()
-        {
-            return list;
-        }
 
         public void SetProgressList(Dictionary<string,bool> langMap)
         {
@@ -40,6 +36,11 @@ namespace LangBox.Operaters
             }
         }
 
+        public int RestCount()
+        {
+            return list.Count();
+        }
+
         public string AllText()
         {
             string text = "";
@@ -50,35 +51,24 @@ namespace LangBox.Operaters
             return text;
         }
 
-        public void RemoveLast()
-        {
-            list.RemoveLast();
-        }
-
-        public void RemoveFirst()
-        {
-            list.RemoveFirst();
-        }
-
         private void AddC_CPP()
         {
-            list.AddLast("创建C/CPP文件夹");
-            list.AddLast("安装mingw");
+            list.AddLast("安装mingw\n配置c/c++环境变量");
         }
 
         private void AddPython()
         {
-            list.AddLast("创建Python文件夹");
+            list.AddLast("安装python\n配置python环境变量");
         }
 
         private void AddJava()
         {
-            list.AddLast("创建Java文件夹");
+            list.AddLast("安装java\n配置java环境变量");
         }
 
         private void AddCSharp()
         {
-            list.AddLast("创建CSharp文件夹");
+            list.AddLast("安装nodejs\n配置nodejs");
         }
     }
 }
