@@ -27,7 +27,7 @@
             <TextBlock Name="SpaceRequired" VerticalAlignment="Center" HorizontalAlignment="Stretch" ></TextBlock>
             <Button Margin="0,10" Name="InstallButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="InstallButton_Click" Width="64" Height="36" Visibility="Visible" BorderThickness="1,1,1,1">Install</Button>
         </StackPanel>
-        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
+        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
@@ -43,7 +43,7 @@
             </TabItem>
 
             <TabItem Name="IDE" Header="IDE" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
-                <TabItem.Content>推荐IDE</TabItem.Content>
+                <TabItem.Content>IDE安装</TabItem.Content>
             </TabItem>
 
             <TabItem Name="Allocation" Header="Allocation" Background="{StaticResource c0}" BorderBrush="{StaticResource c0}" Height="19" VerticalAlignment="Top">

@@ -63,6 +63,7 @@ namespace LangBox.Operaters
         private void AddC_CPP()
         {
             list.AddLast("创建C/CPP文件夹");
+            list.AddLast("安装mingw");
         }
 
         private void AddPython()
