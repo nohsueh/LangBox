@@ -155,8 +155,11 @@ namespace LangBox.Pages
         {
             //配置
             cfg.SetFilesPath(PathInput.Text);
+            WorkingProgress.Value = 0;
             WorkingProgress.Visibility = Visibility.Visible;
+            ModifyButton.IsEnabled = false;
 
+            //工作
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
@@ -190,14 +193,15 @@ namespace LangBox.Pages
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
-            WorkingProgress.Value++;
+            WorkingProgress.Value+=25;
         }
 
         //worker完成或停止
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
         {
+            WorkingProgress.Visibility = Visibility.Hidden;
             WorkingWith.Text = "Modified successfully!";
-            WorkingProgress.Value = 100;
+            ModifyButton.IsEnabled = true;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

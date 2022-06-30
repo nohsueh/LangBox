@@ -37,19 +37,17 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(filesPath);
             }
 
-            //模拟一下进度
-            for (int i = 0; i < 80; i++)
-            {
-                UpdateProgress(i);
-            }
-
             C_CPPManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap["C_CPP"]);
+            UpdateProgress(0);
 
             PythonManager.Start(Path.Combine(filesPath, PythonFilesName), langMap["Python"]);
+            UpdateProgress(0);
 
             JavaManager.Start(Path.Combine(filesPath, JavaFilesName), langMap["Java"]);
+            UpdateProgress(0);
 
             CSharpManager.Start(Path.Combine(filesPath, CSharpFilesName), langMap["CSharp"]);
+            UpdateProgress(0);
         }
 
         public void UpdateProgress(int percentProgress)
