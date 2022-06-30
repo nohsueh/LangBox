@@ -18,9 +18,8 @@ namespace LangBox.Pages
     {
         private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         private static ConfigHelper cfg = new ConfigHelper();
-        private BackgroundWorker worker = new BackgroundWorker();
+        private BackgroundWorker worker;
         ProgressList pl = new ProgressList();
-        private int percentProgress = 0;
 
         public MainPage()
         {
@@ -89,20 +88,12 @@ namespace LangBox.Pages
         //改变跟选择语言有关的显示
         private void LangInfoShow()
         {
+            //右上文本内容
             WorkingWith.Text = pl.AllText();
 
+            //右下总空间
             int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
-
-            bool ButtonState = false;
-            foreach(var kvp in cfg.GetLangMap())
-            {
-                if(kvp.Value == true)
-                {
-                    ButtonState = true;
-                }
-            }
-            ModifyButton.IsEnabled = ButtonState;
         }
 
         //点击浏览文件
@@ -148,6 +139,7 @@ namespace LangBox.Pages
             }
 
             PathValidity.Text = "";
+
             return true;
         }
 
@@ -165,6 +157,7 @@ namespace LangBox.Pages
             cfg.SetFilesPath(PathInput.Text);
             WorkingProgress.Visibility = Visibility.Visible;
 
+            worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += StartModify;
@@ -178,26 +171,26 @@ namespace LangBox.Pages
         {
             try
             {
-                ManageHelper installer = new ManageHelper(cfg.GetLangMap(), cfg.GetFilesPath());
-                installer.OnProgressChangeEvent += ProgressChangeSend;
-                installer.Start();
+                ManageHelper manager = new ManageHelper(cfg.GetLangMap(), cfg.GetFilesPath());
+                manager.OnProgressChangeEvent += ProgressChangeSend;
+                manager.Start();
             }
             catch (Exception err)
             {
-                //发生异常
+                worker.CancelAsync();
             }
         }
 
         // 收到Installer的事件调用，将内容发送给worker
-        private void ProgressChangeSend()
+        private void ProgressChangeSend(int percentProgress)
         {
-            worker.ReportProgress((int)(-100 * Math.Exp(-percentProgress++)));
+            worker.ReportProgress(0);
         }
 
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
-            WorkingProgress.Value = (int)sender;
+            WorkingProgress.Value++;
         }
 
         //worker完成或停止

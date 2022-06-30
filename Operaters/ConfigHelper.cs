@@ -23,7 +23,7 @@ namespace LangBox.Operaters
 
             if (config.FilesPath == null)
             {
-                config.FilesPath = @"D:\LangBox Files";
+                config.FilesPath = @"D:\Program Files";
             }
             if (config.LangMap == null)
             {

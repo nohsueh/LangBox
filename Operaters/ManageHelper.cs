@@ -16,8 +16,8 @@ namespace LangBox.Operaters
         /// <summary>
         /// 显示进度委托
         /// </summary>
-        /// <param name="progressText">进度信息字符串</param>
-        public delegate void OnProgressChangeHandler();
+        /// <param name="percentProgress">进度信息字符串</param>
+        public delegate void OnProgressChangeHandler(int percentProgress);
         /// <summary>
         /// 当进度变化时的事件操作
         /// </summary>
@@ -37,36 +37,24 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(filesPath);
             }
 
-            ////模拟一下进度
-            //for(int i = 0; i < 100; i++)
-            //{
-                UpdateProgress();
-            //}
+            //模拟一下进度
+            for (int i = 0; i < 80; i++)
+            {
+                UpdateProgress(i);
+            }
 
-            //foreach(string lang in langMap.Keys)
-            //{
-            //    if (lang == "C_CPP")
-            //    {
-            //        C_CPPManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap[lang]);
-            //    }
-            //    if (lang == "Python")
-            //    {
-            //        PythonManager.Start(Path.Combine(filesPath, PythonFilesName), langMap[lang]);
-            //    }
-            //    if (lang == "Java")
-            //    {
-            //        JavaManager.Start(Path.Combine(filesPath, JavaFilesName), langMap[lang]);
-            //    }
-            //    if (lang == "CSharp")
-            //    {
-            //        CSharpManager.Start(Path.Combine(filesPath, CSharpFilesName), langMap[lang]);
-            //    }
-            //}
+            C_CPPManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap["C_CPP"]);
+
+            PythonManager.Start(Path.Combine(filesPath, PythonFilesName), langMap["Python"]);
+
+            JavaManager.Start(Path.Combine(filesPath, JavaFilesName), langMap["Java"]);
+
+            CSharpManager.Start(Path.Combine(filesPath, CSharpFilesName), langMap["CSharp"]);
         }
 
-        private void UpdateProgress()
+        public void UpdateProgress(int percentProgress)
         {
-            OnProgressChangeEvent();
+            OnProgressChangeEvent(percentProgress);
         }
     }
 }

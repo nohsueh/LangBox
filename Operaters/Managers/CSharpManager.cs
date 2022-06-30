@@ -8,6 +8,8 @@ namespace LangBox.Operaters.Managers
         private static string localPath = "D:\\LangBox Files";  //防止localPath为空
         private static bool isChecked;
         private const string fileName = "";
+        static Logger logger = new Logger("debug.log");
+
 
         public static void Start(string Path, bool Flag)
         {
@@ -28,14 +30,16 @@ namespace LangBox.Operaters.Managers
         {
             if (!Directory.Exists(localPath))
             {
+                logger.Info("创建文件夹");
                 Directory.CreateDirectory(localPath);
             }
         }
 
         private static void Uninstall()
         {
-            if (File.Exists(localPath))
+            if (Directory.Exists(localPath))
             {
+                logger.Info("删除文件夹");
                 Directory.Delete(localPath, true);
             }
         }
