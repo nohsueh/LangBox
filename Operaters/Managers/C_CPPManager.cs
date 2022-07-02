@@ -9,8 +9,8 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://osdn.net/projects/mingw/downloads/68260/mingw-get-setup.exe/";
-        private const string fileName = "mingw-get-setup.exe";
+        private static string url = "https://store2.lanzoug.com/070220bb/2019/11/23/0fd5474ca81b01ef604ddf2e0d019af2.7z?st=zd2u7K3MrRgLTDPYJ7Bccw&e=1656767491&b=BxgJYAFvAEIAAgJ6AGdXKQ_c_c&fi=14367027&pid=218-70-255-160&up=2&mp=0&co=1";
+        private const string fileName = "MinGW.7z";
         static Logger logger = new Logger("debug.log");
 
 
@@ -44,10 +44,10 @@ namespace LangBox.Operaters.Managers
                 File.Delete(filePath);
             }
 
-            logger.Info("下载mingw");
+            logger.Info("下载MinGW.7z");
             WebClient wc = new WebClient();
             wc.DownloadFile(url, filePath);
-            logger.Info("下载mingw成功");
+            logger.Info("下载MinGW.7z成功");
         }
 
         private static void Uninstall()
