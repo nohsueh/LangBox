@@ -91,10 +91,32 @@ namespace LangBox.Pages
             //右上文本内容
             WorkingWith.Text = pl.AllText();
 
+            if (WorkingProgress.Visibility != Visibility.Hidden)
+            {
+                WorkingProgress.Visibility = Visibility.Hidden;
+            }
+
             //右下总空间
             int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
         }
+
+        //private bool IsSelectAll()
+        //{
+        //    foreach (var item in LangSelect.Children)
+        //    {
+        //        if (item is CheckBox)
+        //        {
+        //            CheckBox checkBoxItem = (CheckBox)item;
+        //            if(checkBoxItem.IsChecked == false)
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+
+        //    return true;
+        //}
 
         //点击浏览文件
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -158,6 +180,8 @@ namespace LangBox.Pages
             WorkingProgress.Value = 0;
             WorkingProgress.Visibility = Visibility.Visible;
             ModifyButton.IsEnabled = false;
+            PathInput.IsEnabled = false;
+            PathInputButton.IsEnabled = false;
 
             //工作
             worker = new BackgroundWorker();
@@ -199,9 +223,11 @@ namespace LangBox.Pages
         //worker完成或停止
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
         {
-            WorkingProgress.Visibility = Visibility.Hidden;
+            WorkingProgress.Value = 100;
             WorkingWith.Text = "Modified successfully!";
             ModifyButton.IsEnabled = true;
+            PathInput.IsEnabled = true;
+            PathInputButton.IsEnabled = true;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

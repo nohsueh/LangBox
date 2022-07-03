@@ -7,10 +7,11 @@ namespace LangBox.Operaters.Managers
 {
     internal class C_CPPManager
     {
-        private static string localPath = "D:\\LangBox Files";  //防止localPath为空
+        private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://store2.lanzoug.com/070220bb/2019/11/23/0fd5474ca81b01ef604ddf2e0d019af2.7z?st=zd2u7K3MrRgLTDPYJ7Bccw&e=1656767491&b=BxgJYAFvAEIAAgJ6AGdXKQ_c_c&fi=14367027&pid=218-70-255-160&up=2&mp=0&co=1";
-        private const string fileName = "MinGW.7z";
+        private static string url = "https://store2.lanzoug.com/070317bb/2019/11/23/0fd5474ca81b01ef604ddf2e0d019af2.7z?st=7Gg09AaqC2nA0NF_vB-N-g&e=1656844325&b=CBcLYlc5WBpWVAB4B2AOcA_c_c&fi=14367027&pid=117-136-30-6&up=2&mp=0&co=1";
+        private const string downloadFileName = "MinGW.7z";
+        private const string extractDirectoryName = "MinGW";
         static Logger logger = new Logger("debug.log");
 
 
@@ -37,17 +38,26 @@ namespace LangBox.Operaters.Managers
                 Directory.CreateDirectory(localPath);
             }
 
-            string filePath = Path.Combine(localPath, fileName);
-            if (File.Exists(filePath))
+            string downloadFilePath = Path.Combine(localPath, downloadFileName);
+            if (File.Exists(downloadFilePath))
             {
                 logger.Info("删除文件");
-                File.Delete(filePath);
+                File.Delete(downloadFilePath);
             }
 
             logger.Info("下载MinGW.7z");
             WebClient wc = new WebClient();
-            wc.DownloadFile(url, filePath);
+            wc.DownloadFile(url, downloadFilePath);
             logger.Info("下载MinGW.7z成功");
+
+            logger.Info("解压MinGW.7z到MinGW");
+            string filePath = Path.Combine(localPath, extractDirectoryName);
+            ExtractHelper.Decompression(downloadFilePath, filePath);
+            logger.Info("解压MinGW.7z到MinGW成功");
+
+            logger.Info("修改用户Path路径");
+            PathAdder.AddInUserPath(filePath + "\\bin");
+            logger.Info("修改用户Path路径成功");
         }
 
         private static void Uninstall()
