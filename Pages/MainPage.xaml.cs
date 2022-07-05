@@ -182,6 +182,15 @@ namespace LangBox.Pages
             ModifyButton.IsEnabled = false;
             PathInput.IsEnabled = false;
             PathInputButton.IsEnabled = false;
+            SelectAll.IsEnabled = false;
+            foreach (var item in LangSelect.Children)
+            {
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    checkBoxItem.IsEnabled = false;
+                }
+            }
 
             //工作
             worker = new BackgroundWorker();
@@ -228,6 +237,15 @@ namespace LangBox.Pages
             ModifyButton.IsEnabled = true;
             PathInput.IsEnabled = true;
             PathInputButton.IsEnabled = true;
+            SelectAll.IsEnabled = true;
+            foreach (var item in LangSelect.Children)
+            {
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    checkBoxItem.IsEnabled = true;
+                }
+            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
