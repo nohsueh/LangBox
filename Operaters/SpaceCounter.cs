@@ -8,7 +8,7 @@ namespace LangBox.Operaters
 {
     internal class SpaceCounter
     {
-        private static Dictionary<string, double> space = new Dictionary<string, double> {
+        public static Dictionary<string, double> space = new Dictionary<string, double> {
             { "C_CPP", 47.1 },
             { "Python", 8.2 },
             { "Java", 173 }

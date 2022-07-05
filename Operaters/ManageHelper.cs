@@ -12,7 +12,7 @@ namespace LangBox.Operaters
         private const string C_CPPDirectoryName = "c_cpp";
         private const string PythonDirectoryName = "python";
         private const string JavaDirectoryName = "java";
-        private const string CSharpDirectoryName = "csharp";
+        //private const string CSharpDirectoryName = "csharp";
         /// <summary>
         /// 显示进度委托
         /// </summary>
