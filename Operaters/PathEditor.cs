@@ -10,7 +10,12 @@ namespace LangBox.Operaters
     {
         public static void AddInUserPath(string newPath)
         {
-            string pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            string? pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            if (pathVar == null)
+            {
+                Environment.SetEnvironmentVariable("PATH", newPath, EnvironmentVariableTarget.User);
+                return;
+            }
             if (!pathVar.Contains(newPath))
             {
                 if (!pathVar.EndsWith(";") && pathVar != string.Empty)
@@ -25,11 +30,13 @@ namespace LangBox.Operaters
 
         public static void RemoveInUserPath(string oldPath)
         {
-            string pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            string? pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            if (pathVar == null)
+            {
+                return;
+            }
             if (pathVar.Contains(oldPath))
             {
-                int len = System.Text.RegularExpressions.Regex.Matches(pathVar, ";").Count;
-
                 if (!pathVar.EndsWith(oldPath))
                 {
                     oldPath += ";";

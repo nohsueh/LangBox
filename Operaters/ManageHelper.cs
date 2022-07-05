@@ -9,10 +9,10 @@ namespace LangBox.Operaters
         private Dictionary<string, bool> langMap;
         private string localPath;
         private const string filesPath = "LangBox Files";
-        private const string C_CPPFilesName = "c_cpp";
-        private const string PythonFilesName = "python";
-        private const string JavaFilesName = "java";
-        private const string CSharpFilesName = "csharp";
+        private const string C_CPPDirectoryName = "c_cpp";
+        private const string PythonDirectoryName = "python";
+        private const string JavaDirectoryName = "java";
+        private const string CSharpDirectoryName = "csharp";
         /// <summary>
         /// 显示进度委托
         /// </summary>
@@ -37,16 +37,16 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(filesPath);
             }
 
-            PythonManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap["C_CPP"]);
+            PythonManager.Start(Path.Combine(filesPath, C_CPPDirectoryName), langMap["C_CPP"]);
             UpdateProgress(0);
 
-            PythonManager.Start(Path.Combine(filesPath, PythonFilesName), langMap["Python"]);
+            PythonManager.Start(Path.Combine(filesPath, PythonDirectoryName), langMap["Python"]);
             UpdateProgress(0);
 
-            JavaManager.Start(Path.Combine(filesPath, JavaFilesName), langMap["Java"]);
+            JavaManager.Start(Path.Combine(filesPath, JavaDirectoryName), langMap["Java"]);
             UpdateProgress(0);
 
-            CSharpManager.Start(Path.Combine(filesPath, CSharpFilesName), langMap["CSharp"]);
+            CSharpManager.Start(Path.Combine(filesPath, CSharpDirectoryName), langMap["CSharp"]);
             UpdateProgress(0);
         }
 

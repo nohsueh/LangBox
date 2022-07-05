@@ -9,9 +9,9 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://store2.lanzoug.com/070317bb/2019/11/23/0fd5474ca81b01ef604ddf2e0d019af2.7z?st=7Gg09AaqC2nA0NF_vB-N-g&e=1656844325&b=CBcLYlc5WBpWVAB4B2AOcA_c_c&fi=14367027&pid=117-136-30-6&up=2&mp=0&co=1";
-        private const string downloadFileName = "Python.7z";
-        private const string extractDirectoryName = "Python";
+        private static string url = "https://www.python.org/ftp/python/3.10.5/python-3.10.5-embed-amd64.zip";
+        private const string downloadFileName = "python-3.10.5-embed-amd64.zip";
+        private const string extractDirectoryName = "python310";
         static Logger logger = new Logger("debug.log");
 
 
@@ -57,7 +57,7 @@ namespace LangBox.Operaters.Managers
             //logger.Info("解压MinGW.7z到MinGW成功");
 
             logger.Info("添加用户Path路径");
-            PathEditor.AddInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.AddInUserPath(filePath);
             logger.Info("添加用户Path路径成功");
         }
 
@@ -72,7 +72,7 @@ namespace LangBox.Operaters.Managers
             }
 
             logger.Info("删除用户Path路径");
-            PathEditor.RemoveInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.RemoveInUserPath(filePath);
             logger.Info("删除用户Path路径成功");
         }
     }
