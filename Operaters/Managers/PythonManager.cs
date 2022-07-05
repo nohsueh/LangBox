@@ -10,8 +10,8 @@ namespace LangBox.Operaters.Managers
         private static string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
         private static bool isChecked;
         private static string url = "https://www.python.org/ftp/python/3.10.5/python-3.10.5-embed-amd64.zip";
-        private const string downloadFileName = "python3.10.zip";
-        private const string extractDirectoryName = "python3.10";
+        private const string downloadFileName = "python-3.10.5-embed-amd64.zip";
+        private const string extractDirectoryName = "python310";
         static Logger logger = new Logger("debug.log");
 
 

@@ -46,8 +46,8 @@ namespace LangBox.Operaters
             JavaManager.Start(Path.Combine(filesPath, JavaDirectoryName), langMap["Java"]);
             UpdateProgress(0);
 
-            CSharpManager.Start(Path.Combine(filesPath, CSharpDirectoryName), langMap["CSharp"]);
-            UpdateProgress(0);
+            //CSharpManager.Start(Path.Combine(filesPath, CSharpDirectoryName), langMap["CSharp"]);
+            //UpdateProgress(0);
         }
 
         public void UpdateProgress(int percentProgress)

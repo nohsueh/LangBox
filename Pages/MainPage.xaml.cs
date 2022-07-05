@@ -97,7 +97,7 @@ namespace LangBox.Pages
             }
 
             //右下总空间
-            int TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
+            double TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
             SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
         }
 

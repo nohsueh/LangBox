@@ -48,13 +48,13 @@ namespace LangBox.Operaters.Managers
                 File.Delete(downloadFilePath);
             }
 
-            //logger.Info("下载MinGW.7z");
-            //wc.DownloadFile(url, downloadFilePath);
-            //logger.Info("下载MinGW.7z成功");
+            logger.Info("下载jdk-18_windows-x64_bin.zip");
+            wc.DownloadFile(url, downloadFilePath);
+            logger.Info("下载jdk-18_windows-x64_bin.zip成功");
 
-            //logger.Info("解压MinGW.7z到MinGW");
-            //ExtractHelper.Decompression(downloadFilePath, filePath);
-            //logger.Info("解压MinGW.7z到MinGW成功");
+            logger.Info("解压jdk-18_windows-x64_bin.zip到jdk18");
+            ExtractHelper.Decompression(downloadFilePath, filePath);
+            logger.Info("解压jdk-18_windows-x64_bin.zip到jdk18成功");
 
             logger.Info("添加用户Path路径");
             PathEditor.AddInUserPath("JAVA_HOME", filePath);

@@ -9,9 +9,9 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://udomain.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
+        private static string url = "https://onboardcloud.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string downloadFileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
-        private const string extractDirectoryName = "MinGW8.1.0";
+        private const string extractDirectoryName = "MinGW";
         static Logger logger = new Logger("debug.log");
 
 
@@ -48,13 +48,13 @@ namespace LangBox.Operaters.Managers
                 File.Delete(downloadFilePath);
             }
 
-            //logger.Info("下载MinGW.7z");
-            //wc.DownloadFile(url, downloadFilePath);
-            //logger.Info("下载MinGW.7z成功");
+            logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z");
+            wc.DownloadFile(url, downloadFilePath);
+            logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z成功");
 
-            //logger.Info("解压MinGW.7z到MinGW");
-            //ExtractHelper.Decompression(downloadFilePath, filePath);
-            //logger.Info("解压MinGW.7z到MinGW成功");
+            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z到MinGW");
+            ExtractHelper.Extract7ZIP(downloadFilePath, filePath);
+            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z到MinGW成功");
 
             logger.Info("添加用户Path路径");
             PathEditor.AddInUserPath("PATH",Path.Combine(filePath, "bin"));

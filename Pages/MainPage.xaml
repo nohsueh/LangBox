@@ -36,7 +36,9 @@
                             <CheckBox Name="C_CPP" Click="LangSelect_Update">C/C++</CheckBox>
                             <CheckBox Name="Python" Click="LangSelect_Update">Python</CheckBox>
                             <CheckBox Name="Java" Click="LangSelect_Update">Java</CheckBox>
-                            <CheckBox Name="CSharp" Click="LangSelect_Update">C#</CheckBox>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
+                <Hyperlink Click="Hyperlink_Click">More...</Hyperlink>
+                            </TextBlock>
                         </WrapPanel>
                     </ScrollViewer>
                 </StackPanel>

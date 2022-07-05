@@ -30,8 +30,8 @@ namespace LangBox.Operaters
                 config.LangMap = new Dictionary<string, bool> {
                     { "C_CPP",true},
                     { "Python",false},
-                    {"Java", false},
-                    {"CSharp",false}
+                    {"Java", false}
+                    //{"CSharp",false}
                 };
             }
 
