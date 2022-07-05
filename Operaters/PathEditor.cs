@@ -8,12 +8,12 @@ namespace LangBox.Operaters
 {
     internal class PathEditor
     {
-        public static void AddInUserPath(string newPath)
+        public static void AddInUserPath(string variable, string newPath)
         {
-            string? pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            string? pathVar = Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User);
             if (pathVar == null)
             {
-                Environment.SetEnvironmentVariable("PATH", newPath, EnvironmentVariableTarget.User);
+                Environment.SetEnvironmentVariable(variable, newPath, EnvironmentVariableTarget.User);
                 return;
             }
             if (!pathVar.Contains(newPath))
@@ -25,12 +25,12 @@ namespace LangBox.Operaters
 
                 pathVar += newPath;
             }
-            Environment.SetEnvironmentVariable("PATH", pathVar, EnvironmentVariableTarget.User);
+            Environment.SetEnvironmentVariable(variable, pathVar, EnvironmentVariableTarget.User);
         }
 
-        public static void RemoveInUserPath(string oldPath)
+        public static void RemoveInUserPath(string variable,string oldPath)
         {
-            string? pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            string? pathVar = Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User);
             if (pathVar == null)
             {
                 return;
@@ -44,7 +44,7 @@ namespace LangBox.Operaters
 
                 pathVar = pathVar.Replace(oldPath, "");
             }
-            Environment.SetEnvironmentVariable("PATH", pathVar, EnvironmentVariableTarget.User);
+            Environment.SetEnvironmentVariable(variable, pathVar, EnvironmentVariableTarget.User);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace LangBox.Operaters.Managers
             //logger.Info("解压MinGW.7z到MinGW成功");
 
             logger.Info("添加用户Path路径");
-            PathEditor.AddInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.AddInUserPath("PATH", Path.Combine(filePath, "bin"));
             logger.Info("添加用户Path路径成功");
         }
 
@@ -72,7 +72,7 @@ namespace LangBox.Operaters.Managers
             }
 
             logger.Info("删除用户Path路径");
-            PathEditor.RemoveInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.RemoveInUserPath("PATH",Path.Combine(filePath, "bin"));
             logger.Info("删除用户Path路径成功");
         }
     }

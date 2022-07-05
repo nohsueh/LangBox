@@ -11,7 +11,7 @@ namespace LangBox.Operaters.Managers
         private static bool isChecked;
         private static string url = "https://udomain.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string downloadFileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
-        private const string extractDirectoryName = "mingw81";
+        private const string extractDirectoryName = "MinGW8.1.0";
         static Logger logger = new Logger("debug.log");
 
 
@@ -57,7 +57,7 @@ namespace LangBox.Operaters.Managers
             //logger.Info("解压MinGW.7z到MinGW成功");
 
             logger.Info("添加用户Path路径");
-            PathEditor.AddInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.AddInUserPath("PATH",Path.Combine(filePath, "bin"));
             logger.Info("添加用户Path路径成功");
         }
 
@@ -72,7 +72,7 @@ namespace LangBox.Operaters.Managers
             }
 
             logger.Info("删除用户Path路径");
-            PathEditor.RemoveInUserPath(Path.Combine(filePath, "bin"));
+            PathEditor.RemoveInUserPath("PATH", Path.Combine(filePath, "bin"));
             logger.Info("删除用户Path路径成功");
         }
     }
