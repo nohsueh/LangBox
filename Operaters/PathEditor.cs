@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LangBox.Operaters
 {
-    internal class PathAdder
+    internal class PathEditor
     {
         public static void AddInUserPath(string newPath)
         {
@@ -19,6 +19,23 @@ namespace LangBox.Operaters
                 }
 
                 pathVar += newPath;
+            }
+            Environment.SetEnvironmentVariable("PATH", pathVar, EnvironmentVariableTarget.User);
+        }
+
+        public static void RemoveInUserPath(string oldPath)
+        {
+            string pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
+            if (pathVar.Contains(oldPath))
+            {
+                int len = System.Text.RegularExpressions.Regex.Matches(pathVar, ";").Count;
+
+                if (!pathVar.EndsWith(oldPath))
+                {
+                    oldPath += ";";
+                }
+
+                pathVar = pathVar.Replace(oldPath, "");
             }
             Environment.SetEnvironmentVariable("PATH", pathVar, EnvironmentVariableTarget.User);
         }

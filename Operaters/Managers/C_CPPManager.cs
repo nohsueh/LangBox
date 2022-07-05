@@ -32,41 +32,48 @@ namespace LangBox.Operaters.Managers
 
         private static void Install()
         {
+            string downloadFilePath = Path.Combine(localPath, downloadFileName);
+            string filePath = Path.Combine(localPath, extractDirectoryName);
+            WebClient wc = new WebClient();
+
             if (!Directory.Exists(localPath))
             {
                 logger.Info("创建文件夹");
                 Directory.CreateDirectory(localPath);
             }
 
-            string downloadFilePath = Path.Combine(localPath, downloadFileName);
             if (File.Exists(downloadFilePath))
             {
                 logger.Info("删除文件");
                 File.Delete(downloadFilePath);
             }
 
-            logger.Info("下载MinGW.7z");
-            WebClient wc = new WebClient();
-            wc.DownloadFile(url, downloadFilePath);
-            logger.Info("下载MinGW.7z成功");
+            //logger.Info("下载MinGW.7z");
+            //wc.DownloadFile(url, downloadFilePath);
+            //logger.Info("下载MinGW.7z成功");
 
-            logger.Info("解压MinGW.7z到MinGW");
-            string filePath = Path.Combine(localPath, extractDirectoryName);
-            ExtractHelper.Decompression(downloadFilePath, filePath);
-            logger.Info("解压MinGW.7z到MinGW成功");
+            //logger.Info("解压MinGW.7z到MinGW");
+            //ExtractHelper.Decompression(downloadFilePath, filePath);
+            //logger.Info("解压MinGW.7z到MinGW成功");
 
-            logger.Info("修改用户Path路径");
-            PathAdder.AddInUserPath(filePath + "\\bin");
-            logger.Info("修改用户Path路径成功");
+            logger.Info("添加用户Path路径");
+            PathEditor.AddInUserPath(Path.Combine(filePath, "bin"));
+            logger.Info("添加用户Path路径成功");
         }
 
         private static void Uninstall()
         {
+            string filePath = Path.Combine(localPath, extractDirectoryName);
             if (Directory.Exists(localPath))
             {
                 logger.Info("删除文件夹");
                 Directory.Delete(localPath, true);
+                logger.Info("删除文件夹成功");
             }
+
+            logger.Info("删除用户Path路径");
+            PathEditor.RemoveInUserPath(Path.Combine(filePath, "bin"));
+            logger.Info("删除用户Path路径成功");
         }
     }
 }

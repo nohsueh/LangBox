@@ -37,7 +37,7 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(filesPath);
             }
 
-            C_CPPManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap["C_CPP"]);
+            PythonManager.Start(Path.Combine(filesPath, C_CPPFilesName), langMap["C_CPP"]);
             UpdateProgress(0);
 
             PythonManager.Start(Path.Combine(filesPath, PythonFilesName), langMap["Python"]);
