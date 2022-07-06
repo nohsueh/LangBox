@@ -164,7 +164,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="注册" Style="{StaticResource titleText}" />
                     <TextBlock Text="注册一个新账号联系我们" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30" />
-                    <Button Content="注册" Style="{StaticResource button}" />
+                    <Button Name="SignupButton" Content="注册" Style="{StaticResource button}" Click="signup_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -201,7 +201,7 @@
                     </Grid>
                 </Border>
 
-                <Button Content="登录" Click="login_Click" Style="{StaticResource mainButton}" />
+                <Button Name="LoginButton" Content="登录" Click="login_Click" Style="{StaticResource mainButton}" />
             </StackPanel>
         </Border>
     </Grid>

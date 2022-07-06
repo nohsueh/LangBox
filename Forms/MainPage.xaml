@@ -7,6 +7,39 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
+    <Page.Resources>
+        <Style x:Key="mainButton" TargetType="Button">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="Background" Value="#B0C4DE" />
+            <Setter Property="Foreground" Value="#FDFEFE" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20" BorderThickness="1"
+                                BorderBrush="#49B7A3" Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#339685" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#2d7a6c" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="BorderThickness"  Value="0 0 0 0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="2*"></RowDefinition>
@@ -25,9 +58,17 @@
         </DockPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock Name="SpaceRequired" VerticalAlignment="Center" HorizontalAlignment="Stretch" ></TextBlock>
-            <Button Margin="0,10" Name="ModifyButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="ModifyButton_Click" Width="64" Height="36" Visibility="Visible" Foreground="Black" BorderBrush="#FF707070">修改</Button>
+            <Button  Name="ModifyButton" HorizontalAlignment="Center" Click="ModifyButton_Click"  Style="{StaticResource mainButton}" >
+                修改
+            </Button>
         </StackPanel>
         <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
+            <TabControl.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <GradientStop Color="#B0C4DE" Offset="0" />
+                    <GradientStop Color="#3AADA1" Offset="1" />
+                </LinearGradientBrush>
+            </TabControl.Background>
             <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">全选</CheckBox>
@@ -57,18 +98,19 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="19"></ColumnDefinition>
+                        <ColumnDefinition Width="356"/>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" TextAlignment="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Stretch">选择安装路径：</TextBlock>
+
+                    <TextBlock Grid.Row="0" TextAlignment="Left" HorizontalAlignment="Left" Grid.ColumnSpan="2">选择安装路径：</TextBlock>
                     <TextBlock Grid.Row="2"
                        Name="PathValidity"
                        TextAlignment="Left"
-                       Foreground="Red" DockPanel.Dock="Bottom" VerticalAlignment="Top" HorizontalAlignment="Left">
-                    </TextBlock>
-                    <TextBox Grid.Row="1" Grid.Column="0" Margin="0 5 0 5" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="375">D:\LangBox Files</TextBox>
-                    <Button Grid.Row="1" Grid.Column="1" Margin="30 0 0 0" Name="PathInputButton" VerticalAlignment="Top" DockPanel.Dock="Right" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="48" Height="27" Click="Browse_Click">浏览</Button>
+                       Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="375" Grid.ColumnSpan="2">D:\LangBox Files</TextBox>
+                    <Button Grid.Row="1" Grid.Column="2" Name="PathInputButton" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"  Click="Browse_Click" Width="45" Height="20" Margin="45,0,0,0" >浏览</Button>
                 </Grid>
             </TabItem>
         </TabControl>

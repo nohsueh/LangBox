@@ -24,6 +24,7 @@ namespace LangBox.Forms
         {
             InitializeComponent();
         }
+
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtEmail.Focus();
@@ -64,6 +65,11 @@ namespace LangBox.Forms
             {
                 Application.Current.MainWindow.Content = new MainPage();
             }
+        }
+
+        private void signup_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
