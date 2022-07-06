@@ -11,7 +11,7 @@ namespace LangBox.Operaters
         public static Dictionary<string, double> space = new Dictionary<string, double> {
             { "C_CPP", 47.1 },
             { "Python", 8.2 },
-            { "Java", 173 }
+            { "Java", 172.8 }
         };
 
         //返回所需的总空间
