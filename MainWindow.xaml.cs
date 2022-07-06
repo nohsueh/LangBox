@@ -1,5 +1,5 @@
-﻿using LangBox.Operaters;
-using LangBox.Pages;
+﻿using LangBox.Forms;
+using LangBox.Operaters;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,7 +31,8 @@ namespace LangBox
                 }
             });
             task.Start();
-            this.Content = new MainPage();
+
+            this.Content = new LoginPage(); 
         }
     }
 }

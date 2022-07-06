@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace LangBox.Pages
+namespace LangBox.Forms
 {
     /// <summary>
     /// MainPage.xaml 的交互逻辑
