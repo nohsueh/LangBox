@@ -98,7 +98,7 @@ namespace LangBox.Pages
 
             //右下总空间
             double TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
-            SpaceRequired.Text = TotalSpace.ToString() + "MB space required";
+            SpaceRequired.Text = TotalSpace.ToString() + "MB 空间需要";
         }
 
         //private bool IsSelectAll()
@@ -133,12 +133,12 @@ namespace LangBox.Pages
             if (PathCheck(PathInput.Text))
             {
                 ModifyButton.IsEnabled = true;
-                SelectedPath.Text = "Installation Location: " + PathInput.Text;
+                SelectedPath.Text = "安装位置：" + PathInput.Text;
             }
             else
             {
                 ModifyButton.IsEnabled = false;
-                SelectedPath.Text = "PathError";
+                SelectedPath.Text = "路径错误";
             }
         }
 
@@ -146,7 +146,7 @@ namespace LangBox.Pages
         {
             if (InculdeIllegal(path))
             {
-                PathValidity.Text = "The path contains spaces or special symbols.";
+                PathValidity.Text = "路径包含非法字符。";
                 return false;
             }
             else if (!Directory.Exists(path) || path == cfg.GetFilesPath())
@@ -156,7 +156,7 @@ namespace LangBox.Pages
             }
             else if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
             {
-                PathValidity.Text = "The folder is not empty.";
+                PathValidity.Text = "目录非空";
                 return false;
             }
 

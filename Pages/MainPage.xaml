@@ -25,12 +25,12 @@
         </DockPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock Name="SpaceRequired" VerticalAlignment="Center" HorizontalAlignment="Stretch" ></TextBlock>
-            <Button Margin="0,10" Name="ModifyButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="ModifyButton_Click" Width="64" Height="36" Visibility="Visible" Foreground="Black" BorderBrush="#FF707070">Modify</Button>
+            <Button Margin="0,10" Name="ModifyButton" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="ModifyButton_Click" Width="64" Height="36" Visibility="Visible" Foreground="Black" BorderBrush="#FF707070">修改</Button>
         </StackPanel>
         <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
-            <TabItem Name="Languages" Header="Languages" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
+            <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
                 <StackPanel Margin="10,5">
-                    <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">Select All</CheckBox>
+                    <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">全选</CheckBox>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                         <WrapPanel Name="LangSelect"  Margin="20,5">
                             <CheckBox Name="C_CPP" Click="LangSelect_Update">C/C++</CheckBox>
@@ -48,7 +48,7 @@
                 <TabItem.Content>IDE安装</TabItem.Content>
             </TabItem>
 
-            <TabItem Name="Allocation" Header="Allocation" Background="{StaticResource c0}" BorderBrush="{StaticResource c0}" Height="19" VerticalAlignment="Top">
+            <TabItem Name="Allocation" Header="设置" Background="{StaticResource c0}" BorderBrush="{StaticResource c0}" Height="19" VerticalAlignment="Top">
                 <Grid Margin="10,5">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -61,14 +61,14 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" TextAlignment="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Stretch">Select the installation location:</TextBlock>
+                    <TextBlock Grid.Row="0" TextAlignment="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Stretch">选择安装路径：</TextBlock>
                     <TextBlock Grid.Row="2"
                        Name="PathValidity"
                        TextAlignment="Left"
                        Foreground="Red" DockPanel.Dock="Bottom" VerticalAlignment="Top" HorizontalAlignment="Left">
                     </TextBlock>
                     <TextBox Grid.Row="1" Grid.Column="0" Margin="0 5 0 5" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="375">D:\LangBox Files</TextBox>
-                    <Button Grid.Row="1" Grid.Column="1" Margin="30 0 0 0" Name="PathInputButton" VerticalAlignment="Top" DockPanel.Dock="Right" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="48" Height="27" Click="Browse_Click">Browse</Button>
+                    <Button Grid.Row="1" Grid.Column="1" Margin="30 0 0 0" Name="PathInputButton" VerticalAlignment="Top" DockPanel.Dock="Right" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="48" Height="27" Click="Browse_Click">浏览</Button>
                 </Grid>
             </TabItem>
         </TabControl>
