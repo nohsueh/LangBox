@@ -95,7 +95,7 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Width" Value="200" />
             <Setter Property="Margin" Value="0 20 0 0" />
-            <Setter Property="Background" Value="#3AB19B" />
+            <Setter Property="Background" Value="#B0C4DE" />
             <Setter Property="Foreground" Value="#FDFEFE" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
@@ -148,7 +148,7 @@
         <Border CornerRadius="10 0 0 10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                    <GradientStop Color="#3AA9AD" Offset="0" />
+                    <GradientStop Color="#B0C4DE" Offset="0" />
                     <GradientStop Color="#3AADA1" Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
@@ -171,7 +171,7 @@
 
         <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" >
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="使用邮箱登录" Style="{StaticResource titleText}" Foreground="#3AB19B" />
+                <TextBlock Text="使用邮箱登录" Style="{StaticResource titleText}" Foreground="	#4682B4" />
                 <Border Padding="10" BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
                     <Grid>
                         <Grid.ColumnDefinitions>
