@@ -62,14 +62,14 @@
                 修改
             </Button>
         </StackPanel>
-        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top">
+        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top" >
             <TabControl.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
                     <GradientStop Color="#B0C4DE" Offset="0" />
-                    <GradientStop Color="#3AADA1" Offset="1" />
+                    <GradientStop Color="#3AADA1" Offset="2" />
                 </LinearGradientBrush>
             </TabControl.Background>
-            <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
+            <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}" >
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">全选</CheckBox>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
@@ -85,11 +85,11 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Name="IDE" Header="IDE" BorderBrush="{StaticResource c0}" Background="{StaticResource c0}">
+            <TabItem Name="IDE" Header="IDE" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}">
                 <TabItem.Content>IDE安装</TabItem.Content>
             </TabItem>
 
-            <TabItem Name="Allocation" Header="设置" Background="{StaticResource c0}" BorderBrush="{StaticResource c0}" Height="19" VerticalAlignment="Top">
+            <TabItem Name="Allocation" Header="设置" Background="{DynamicResource c0}" BorderBrush="{DynamicResource c1}" Height="19" VerticalAlignment="Top">
                 <Grid Margin="10,5">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="Auto"></RowDefinition>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="ModernLoginPage" Height="450" Width="800">
+        Title="LoginPage" Height="450" Width="800">
     <Page.Resources>
 
         <Style x:Key="titleText" TargetType="TextBlock">
@@ -26,13 +26,14 @@
         <Style x:Key="button" TargetType="Button">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Width" Value="170" />
+            <Setter Property="Margin" Value="0 20 0 0" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#fdfefe" />
+            <Setter Property="Foreground" Value="#FDFEFE" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="15">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="15">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -40,12 +41,12 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#e8e8e8" />
-                    <Setter Property="Foreground" Value="DimGray" />
+                    <Setter Property="Background" Value="#339685" />
+                    <Setter Property="Foreground" Value="White" />
                 </Trigger>
                 <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Background" Value="#d9d9d9" />
-                    <Setter Property="Foreground" Value="DimGray" />
+                    <Setter Property="Background" Value="#2d7a6c" />
+                    <Setter Property="Foreground" Value="White" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -95,14 +96,13 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Width" Value="200" />
             <Setter Property="Margin" Value="0 20 0 0" />
-            <Setter Property="Background" Value="#B0C4DE" />
+            <Setter Property="Background" Value="#3AADA1" />
             <Setter Property="Foreground" Value="#FDFEFE" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1"
-                                BorderBrush="#49B7A3" Padding="15">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25"  Padding="15">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -110,33 +110,15 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#339685" />
+                    <Setter Property="Background" Value="#B0C4DE" />
                     <Setter Property="Foreground" Value="White" />
                 </Trigger>
                 <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Background" Value="#2d7a6c" />
+                    <Setter Property="Background" Value="#778899" />
                     <Setter Property="Foreground" Value="White" />
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-        <Style x:Key="imgClose" TargetType="Image">
-            <Setter Property="Width" Value="30" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Margin" Value="0 13 13 0" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="RenderTransform">
-                        <Setter.Value>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -163,7 +145,7 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="注册" Style="{StaticResource titleText}" />
-                    <TextBlock Text="注册一个新账号联系我们" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30" />
+                    <TextBlock Text="注册一个新账号" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30" />
                     <Button Name="SignupButton" Content="注册" Style="{StaticResource button}" Click="signup_Click"/>
                 </StackPanel>
             </Grid>
