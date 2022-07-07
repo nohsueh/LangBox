@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LangBox.Connections;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,9 +63,15 @@ namespace LangBox.Forms
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPassword.Password))
+            DataTable dt = PgsqlHelper.ExecuteQuery("SELECT password FROM public.user WHERE username='" + txtEmail.Text + "';");
+            string password = dt.Rows[0]["password"].ToString().Trim();
+            if (dt.Rows.Count > 0 && txtPassword.Password==password)
             {
                 Application.Current.MainWindow.Content = new MainPage();
+            }
+            else
+            {
+                MessageBox.Show("请输入正确的账号密码");
             }
         }
 
