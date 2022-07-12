@@ -9,7 +9,7 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://onboardcloud.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
+        private static string url = "http://1.117.147.239/api/v3/file/download/5IcFFRTwvT9mLAKj?sign=4CL1JGU4Uv8XrXy0KVhxe6QAl9f18rQscYxpt44Srwk%3D%3A1657634329";
         private const string downloadFileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string extractDirectoryName = "MinGW";
         static Logger logger = new Logger("debug.log");

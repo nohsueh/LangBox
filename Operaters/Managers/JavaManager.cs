@@ -9,7 +9,7 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files\\java";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "https://download.oracle.com/java/18/latest/jdk-18_windows-x64_bin.zip";
+        private static string url = "http://1.117.147.239/api/v3/file/download/Oo4X0Qh5IpUyv2Us?sign=_okGoeRctE-kkh0215rDANW0qY2xwXu-3IqggU_i6Q8%3D%3A1657634338";
         private const string downloadFileName = "jdk-18_windows-x64_bin.zip";
         private const string extractDirectoryName = "jdk18";
         static Logger logger = new Logger("debug.log");
