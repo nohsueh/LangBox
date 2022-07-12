@@ -108,8 +108,9 @@
                     <TextBlock Grid.Row="2"
                        Name="PathValidity"
                        TextAlignment="Left"
+                               Width="300"
                        Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="375" Grid.ColumnSpan="2">D:\LangBox Files</TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="375" Grid.ColumnSpan="2"></TextBox>
                     <Button Grid.Row="1" Grid.Column="2" Name="PathInputButton" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"  Click="Browse_Click" Width="45" Height="20" Margin="45,0,0,0" >浏览</Button>
                 </Grid>
             </TabItem>

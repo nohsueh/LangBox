@@ -64,14 +64,25 @@ namespace LangBox.Forms
         private void login_Click(object sender, RoutedEventArgs e)
         {
             DataTable dt = PgsqlHelper.ExecuteQuery("SELECT password FROM public.user WHERE username='" + txtEmail.Text + "';");
-            string password = dt.Rows[0]["password"].ToString().Trim();
-            if (dt.Rows.Count > 0 && txtPassword.Password==password)
+            string password = "";
+            if (dt.Rows.Count > 0)
+            {
+                password = dt.Rows[0]["password"].ToString().Trim();
+            }
+            else
+            {
+                MessageBox.Show("请输入正确的账号密码");
+                return;
+            }
+
+            if (txtPassword.Password==password)
             {
                 Application.Current.MainWindow.Content = new MainPage();
             }
             else
             {
                 MessageBox.Show("请输入正确的账号密码");
+                return;
             }
         }
 

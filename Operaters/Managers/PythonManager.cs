@@ -44,15 +44,15 @@ namespace LangBox.Operaters.Managers
                 Directory.CreateDirectory(localPath);
             }
 
-            //if (File.Exists(downloadFilePath))
-            //{
-            //    logger.Info("删除文件");
-            //    File.Delete(downloadFilePath);
-            //}
+            if (File.Exists(downloadFilePath))
+            {
+                logger.Info("删除文件");
+                File.Delete(downloadFilePath);
+            }
 
-            //logger.Info("下载python-3.10.5-embed-amd64.zip");
-            //wc.DownloadFile(url, downloadFilePath);
-            //logger.Info("下载python-3.10.5-embed-amd64.zip成功");
+            logger.Info("下载python-3.10.5-embed-amd64.zip");
+            wc.DownloadFile(url, downloadFilePath);
+            logger.Info("下载python-3.10.5-embed-amd64.zip成功");
 
             logger.Info("解压python-3.10.5-embed-amd64.zip到python310");
             ZipFile.ExtractToDirectory(downloadFilePath, filePath, true);
