@@ -9,10 +9,12 @@ namespace LangBox.Operaters.Managers
     {
         private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
         private static bool isChecked;
-        private static string url = "http://1.117.147.239/api/v3/file/download/5IcFFRTwvT9mLAKj?sign=4CL1JGU4Uv8XrXy0KVhxe6QAl9f18rQscYxpt44Srwk%3D%3A1657634329";
-        private const string downloadFileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
-        private const string extractDirectoryName = "MinGW";
-        static Logger logger = new Logger("debug.log");
+        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/V1.1.0/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
+        private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
+        private const string directoryName = "mingw64";
+        static Logger logger = new("debug.log");
+        private static DownloadHelper downloadHelper = new();
+        private static ExtractHelper extractHelper = new();
 
 
         public static void Start(string Path, bool Flag)
@@ -32,38 +34,33 @@ namespace LangBox.Operaters.Managers
 
         private static void Install()
         {
-            string downloadFilePath = Path.Combine(localPath, downloadFileName);
-            string filePath = Path.Combine(localPath, extractDirectoryName);
-            WebClient wc = new WebClient();
-
             if (!Directory.Exists(localPath))
             {
                 logger.Info("创建文件夹");
                 Directory.CreateDirectory(localPath);
             }
 
-            if (File.Exists(downloadFilePath))
+            string filePath = Path.Combine(localPath, fileName);
+            if (!File.Exists(filePath))
             {
-                logger.Info("删除文件");
-                File.Delete(downloadFilePath);
-            }
+                logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
+                downloadHelper.Download(url, localPath);
+                logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
+            } 
 
-            logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z");
-            wc.DownloadFile(url, downloadFilePath);
-            logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z成功");
-
-            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z到MinGW");
-            ExtractHelper.Extract7ZIP(downloadFilePath, filePath);
-            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z到MinGW成功");
+            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
+            extractHelper.Extract(filePath, localPath);
+            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
 
             logger.Info("添加用户Path路径");
-            PathEditor.AddInUserPath("PATH",Path.Combine(filePath, "bin"));
+            string directoryPath = Path.Combine(localPath, directoryName);
+            PathEditor.AddInUserPath("PATH",Path.Combine(directoryPath, "bin"));
             logger.Info("添加用户Path路径成功");
         }
 
         private static void Uninstall()
         {
-            string filePath = Path.Combine(localPath, extractDirectoryName);
+            string directoryPath = Path.Combine(localPath, directoryName);
             if (Directory.Exists(localPath))
             {
                 logger.Info("删除文件夹");
@@ -72,7 +69,7 @@ namespace LangBox.Operaters.Managers
             }
 
             logger.Info("删除用户Path路径");
-            PathEditor.RemoveInUserPath("PATH", Path.Combine(filePath, "bin"));
+            PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "bin"));
             logger.Info("删除用户Path路径成功");
         }
     }

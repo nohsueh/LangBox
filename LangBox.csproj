@@ -23,7 +23,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
-    <PackageReference Include="SharpCompress" Version="0.32.1" />
   </ItemGroup>
 
   <ItemGroup>
