@@ -37,12 +37,16 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(filesPath);
             }
 
+            Logger logger = new Logger("debug.log");
+            logger.Info(langMap["C_CPP"].ToString());
             C_CPPManager.Start(Path.Combine(filesPath, C_CPPDirectoryName), langMap["C_CPP"]);
             UpdateProgress(0);
 
+            logger.Info(langMap["Python"].ToString());
             PythonManager.Start(Path.Combine(filesPath, PythonDirectoryName), langMap["Python"]);
             UpdateProgress(0);
 
+            logger.Info(langMap["Java"].ToString());
             JavaManager.Start(Path.Combine(filesPath, JavaDirectoryName), langMap["Java"]);
             UpdateProgress(0);
 

@@ -11,9 +11,9 @@ namespace LangBox.Operaters
 
         private Logger logger = new Logger("download.log");
 
-        public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
+        //public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
 
-        public static event OnProgressChangedHandler OnProgressChanged;
+        //public static event OnProgressChangedHandler OnProgressChanged;
 
 
         public void Download(string url, string saveDirectory)
