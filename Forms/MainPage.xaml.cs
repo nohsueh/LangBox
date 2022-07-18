@@ -20,6 +20,7 @@ namespace LangBox.Forms
         private static ConfigHelper cfg = new ConfigHelper();
         private BackgroundWorker worker;
         ProgressList pl = new ProgressList();
+        Dictionary<string, bool> LangMap;
 
         public MainPage()
         {
@@ -31,7 +32,7 @@ namespace LangBox.Forms
         {
             PathInput.Text = cfg.GetFilesPath();
 
-            Dictionary<string, bool> LangMap = cfg.GetLangMap();
+            LangMap = cfg.GetLangMap();
             foreach (var item in LangSelect.Children)
             {
                 if (item is CheckBox)
@@ -76,11 +77,18 @@ namespace LangBox.Forms
                     string LMkey = checkBoxItem.Name;
                     bool LMvalue = (bool)checkBoxItem.IsChecked;
 
-                    cfg.SetLangMap(LMkey, LMvalue);
+                    if (LangMap.ContainsKey(LMkey))
+                    {
+                        LangMap[LMkey] = LMvalue;
+                    }
+                    else
+                    {
+                        LangMap.Add(LMkey, LMvalue);
+                    }
                 }
             }
 
-            pl.SetProgressList(cfg.GetLangMap());
+            pl.SetProgressList(LangMap);
 
             LangInfoShow();
         }
@@ -97,7 +105,7 @@ namespace LangBox.Forms
             }
 
             //右下总空间
-            double TotalSpace = SpaceCounter.SpaceRequired(cfg.GetLangMap());
+            double TotalSpace = SpaceCounter.SpaceRequired(LangMap);
             SpaceRequired.Text = TotalSpace.ToString() + "MB 空间需要";
         }
 
@@ -177,6 +185,17 @@ namespace LangBox.Forms
         {
             //配置
             cfg.SetFilesPath(PathInput.Text);
+            foreach (var item in LangSelect.Children)
+            {
+                if (item is CheckBox)
+                {
+                    CheckBox checkBoxItem = (CheckBox)item;
+                    string LMkey = checkBoxItem.Name;
+                    bool LMvalue = (bool)checkBoxItem.IsChecked;
+
+                    cfg.SetLangMap(LMkey, LMvalue);
+                }
+            }
             WorkingProgress.Value = 0;
             WorkingProgress.Visibility = Visibility.Visible;
             ModifyButton.IsEnabled = false;
@@ -207,7 +226,7 @@ namespace LangBox.Forms
         {
             try
             {
-                ManageHelper manager = new ManageHelper(cfg.GetLangMap(), cfg.GetFilesPath());
+                ManageHelper manager = new ManageHelper(LangMap, cfg.GetFilesPath());
                 manager.OnProgressChangeEvent += ProgressChangeSend;
                 manager.Start();
             }

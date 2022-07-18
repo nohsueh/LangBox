@@ -11,6 +11,8 @@ namespace LangBox
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ConfigHelper cfg = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -18,12 +20,13 @@ namespace LangBox
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Title = "LangBox "+cfg.GetVersion();
             Task task = new Task(() =>
             {
                 bool hasUpdate = UpdateChecker.HasUpdate();
                 if (hasUpdate)
                 {
-                    MessageBoxResult r = MessageBox.Show("发现最新版\n是否前往更新？", "更新提示", MessageBoxButton.YesNo);
+                    MessageBoxResult r = MessageBox.Show("发现最新版: "+UpdateChecker.GetVersion()+"\n是否前往更新？", "更新提示", MessageBoxButton.YesNo);
                     if (r == MessageBoxResult.Yes)
                     {
                         Process.Start("explorer.exe", "https://github.com/NOhsueh/LangBox/releases/latest");

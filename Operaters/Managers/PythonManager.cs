@@ -10,7 +10,6 @@ namespace LangBox.Operaters.Managers
     internal class PythonManager
     {
         private static string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
-        private static bool isChecked;
         private static string url = "https://github.com/NOhsueh/LangBox/releases/download/V1.1.0/python-3.10.5-embed-amd64.zip";
         private const string fileName = "python-3.10.5-embed-amd64.zip";
         private const string directoryName = "python-3.10.5";
@@ -19,10 +18,9 @@ namespace LangBox.Operaters.Managers
         private static ExtractHelper extractHelper = new();
 
 
-        public static void Start(string Path, bool Flag)
+        public static void Start(string Path, bool isChecked)
         {
             localPath = Path;
-            isChecked = Flag;
 
             if (isChecked)
             {
@@ -36,7 +34,7 @@ namespace LangBox.Operaters.Managers
 
         private static void Install()
         {
-
+            logger.Info("调用安装python");
             if (!Directory.Exists(localPath))
             {
                 logger.Info("创建文件夹");

@@ -6,7 +6,7 @@ namespace LangBox.Operaters
 {
     internal class Logger
     {
-        private FileStream fileStream;
+        private readonly FileStream? fileStream;
 
         public Logger(string fileName)
         {
@@ -21,7 +21,7 @@ namespace LangBox.Operaters
             }
         }
 
-        public void Info(string context)
+        public void Info(string? context)
         {
             if (fileStream != null)
             {
@@ -33,7 +33,7 @@ namespace LangBox.Operaters
             }
         }
 
-        public void Warn(string context)
+        public void Warn(string? context)
         {
             if (fileStream != null)
             {
@@ -45,7 +45,7 @@ namespace LangBox.Operaters
             }
         }
 
-        public void Err(string context)
+        public void Err(string? context)
         {
             if (fileStream != null)
             {

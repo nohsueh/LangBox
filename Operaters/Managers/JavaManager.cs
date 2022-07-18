@@ -8,7 +8,7 @@ namespace LangBox.Operaters.Managers
     internal class JavaManager
     {
         private static string localPath = "D:\\LangBox Files\\java";  //防止localPath为空
-        private static string url = "http://1.117.147.239/api/v3/file/download/Oo4X0Qh5IpUyv2Us?sign=_okGoeRctE-kkh0215rDANW0qY2xwXu-3IqggU_i6Q8%3D%3A1657634338";
+        private static string url = "https://github.com/NOhsueh/LangBox/releases/download/V1.1.0/jdk-18_windows-x64_bin.zip";
         private const string fileName = "jdk-18_windows-x64_bin.zip";
         private const string directoryName = "jdk-18.0.1.1";
         private static Logger logger = new Logger("debug.log");
@@ -32,6 +32,7 @@ namespace LangBox.Operaters.Managers
 
         private static void Install()
         {
+            logger.Info("调用安装java");
             if (!Directory.Exists(localPath))
             {
                 logger.Info("创建文件夹");

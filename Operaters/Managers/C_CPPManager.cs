@@ -8,7 +8,6 @@ namespace LangBox.Operaters.Managers
     internal class C_CPPManager
     {
         private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
-        private static bool isChecked;
         private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/V1.1.0/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
         private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
         private const string directoryName = "mingw64";
@@ -17,10 +16,9 @@ namespace LangBox.Operaters.Managers
         private static ExtractHelper extractHelper = new();
 
 
-        public static void Start(string Path, bool Flag)
+        public static void Start(string Path, bool isChecked)
         {
             localPath = Path;
-            isChecked = Flag;
 
             if (isChecked)
             {
@@ -34,6 +32,7 @@ namespace LangBox.Operaters.Managers
 
         private static void Install()
         {
+            logger.Info("调用安装c/cpp");
             if (!Directory.Exists(localPath))
             {
                 logger.Info("创建文件夹");

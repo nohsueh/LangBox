@@ -18,6 +18,7 @@ namespace LangBox.Operaters
 
         public void Download(string url, string saveDirectory)
         {
+            logger.Info("调用Download成功");
             if (!File.Exists(aria2Path))
             {
                 logger.Err("aria2c.exe didn't found in\n" + aria2Path);
@@ -25,7 +26,7 @@ namespace LangBox.Operaters
             }
 
 
-            logger.Err(url);
+            logger.Info(url);
             string args = "-d " + saveDirectory + " -c " +
                 "-l \"aria2.log\" " +
                 "--log-level=notice " +

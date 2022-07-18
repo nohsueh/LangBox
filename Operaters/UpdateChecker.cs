@@ -14,6 +14,15 @@ namespace LangBox.Operaters
 
         public static bool HasUpdate()
         {
+            string nowVersion = GetVersion();
+            string version = cfg.GetVersion();
+            if (string.Compare(version, nowVersion) < 0)
+                return true;
+            else return false;
+        }
+
+        public static string GetVersion()
+        {
             string content = ReadHttpSourceCode(checkPage);
             Regex regex = new Regex("href=\"/NOhsueh/LangBox/releases/tag/(.*)\" data-view-component=\"true\"");
             Match match = regex.Match(content);
@@ -21,11 +30,9 @@ namespace LangBox.Operaters
             if (match.Success)
             {
                 string nowVersion = match.Groups[1].Value;
-                string version = cfg.GetVersion();
-                if (string.Compare(version,nowVersion) < 0)
-                    return true;
+                return nowVersion;
             }
-            return false;
+            return cfg.GetVersion();
         }
 
         private static string ReadHttpSourceCode(string url)
