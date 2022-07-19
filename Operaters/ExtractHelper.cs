@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System;
+using System.IO.Compression;
 
 namespace LangBox.Operaters
 {
@@ -13,7 +14,15 @@ namespace LangBox.Operaters
         public void Extract(string filePath, string directoryPath)
         {
             logger.Info("start extract.");
-            ZipFile.ExtractToDirectory(filePath, directoryPath, true);
+            try
+            {
+
+                ZipFile.ExtractToDirectory(filePath, directoryPath, true);
+            }
+            catch (Exception e)
+            {
+                logger.Info(e.Message);
+            }
         }
     }
 }
