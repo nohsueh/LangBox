@@ -6,7 +6,7 @@ namespace LangBox.Operaters
 {
     internal class ManageHelper
     {
-        private Dictionary<string, bool> langMap;
+        private readonly Dictionary<string, bool> langMap;
         private readonly string localPath;
         private const string filesPath = "LangBox Files";
         private const string C_CPPDirectoryName = "c_cpp";

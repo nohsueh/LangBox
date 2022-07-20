@@ -25,7 +25,7 @@ namespace LangBox.Operaters
         {
             if (fileStream != null)
             {
-                context = DateTime.Now.ToString("mm:Ghh:mm:ss") + "[INFO] " + context + "\n";
+                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[INFO] " + context + "\n";
                 byte[] text = Encoding.UTF8.GetBytes(context);
                 fileStream.Write(text, 0, text.Length);
                 fileStream.Flush();
@@ -37,7 +37,7 @@ namespace LangBox.Operaters
         {
             if (fileStream != null)
             {
-                context = DateTime.Now.ToString("mm:Ghh:mm:ss") + "[WARN] " + context + "\n";
+                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[WARN] " + context + "\n";
                 byte[] text = Encoding.UTF8.GetBytes(context);
                 fileStream.Write(text, 0, text.Length);
                 fileStream.Flush();
@@ -49,7 +49,7 @@ namespace LangBox.Operaters
         {
             if (fileStream != null)
             {
-                context = DateTime.Now.ToString("mm:Ghh:mm:ss") + "[ERROR] " + context + "\n";
+                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[ERROR] " + context + "\n";
                 byte[] text = Encoding.UTF8.GetBytes(context);
                 fileStream.Write(text, 0, text.Length);
                 fileStream.Flush();

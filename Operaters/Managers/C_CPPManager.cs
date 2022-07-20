@@ -12,7 +12,7 @@ namespace LangBox.Operaters.Managers
         private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
         private const string directoryName = "mingw64";
         static Logger logger = new("debug.log");
-        private static DownloadHelper downloadHelper = new();
+        //private static DownloadHelper downloadHelper = new();
         private static ExtractHelper extractHelper = new();
 
 
@@ -39,16 +39,17 @@ namespace LangBox.Operaters.Managers
                 Directory.CreateDirectory(localPath);
             }
 
-            string filePath = Path.Combine(localPath, fileName);
-            if (!File.Exists(filePath))
-            {
-                logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
-                downloadHelper.Download(url, localPath);
-                logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
-            } 
+            //string filePath = Path.Combine(localPath, fileName);
+            //if (!File.Exists(filePath))
+            //{
+            //    logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
+            //    downloadHelper.Download(url, localPath);
+            //    logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
+            //} 
 
             logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
-            extractHelper.Extract(filePath, localPath);
+            //extractHelper.Extract(filePath, localPath);
+            extractHelper.Extract(Path.Combine("data",fileName), localPath);
             logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
 
             logger.Info("添加用户Path路径");

@@ -50,4 +50,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\data\jdk-18_windows-x64_bin.zip" />
+    <None Include="bin\Debug\net6.0-windows\data\python-3.10.5-embed-amd64.zip" />
+    <None Include="bin\Debug\net6.0-windows\data\x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip" />
+  </ItemGroup>
+
 </Project>

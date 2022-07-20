@@ -12,9 +12,9 @@ namespace LangBox.Operaters.Managers
         private static string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
         private static string url = "https://github.com/NOhsueh/LangBox/releases/download/V1.1.0/python-3.10.5-embed-amd64.zip";
         private const string fileName = "python-3.10.5-embed-amd64.zip";
-        private const string directoryName = "python-3.10.5";
+        private const string directoryName = "python310";
         private static Logger logger = new Logger("debug.log");
-        private static DownloadHelper downloadHelper = new();
+        //private static DownloadHelper downloadHelper = new();
         private static ExtractHelper extractHelper = new();
 
 
@@ -41,16 +41,17 @@ namespace LangBox.Operaters.Managers
                 Directory.CreateDirectory(localPath);
             }
 
-            string filePath = Path.Combine(localPath, fileName);
-            if (!File.Exists(filePath))
-            {
-                logger.Info("下载python-3.10.5-embed-amd64.zip");
-                downloadHelper.Download(url, localPath);
-                logger.Info("下载python-3.10.5-embed-amd64.zip成功");
-            }
+            //string filePath = Path.Combine(localPath, fileName);
+            //if (!File.Exists(filePath))
+            //{
+            //    logger.Info("下载python-3.10.5-embed-amd64.zip");
+            //    downloadHelper.Download(url, localPath);
+            //    logger.Info("下载python-3.10.5-embed-amd64.zip成功");
+            //}
 
             logger.Info("解压python-3.10.5-embed-amd64.zip");
-            extractHelper.Extract(filePath, localPath);
+            //extractHelper.Extract(filePath, localPath);
+            extractHelper.Extract(Path.Combine("data", fileName), localPath);
             logger.Info("解压python-3.10.5-embed-amd64.zip成功");
 
             logger.Info("添加用户Path路径");

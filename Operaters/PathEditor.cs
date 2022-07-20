@@ -18,12 +18,12 @@ namespace LangBox.Operaters
             }
             if (!pathVar.Contains(newPath))
             {
-                if (!pathVar.EndsWith(";") && pathVar != string.Empty)
+                if (!pathVar.StartsWith(";") && pathVar != string.Empty)
                 {
-                    pathVar += ";";
+                    pathVar = ";"+ pathVar;
                 }
 
-                pathVar += newPath;
+                pathVar = newPath+ pathVar;
             }
             Environment.SetEnvironmentVariable(variable, pathVar, EnvironmentVariableTarget.User);
         }
