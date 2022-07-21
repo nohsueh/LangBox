@@ -57,6 +57,7 @@ namespace LangBox.Operaters.Managers
             logger.Info("添加用户Path路径");
             string directoryPath = Path.Combine(localPath, directoryName);
             PathEditor.AddInUserPath("PATH", directoryPath);
+            PathEditor.AddInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
             logger.Info("添加用户Path路径成功");
         }
 
@@ -72,6 +73,7 @@ namespace LangBox.Operaters.Managers
 
             logger.Info("删除用户Path路径");
             PathEditor.RemoveInUserPath("PATH",directoryPath);
+            PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
             logger.Info("删除用户Path路径成功");
         }
     }
