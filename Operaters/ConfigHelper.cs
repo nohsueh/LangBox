@@ -28,7 +28,7 @@ namespace LangBox.Operaters
             if (config.LangMap == null)
             {
                 config.LangMap = new Dictionary<string, bool> {
-                    { "C_CPP",true},
+                    { "C_CPP",false},
                     { "Python",false},
                     {"Java", false}
                     //{"CSharp",false}
