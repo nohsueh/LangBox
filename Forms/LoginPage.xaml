@@ -160,10 +160,11 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/email.png" Height="20" />
-                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="邮箱"
+                        <Image Source="/Images/email.png" Height="20"/>
+                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="邮箱" 
                                    Style="{StaticResource textHint}" />
-                        <TextBox x:Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBox x:Name="txtEmail" TextChanged="txtEmail_TextChanged"
+                                 Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -174,7 +175,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/lock.png" Height="20" />
+                        <Image Source="/Images/lock.png" Height="20"/>
                         <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="密码"
                                    Style="{StaticResource textHint}" />
                         <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_TextChanged"

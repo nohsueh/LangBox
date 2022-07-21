@@ -16,7 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\email.png" />
+    <None Remove="Images\lock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Images\appicon.ico" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\lock.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +40,7 @@
     <None Include="bin\Debug\net6.0-windows\data\jdk-18_windows-x64_bin.zip" />
     <None Include="bin\Debug\net6.0-windows\data\python-3.10.5-embed-amd64.zip" />
     <None Include="bin\Debug\net6.0-windows\data\x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip" />
+    <None Include="bin\Debug\net6.0-windows\libs\aria2c.exe" />
   </ItemGroup>
 
 </Project>
