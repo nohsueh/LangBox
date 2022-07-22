@@ -1,8 +1,5 @@
-﻿using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.IO.Compression;
+﻿using LangBox.Operators;
+using System.IO;
 
 
 namespace LangBox.Operaters.Managers
@@ -37,7 +34,7 @@ namespace LangBox.Operaters.Managers
             logger.Info("调用安装python");
             if (!Directory.Exists(localPath))
             {
-                logger.Info("创建文件夹");
+                logger.Info("创建python文件夹");
                 Directory.CreateDirectory(localPath);
             }
 
@@ -54,11 +51,17 @@ namespace LangBox.Operaters.Managers
             extractHelper.Extract(Path.Combine("data", fileName), localPath);
             logger.Info("解压python-3.10.5-embed-amd64.zip成功");
 
-            logger.Info("添加用户Path路径");
             string directoryPath = Path.Combine(localPath, directoryName);
+            logger.Info("配置pip");
+            string command = "cd " + directoryPath + "\n" + "python get-pip.py";
+            CmdResult cmdResult = CmdRunner.CmdRun(command);
+            logger.Info(cmdResult.result);
+            logger.Warn(cmdResult.error);
+
+            logger.Info("添加用户Path路径: " + directoryPath);
             PathEditor.AddInUserPath("PATH", directoryPath);
             PathEditor.AddInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
-            logger.Info("添加用户Path路径成功");
+            logger.Info("成功添加用户Path路径: " + directoryPath);
         }
 
         private static void Uninstall()
@@ -66,15 +69,15 @@ namespace LangBox.Operaters.Managers
             string directoryPath = Path.Combine(localPath, directoryName);
             if (Directory.Exists(localPath))
             {
-                logger.Info("删除文件夹");
+                logger.Info("删除python文件夹");
                 Directory.Delete(localPath, true);
-                logger.Info("删除文件夹成功");
+                logger.Info("删除python文件夹成功");
             }
 
-            logger.Info("删除用户Path路径");
+            logger.Info("删除用户Path路径" + directoryPath);
             PathEditor.RemoveInUserPath("PATH",directoryPath);
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
-            logger.Info("删除用户Path路径成功");
+            logger.Info("成功删除用户Path路径" + directoryPath);
         }
     }
 }

@@ -6,61 +6,69 @@ namespace LangBox.Operaters
 {
     internal class Logger
     {
-        private readonly FileStream? fileStream;
+        private StreamWriter writer;
+        private readonly string fileName;
 
         public Logger(string fileName)
         {
             try
             {
-                fileStream = File.Open(fileName, FileMode.Append);
+                this.fileName = fileName;
+                //向指定的文件操作，如果文件存在就追加，不存在就新建
+                writer = new StreamWriter(fileName, true, Encoding.UTF8);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message + "\n" + e.StackTrace);
-                fileStream = null;
+            }
+            finally
+            {
+                if(writer != null)
+                {
+                //关闭写文件的流
+                writer.Close();
+                }
             }
         }
 
         public void Info(string? context)
         {
-            if (fileStream != null)
+            writer = new StreamWriter(fileName, true, Encoding.UTF8);
+            if (writer != null)
             {
-                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[INFO] " + context + "\n";
-                byte[] text = Encoding.UTF8.GetBytes(context);
-                fileStream.Write(text, 0, text.Length);
-                fileStream.Flush();
-                Console.WriteLine(context);
+                //写入文件
+                writer.WriteLine(DateTime.Now.ToString("G")+"[INFO] "+context);
+                writer.Close();
             }
         }
 
         public void Warn(string? context)
         {
-            if (fileStream != null)
+            writer = new StreamWriter(fileName, true, Encoding.UTF8);
+            if (writer != null)
             {
-                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[WARN] " + context + "\n";
-                byte[] text = Encoding.UTF8.GetBytes(context);
-                fileStream.Write(text, 0, text.Length);
-                fileStream.Flush();
-                Console.WriteLine(context);
+                writer.WriteLine(DateTime.Now.ToString("G") + "[WARN] " + context);
+                writer.Close();
             }
         }
 
         public void Err(string? context)
         {
-            if (fileStream != null)
+            writer = new StreamWriter(fileName, true, Encoding.UTF8);
+            if (writer != null)
             {
-                context = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "[ERROR] " + context + "\n";
-                byte[] text = Encoding.UTF8.GetBytes(context);
-                fileStream.Write(text, 0, text.Length);
-                fileStream.Flush();
-                Console.WriteLine(context);
+                writer.WriteLine(DateTime.Now.ToString("G") + "[ERROR] " + context);
+                writer.Close();
             }
         }
 
         public void Dispose()
         {
-            if (fileStream != null)
-                fileStream.Close();
+            if (writer != null)
+            {
+                //关闭写文件的流
+                writer.Close();
+            }
         }
     }
 }

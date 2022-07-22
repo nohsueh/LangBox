@@ -62,7 +62,7 @@
                 修改
             </Button>
         </StackPanel>
-        <TabControl Grid.Row="0" Grid.Column="0" TabStripPlacement="Top" >
+        <TabControl Grid.Row="0" Grid.Column="0">
             <TabControl.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
                     <GradientStop Color="#B0C4DE" Offset="0" />
@@ -86,7 +86,7 @@
             </TabItem>
 
             <TabItem Name="IDE" Header="IDE" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}">
-                <TabItem.Content>IDE安装</TabItem.Content>
+                <TabItem.Content>IDE安装(等私人云盘做好了再做)</TabItem.Content>
             </TabItem>
 
             <TabItem Name="Allocation" Header="设置" Background="{DynamicResource c0}" BorderBrush="{DynamicResource c1}" Height="19" VerticalAlignment="Top">

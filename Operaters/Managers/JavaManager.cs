@@ -35,7 +35,7 @@ namespace LangBox.Operaters.Managers
             logger.Info("调用安装java");
             if (!Directory.Exists(localPath))
             {
-                logger.Info("创建文件夹");
+                logger.Info("创建java文件夹");
                 Directory.CreateDirectory(localPath);
             }
 
@@ -51,15 +51,15 @@ namespace LangBox.Operaters.Managers
             logger.Info("解压jdk-18_windows-x64_bin.zip");
             //extractHelper.Extract(filePath, localPath);
             extractHelper.Extract(Path.Combine("data",fileName), localPath);
-            logger.Info("解压jdk-18_windows-x64_bin.zip成功");
+            logger.Info("成功解压jdk-18_windows-x64_bin.zip");
 
-            logger.Info("添加用户Path路径");
             string directoryPath = Path.Combine(localPath, directoryName);
+            logger.Info("添加用户Path路径："+ directoryPath);
             PathEditor.AddInUserPath("JAVA_HOME", directoryPath);
             PathEditor.AddInUserPath("PATH", Path.Combine(directoryPath, "bin"));
             PathEditor.AddInUserPath("CLASSPATH", Path.Combine(directoryPath, "lib\\tools.jar"));
             PathEditor.AddInUserPath("CLASSPATH",Path.Combine(directoryPath, "lib\\dt.jar"));
-            logger.Info("添加用户Path路径成功");
+            logger.Info("成功添加用户Path路径："+ directoryPath);
         }
 
         private static void Uninstall()
@@ -67,17 +67,17 @@ namespace LangBox.Operaters.Managers
             string directoryPath = Path.Combine(localPath, directoryName);
             if (Directory.Exists(localPath))
             {
-                logger.Info("删除文件夹");
+                logger.Info("删除java文件夹");
                 Directory.Delete(localPath, true);
-                logger.Info("删除文件夹成功");
+                logger.Info("成功删除java文件夹");
             }
 
-            logger.Info("删除用户Path路径");
+            logger.Info("删除用户Path路径："+ directoryPath);
             PathEditor.RemoveInUserPath("CLASSPATH", Path.Combine(directoryPath, "lib\\tools.jar"));
             PathEditor.RemoveInUserPath("CLASSPATH", Path.Combine(directoryPath, "lib\\dt.jar"));
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "bin"));
             PathEditor.RemoveInUserPath("JAVA_HOME", directoryPath);
-            logger.Info("删除用户Path路径成功");
+            logger.Info("成功删除用户Path路径："+ directoryPath);
         }
     }
 }

@@ -137,8 +137,8 @@
             <Grid>
                 <Canvas>
                     <Polygon Points="0, 20 230,140 0,270" Fill="#4EB1B6" />
-                    <Polygon Points="100, 400 200,370 180,470" Fill="#4EB1B6" />
-                    <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="#4EB1B6" />
+                    <Polygon Points="100, 400 200,370 180,470" Fill="#4EB1B6" HorizontalAlignment="Center" Height="450" VerticalAlignment="Top" />
+                    <Ellipse Width="40" Height="40" Fill="#4EB1B6" Canvas.Left="250" Canvas.Top="430" HorizontalAlignment="Center" VerticalAlignment="Top" />
                     <Ellipse Margin="50 400 0 0" Width="20" Height="20" Fill="#4EB1B6" />
                 </Canvas>
 

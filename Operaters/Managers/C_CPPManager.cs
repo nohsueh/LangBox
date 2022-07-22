@@ -35,7 +35,7 @@ namespace LangBox.Operaters.Managers
             logger.Info("调用安装c/cpp");
             if (!Directory.Exists(localPath))
             {
-                logger.Info("创建文件夹");
+                logger.Info("创建c/cpp文件夹");
                 Directory.CreateDirectory(localPath);
             }
 
@@ -50,12 +50,12 @@ namespace LangBox.Operaters.Managers
             logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
             //extractHelper.Extract(filePath, localPath);
             extractHelper.Extract(Path.Combine("data",fileName), localPath);
-            logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
+            logger.Info("成功解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
 
-            logger.Info("添加用户Path路径");
             string directoryPath = Path.Combine(localPath, directoryName);
+            logger.Info("添加用户Path路径" + directoryPath);
             PathEditor.AddInUserPath("PATH",Path.Combine(directoryPath, "bin"));
-            logger.Info("添加用户Path路径成功");
+            logger.Info("成功添加用户Path路径" + directoryPath);
         }
 
         private static void Uninstall()
@@ -63,14 +63,14 @@ namespace LangBox.Operaters.Managers
             string directoryPath = Path.Combine(localPath, directoryName);
             if (Directory.Exists(localPath))
             {
-                logger.Info("删除文件夹");
+                logger.Info("删除c/cpp文件夹");
                 Directory.Delete(localPath, true);
-                logger.Info("删除文件夹成功");
+                logger.Info("成功删除c/cpp文件夹");
             }
 
-            logger.Info("删除用户Path路径");
+            logger.Info("删除用户Path路径：" + directoryPath);
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "bin"));
-            logger.Info("删除用户Path路径成功");
+            logger.Info("成功删除用户Path路径："+ directoryPath);
         }
     }
 }
