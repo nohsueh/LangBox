@@ -21,7 +21,7 @@ namespace LangBox.Operaters
             }
             catch (Exception e)
             {
-                logger.Info(e.Message);
+                logger.Err(e.Message);
             }
         }
     }

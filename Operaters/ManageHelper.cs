@@ -8,10 +8,10 @@ namespace LangBox.Operaters
     {
         private readonly Dictionary<string, bool> langMap;
         private readonly string localPath;
-        private const string filesPath = "LangBox Files";
-        private const string C_CPPDirectoryName = "c_cpp";
-        private const string PythonDirectoryName = "python";
-        private const string JavaDirectoryName = "java";
+        private const string directoryName = "LangBox Files";
+        private const string c_cppDirectoryName = "c_cpp";
+        private const string pythonDirectoryName = "python";
+        private const string javaDirectoryName = "java";
         //private const string CSharpDirectoryName = "csharp";
         /// <summary>
         /// 显示进度委托
@@ -31,22 +31,22 @@ namespace LangBox.Operaters
 
         public void Start()
         {
-            string filesPath = Path.Combine(localPath, ManageHelper.filesPath);
-            if (!Directory.Exists(filesPath))
+            string directoriesPath = Path.Combine(localPath, directoryName);
+            if (!Directory.Exists(directoriesPath))
             {
-                Directory.CreateDirectory(filesPath);
+                Directory.CreateDirectory(directoriesPath);
             }
 
-            C_CPPManager.Start(Path.Combine(filesPath, C_CPPDirectoryName), langMap["C_CPP"]);
+            C_CPPManager.Start(Path.Combine(directoriesPath, c_cppDirectoryName), langMap["C_CPP"]);
             UpdateProgress(0);
 
-            PythonManager.Start(Path.Combine(filesPath, PythonDirectoryName), langMap["Python"]);
+            PythonManager.Start(Path.Combine(directoriesPath, pythonDirectoryName), langMap["Python"]);
             UpdateProgress(0);
 
-            JavaManager.Start(Path.Combine(filesPath, JavaDirectoryName), langMap["Java"]);
+            JavaManager.Start(Path.Combine(directoriesPath, javaDirectoryName), langMap["Java"]);
             UpdateProgress(0);
 
-            //CSharpManager.Start(Path.Combine(filesPath, CSharpDirectoryName), langMap["CSharp"]);
+            //CSharpManager.Start(Path.Combine(directoryName, CSharpDirectoryName), langMap["CSharp"]);
             //UpdateProgress(0);
         }
 
