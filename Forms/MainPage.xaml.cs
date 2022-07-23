@@ -35,9 +35,9 @@ namespace LangBox.Forms
             LangMap = cfg.GetLangMap();
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is Viewbox viewBoxItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
+                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
                     checkBoxItem.IsChecked = LangMap[checkBoxItem.Name];
                 }
             }
@@ -54,12 +54,12 @@ namespace LangBox.Forms
         //全选
         private void SelectAll_Checked(object sender, RoutedEventArgs e)
         {
-            bool flag = SelectAll.IsChecked == true ? true : false;
+            bool flag = SelectAll.IsChecked == true;
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is Viewbox viewBoxItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
+                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
                     checkBoxItem.IsChecked = flag;
                 }
             }
@@ -71,11 +71,11 @@ namespace LangBox.Forms
         {
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is Viewbox viewBoxItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
+                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
                     string LMkey = checkBoxItem.Name;
-                    bool LMvalue = (bool)checkBoxItem.IsChecked;
+                    bool LMvalue = checkBoxItem.IsChecked==true;
 
                     if (LangMap.ContainsKey(LMkey))
                     {
@@ -113,10 +113,9 @@ namespace LangBox.Forms
         //{
         //    foreach (var item in LangSelect.Children)
         //    {
-        //        if (item is CheckBox)
+        //        if (item is CheckBox checkBoxItem)
         //        {
-        //            CheckBox checkBoxItem = (CheckBox)item;
-        //            if(checkBoxItem.IsChecked == false)
+        //            if (checkBoxItem.IsChecked == false)
         //            {
         //                return false;
         //            }
@@ -187,9 +186,9 @@ namespace LangBox.Forms
             cfg.SetFilesPath(PathInput.Text);
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is Viewbox viewBoxItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
+                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
                     string LMkey = checkBoxItem.Name;
                     bool LMvalue = (bool)checkBoxItem.IsChecked;
 

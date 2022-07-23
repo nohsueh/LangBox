@@ -35,7 +35,7 @@ namespace LangBox
             });
             task.Start();
 
-            //this.Content = new LoginPage(); 
+            //this.Content = new LoginPage();
             this.Content = new MainPage();
         }
     }

@@ -16,14 +16,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\appicon.ico" />
+    <None Remove="Images\cpp.png" />
     <None Remove="Images\email.png" />
+    <None Remove="Images\java.png" />
     <None Remove="Images\lock.png" />
+    <None Remove="Images\python.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net6.0-windows\Images\appicon.ico" />
+    <Content Include="bin\Debug\net6.0-windows\Images\cpp.png" />
+    <Content Include="bin\Debug\net6.0-windows\Images\email.png" />
+    <Content Include="bin\Debug\net6.0-windows\Images\java.png" />
+    <Content Include="bin\Debug\net6.0-windows\Images\lock.png" />
+    <Content Include="bin\Debug\net6.0-windows\Images\python.png" />
     <Content Include="Images\appicon.ico" />
+    <Content Include="Images\cpp.png" />
     <Content Include="Images\email.png" />
+    <Content Include="Images\java.png" />
     <Content Include="Images\lock.png" />
+    <Content Include="Images\python.png" />
   </ItemGroup>
 
   <ItemGroup>

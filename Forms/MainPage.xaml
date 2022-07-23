@@ -19,7 +19,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="20" BorderThickness="1"
-                                BorderBrush="#49B7A3" Padding="10">
+                                BorderBrush="#FDFEFE" Padding="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -39,6 +39,70 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Border CornerRadius="2" Width="0.5" Background="#FF189ED4" />
+                <Track x:Name="PART_Track" IsDirectionReversed="true">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="4,0,4,0" Background="#FF1AB8C5"></Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ScrollViewerControlTemplate1" TargetType="{x:Type ScrollViewer}">
+            <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1"/>
+                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
+                <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" 
+                            Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" 
+                            Template="{StaticResource VerticalScrollBar}"/>
+                <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
+            </Grid>
+        </ControlTemplate>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions >
@@ -72,14 +136,29 @@
             <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}" >
                 <StackPanel Margin="10,5">
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">全选</CheckBox>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
-                        <WrapPanel Name="LangSelect"  Margin="20,5">
-                            <CheckBox Name="C_CPP" Click="LangSelect_Update">C/C++</CheckBox>
-                            <CheckBox Name="Python" Click="LangSelect_Update">Python</CheckBox>
-                            <CheckBox Name="Java" Click="LangSelect_Update">Java</CheckBox>
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
-                <Hyperlink Click="Hyperlink_Click">More...</Hyperlink>
-                            </TextBlock>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200" Template="{StaticResource ScrollViewerControlTemplate1}">
+                        <WrapPanel Name="LangSelect" Margin="20">
+                            <Viewbox Height="37">
+                                <CheckBox Name="C_CPP" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="C&amp;C++">
+                                    <CheckBox.Background>
+                                        <ImageBrush ImageSource="/Images/cpp.png"/>
+                                    </CheckBox.Background>
+                                </CheckBox>
+                            </Viewbox>
+                            <Viewbox Height="37">
+                                <CheckBox Name="Python" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="Python">
+                                    <CheckBox.Background>
+                                        <ImageBrush ImageSource="/Images/python.png"/>
+                                    </CheckBox.Background>
+                                </CheckBox>
+                            </Viewbox>
+                            <Viewbox Height="37">
+                                <CheckBox Name="Java" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="Java">
+                                    <CheckBox.Background>
+                                        <ImageBrush ImageSource="/Images/java.png"/>
+                                    </CheckBox.Background>
+                                </CheckBox>
+                            </Viewbox>
                         </WrapPanel>
                     </ScrollViewer>
                 </StackPanel>
@@ -116,7 +195,10 @@
             </TabItem>
         </TabControl>
         <ProgressBar Grid.Row="0" Grid.Column="1" Name="WorkingProgress" HorizontalAlignment="Center" Height="10" Margin="0,21,0,0" VerticalAlignment="Top" Width="225" Visibility="Hidden" />
-        <ScrollViewer Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" Height="200">
+        <ScrollViewer Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" Height="200" Template="{StaticResource ScrollViewerControlTemplate1}">
+            <ScrollViewer.Background>
+                <ImageBrush/>
+            </ScrollViewer.Background>
             <TextBlock 
                    Name="WorkingWith" Margin="5,0,5,0"
                     VerticalAlignment="Top" HorizontalAlignment="Left" 

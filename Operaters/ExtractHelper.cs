@@ -13,10 +13,9 @@ namespace LangBox.Operaters
         /// <param name="directoryPath">解压文件后路径</param>
         public void Extract(string filePath, string directoryPath)
         {
-            logger.Info("start extract.");
             try
             {
-
+                logger.Info("Extracted " + filePath);
                 ZipFile.ExtractToDirectory(filePath, directoryPath, true);
             }
             catch (Exception e)
