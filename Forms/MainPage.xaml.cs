@@ -35,10 +35,15 @@ namespace LangBox.Forms
             LangMap = cfg.GetLangMap();
             foreach (var item in LangSelect.Children)
             {
-                if (item is Viewbox viewBoxItem)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
-                    checkBoxItem.IsChecked = LangMap[checkBoxItem.Name];
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            checkBoxItem.IsChecked = LangMap[checkBoxItem.Name];
+                        }
+                    }
                 }
             }
 
@@ -57,10 +62,15 @@ namespace LangBox.Forms
             bool flag = SelectAll.IsChecked == true;
             foreach (var item in LangSelect.Children)
             {
-                if (item is Viewbox viewBoxItem)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
-                    checkBoxItem.IsChecked = flag;
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            checkBoxItem.IsChecked = flag;
+                        }
+                    }
                 }
             }
             LangSelect_Update(sender, e);
@@ -71,21 +81,27 @@ namespace LangBox.Forms
         {
             foreach (var item in LangSelect.Children)
             {
-                if (item is Viewbox viewBoxItem)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
-                    string LMkey = checkBoxItem.Name;
-                    bool LMvalue = checkBoxItem.IsChecked==true;
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            string LMkey = checkBoxItem.Name;
+                            bool LMvalue = checkBoxItem.IsChecked == true;
 
-                    if (LangMap.ContainsKey(LMkey))
-                    {
-                        LangMap[LMkey] = LMvalue;
-                    }
-                    else
-                    {
-                        LangMap.Add(LMkey, LMvalue);
+                            if (LangMap.ContainsKey(LMkey))
+                            {
+                                LangMap[LMkey] = LMvalue;
+                            }
+                            else
+                            {
+                                LangMap.Add(LMkey, LMvalue);
+                            }
+                        }
                     }
                 }
+
             }
 
             pl.SetProgressList(LangMap);
@@ -186,13 +202,18 @@ namespace LangBox.Forms
             cfg.SetFilesPath(PathInput.Text);
             foreach (var item in LangSelect.Children)
             {
-                if (item is Viewbox viewBoxItem)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)viewBoxItem.Child;
-                    string LMkey = checkBoxItem.Name;
-                    bool LMvalue = (bool)checkBoxItem.IsChecked;
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            string LMkey = checkBoxItem.Name;
+                            bool LMvalue = (bool)checkBoxItem.IsChecked;
 
-                    cfg.SetLangMap(LMkey, LMvalue);
+                            cfg.SetLangMap(LMkey, LMvalue);
+                        }
+                    }
                 }
             }
             WorkingProgress.Value = 0;
@@ -203,10 +224,15 @@ namespace LangBox.Forms
             SelectAll.IsEnabled = false;
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
-                    checkBoxItem.IsEnabled = false;
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            checkBoxItem.IsEnabled = false;
+                        }
+                    }
                 }
             }
 
@@ -244,7 +270,7 @@ namespace LangBox.Forms
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
-            WorkingProgress.Value+=25;
+            WorkingProgress.Value += 25;
         }
 
         //worker完成或停止
@@ -258,10 +284,15 @@ namespace LangBox.Forms
             SelectAll.IsEnabled = true;
             foreach (var item in LangSelect.Children)
             {
-                if (item is CheckBox)
+                if (item is DockPanel dockPanelItem)
                 {
-                    CheckBox checkBoxItem = (CheckBox)item;
-                    checkBoxItem.IsEnabled = true;
+                    foreach (var jtem in dockPanelItem.Children)
+                    {
+                        if (jtem is CheckBox checkBoxItem)
+                        {
+                            checkBoxItem.IsEnabled = true;
+                        }
+                    }
                 }
             }
         }

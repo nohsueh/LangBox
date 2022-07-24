@@ -138,27 +138,21 @@
                     <CheckBox Name="SelectAll" Checked="SelectAll_Checked" Unchecked="SelectAll_Checked">全选</CheckBox>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200" Template="{StaticResource ScrollViewerControlTemplate1}">
                         <WrapPanel Name="LangSelect" Margin="20">
-                            <Viewbox Height="37">
-                                <CheckBox Name="C_CPP" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="C&amp;C++">
-                                    <CheckBox.Background>
-                                        <ImageBrush ImageSource="/Images/cpp.png"/>
-                                    </CheckBox.Background>
-                                </CheckBox>
-                            </Viewbox>
-                            <Viewbox Height="37">
-                                <CheckBox Name="Python" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="Python">
-                                    <CheckBox.Background>
-                                        <ImageBrush ImageSource="/Images/python.png"/>
-                                    </CheckBox.Background>
-                                </CheckBox>
-                            </Viewbox>
-                            <Viewbox Height="37">
-                                <CheckBox Name="Java" Checked="LangSelect_Update" Unchecked="LangSelect_Update" Content="Java">
-                                    <CheckBox.Background>
-                                        <ImageBrush ImageSource="/Images/java.png"/>
-                                    </CheckBox.Background>
-                                </CheckBox>
-                            </Viewbox>
+                            <DockPanel>
+                                <Image Source="/Images/cpp.png" Height="50"/>
+                                <Label Content="C&amp;C++"></Label>
+                                <CheckBox Name="C_CPP" Checked="LangSelect_Update" Unchecked="LangSelect_Update"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Image Source="/Images/python.png" Height="50"/>
+                                <Label Content="Python"></Label>
+                                <CheckBox Name="Python" Checked="LangSelect_Update" Unchecked="LangSelect_Update"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Image Source="/Images/java.png" Height="50"/>
+                                <Label Content="Java"></Label>
+                                <CheckBox Name="Java" Checked="LangSelect_Update" Unchecked="LangSelect_Update"/>
+                            </DockPanel>
                         </WrapPanel>
                     </ScrollViewer>
                 </StackPanel>
