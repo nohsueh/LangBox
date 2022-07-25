@@ -1,73 +1,45 @@
 ﻿using System;
-using System.IO;
-using System.Text;
+using log4net;
 
 namespace LangBox.Operaters
 {
     internal class Logger
     {
-        private StreamWriter writer;
-        private readonly string fileName;
-
-        public Logger(string fileName)
+        /// <summary>
+        /// 普通日志
+        /// </summary>
+        /// <param name="message">日志内容</param>
+        public static void Info(string? message)
         {
-            try
+            ILog log = LogManager.GetLogger("Info");
+            if (log.IsInfoEnabled)
             {
-                this.fileName = fileName;
-                //向指定的文件操作，如果文件存在就追加，不存在就新建
-                writer = new StreamWriter(fileName, true, Encoding.UTF8);
+                log.Info(message);
             }
-            catch (Exception e)
+        }
+        /// <summary>
+        /// 错误日志带异常
+        /// </summary>
+        /// <param name="message">错误日志</param>
+        public static void Error(string? message, Exception ex)
+        {
+            ILog log = LogManager.GetLogger("Error");
+            if (log.IsErrorEnabled)
             {
-                Console.WriteLine(e.Message + "\n" + e.StackTrace);
-            }
-            finally
-            {
-                if(writer != null)
-                {
-                //关闭写文件的流
-                writer.Close();
-                }
+                log.Error(message, ex);
             }
         }
 
-        public void Info(string? context)
+        /// <summary>
+        /// 错误日志不带异常
+        /// </summary>
+        /// <param name="message">错误日志</param>
+        public static void Error(string? message)
         {
-            writer = new StreamWriter(fileName, true, Encoding.UTF8);
-            if (writer != null)
+            ILog log = LogManager.GetLogger("Error");
+            if (log.IsErrorEnabled)
             {
-                //写入文件
-                writer.WriteLine(DateTime.Now.ToString("G")+"[INFO] "+context);
-                writer.Close();
-            }
-        }
-
-        public void Warn(string? context)
-        {
-            writer = new StreamWriter(fileName, true, Encoding.UTF8);
-            if (writer != null)
-            {
-                writer.WriteLine(DateTime.Now.ToString("G") + "[WARN] " + context);
-                writer.Close();
-            }
-        }
-
-        public void Err(string? context)
-        {
-            writer = new StreamWriter(fileName, true, Encoding.UTF8);
-            if (writer != null)
-            {
-                writer.WriteLine(DateTime.Now.ToString("G") + "[ERROR] " + context);
-                writer.Close();
-            }
-        }
-
-        public void Dispose()
-        {
-            if (writer != null)
-            {
-                //关闭写文件的流
-                writer.Close();
+                log.Error(message);
             }
         }
     }

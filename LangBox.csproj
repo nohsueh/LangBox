@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.14" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
@@ -50,11 +51,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\net6.0-windows\data\jdk-18_windows-x64_bin.zip" />
-    <None Include="bin\Debug\net6.0-windows\data\python-3.10.5-embed-amd64.zip" />
-    <None Include="bin\Debug\net6.0-windows\data\x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip" />
-    <None Include="bin\Debug\net6.0-windows\libs\aria2c.exe" />
     <None Include="bin\Release\net6.0-windows\publish\win-x86\data\python-3.10.5-embed-amd64.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

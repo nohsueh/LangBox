@@ -9,8 +9,6 @@ namespace LangBox.Operaters
     {
         private const string aria2Path = @"libs\aria2c.exe";
 
-        private Logger logger = new Logger("download.log");
-
         //public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
 
         //public static event OnProgressChangedHandler OnProgressChanged;
@@ -18,16 +16,16 @@ namespace LangBox.Operaters
 
         public void Download(string url, string saveDirectory)
         {
-            logger.Info("调用Download成功");
+            Logger.Info("成功调用Download");
             if (!File.Exists(aria2Path))
             {
-                logger.Err("aria2c.exe didn't found in\n" + aria2Path);
+                Logger.Error("aria2c.exe didn't found in\n" + aria2Path);
                 throw new FileNotFoundException("aria2c.exe didn't found in\n" + aria2Path);
             }
 
 
-            logger.Info(url);
-            string args = "-d " + saveDirectory + " -c " +
+            Logger.Info(url);
+            string args = "-d " + "\""+saveDirectory + "\""+ " -c " +//使用"\""防止路径有空格
                 "-l \"aria2.log\" " +
                 "--log-level=notice " +
                 "--header=\"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\" " +
@@ -59,7 +57,7 @@ namespace LangBox.Operaters
 
         private void ReceivedOutput(object sender, DataReceivedEventArgs e)
         {
-            logger.Info(e.Data);
+            Logger.Info(e.Data);
             Regex regex = new Regex(@"\[#.*\((.+%)\) CN:1 DL:(.*) ETA:(.*)\]");
             if (e.Data != null)
             {

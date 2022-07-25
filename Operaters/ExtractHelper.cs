@@ -5,7 +5,6 @@ namespace LangBox.Operaters
 {
     internal class ExtractHelper
     {
-        private Logger logger = new Logger("extract.log");
         /// <summary>
         /// 解压文件
         /// </summary>
@@ -15,12 +14,12 @@ namespace LangBox.Operaters
         {
             try
             {
-                logger.Info("Extracted " + filePath);
+                Logger.Info("Extracted " + filePath);
                 ZipFile.ExtractToDirectory(filePath, directoryPath, true);
             }
             catch (Exception e)
             {
-                logger.Err(e.Message);
+                Logger.Error("解压异常",e);
             }
         }
     }

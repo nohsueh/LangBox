@@ -8,7 +8,7 @@ namespace LangBox.Operaters
     {
         class Config
         {
-            public string Version { get; set; }
+            public string? Version { get; set; }
             public string? FilesPath { get; set; }
             public Dictionary<string, bool>? LangMap { get; set; }
         }
