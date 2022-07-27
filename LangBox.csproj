@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="libs\**" />
     <Compile Remove="test\**" />
+    <EmbeddedResource Remove="libs\**" />
     <EmbeddedResource Remove="test\**" />
+    <None Remove="libs\**" />
     <None Remove="test\**" />
+    <Page Remove="libs\**" />
     <Page Remove="test\**" />
   </ItemGroup>
 
@@ -25,18 +29,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\Debug\net6.0-windows\Images\appicon.ico" />
-    <Content Include="bin\Debug\net6.0-windows\Images\cpp.png" />
-    <Content Include="bin\Debug\net6.0-windows\Images\email.png" />
-    <Content Include="bin\Debug\net6.0-windows\Images\java.png" />
-    <Content Include="bin\Debug\net6.0-windows\Images\lock.png" />
-    <Content Include="bin\Debug\net6.0-windows\Images\python.png" />
     <Content Include="Images\appicon.ico" />
-    <Content Include="Images\cpp.png" />
-    <Content Include="Images\email.png" />
-    <Content Include="Images\java.png" />
-    <Content Include="Images\lock.png" />
-    <Content Include="Images\python.png" />
+    <Content Include="Images\cpp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\email.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\java.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\python.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +52,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="SevenZipSharp.Interop" Version="19.0.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,13 +61,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Release\net6.0-windows\publish\win-x86\data\python-3.10.5-embed-amd64.zip" />
+    <None Include="libs\aria2c.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net6.0-windows\" />
+    <Folder Include="bin\Release\net6.0-windows\publish\win-x86\" />
   </ItemGroup>
 
 </Project>

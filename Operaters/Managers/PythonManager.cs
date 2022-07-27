@@ -7,11 +7,9 @@ namespace LangBox.Operaters.Managers
     internal class PythonManager
     {
         private static string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
-        private static string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=1ce26aae50874d9395398f38daec592f&fileId=750417";
-        private const string fileName = "python-3.10.5-embed-amd64.zip";
+        private static string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ed3c96cc1cfa4966a2585e118bd3a7a5&fileId=750499";
+        private const string fileName = "python-3.10.5-embed-amd64.7z";
         private const string directoryName = "python310";
-        private static DownloadHelper downloadHelper = new();
-        private static ExtractHelper extractHelper = new();
 
 
         public static void Start(string Path, bool isChecked)
@@ -40,15 +38,15 @@ namespace LangBox.Operaters.Managers
             string filePath = Path.Combine(localPath, fileName);
             if (!File.Exists(filePath))
             {
-                Logger.Info("下载python-3.10.5-embed-amd64.zip");
-                downloadHelper.Download(url, localPath);
-                Logger.Info("成功下载python-3.10.5-embed-amd64.zip");
+                Logger.Info("下载"+ fileName);
+                DownloadHelper.Download(url, localPath);
+                Logger.Info("成功下载"+ fileName);
             }
 
-            Logger.Info("解压python-3.10.5-embed-amd64.zip");
-            extractHelper.Extract(filePath, localPath);
+            Logger.Info("解压"+ fileName);
+            ExtractHelper.Extract(filePath, localPath);
             //extractHelper.Extract(Path.Combine("data", fileName), localPath);
-            Logger.Info("成功解压python-3.10.5-embed-amd64.zip");
+            Logger.Info("成功解压"+ fileName);
 
             string directoryPath = Path.Combine(localPath, directoryName);
             Logger.Info("配置pip");

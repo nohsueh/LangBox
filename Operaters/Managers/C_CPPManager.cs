@@ -8,11 +8,9 @@ namespace LangBox.Operaters.Managers
     internal class C_CPPManager
     {
         private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
-        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=1ce26aae50874d9395398f38daec592f&fileId=750418";
-        private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip";
+        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ed3c96cc1cfa4966a2585e118bd3a7a5&fileId=750500";
+        private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string directoryName = "mingw64";
-        private static DownloadHelper downloadHelper = new();
-        private static ExtractHelper extractHelper = new();
 
 
         public static void Start(string Path, bool isChecked)
@@ -41,15 +39,15 @@ namespace LangBox.Operaters.Managers
             string filePath = Path.Combine(localPath, fileName);
             if (!File.Exists(filePath))
             {
-                Logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
-                downloadHelper.Download(url, localPath);
-                Logger.Info("下载x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip成功");
+                Logger.Info("下载"+ fileName);
+                DownloadHelper.Download(url, localPath);
+                Logger.Info("成功下载"+ fileName);
             }
 
-            Logger.Info("解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
-            extractHelper.Extract(filePath, localPath);
+            Logger.Info("解压"+ fileName);
+            ExtractHelper.Extract(filePath, localPath);
             //extractHelper.Extract(Path.Combine("data",fileName), localPath);
-            Logger.Info("成功解压x86_64-8.1.0-release-win32-seh-rt_v6-rev0.zip");
+            Logger.Info("成功解压"+ fileName);
 
             string directoryPath = Path.Combine(localPath, directoryName);
             Logger.Info("添加用户Path路径" + directoryPath);

@@ -9,13 +9,14 @@ namespace LangBox.Operaters
     {
         private const string aria2Path = @"libs\aria2c.exe";
 
-        //public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
+        public delegate void OnProgressChangedHandler(int percent, string message);
 
-        //public static event OnProgressChangedHandler OnProgressChanged;
+        public static event OnProgressChangedHandler OnProgressChanged;
 
-
-        public void Download(string url, string saveDirectory)
+        private static string? downloadInfo;
+        public static void Download(string url, string saveDirectory)
         {
+            downloadInfo = saveDirectory;
             Logger.Info("成功调用Download");
             if (!File.Exists(aria2Path))
             {
@@ -55,7 +56,7 @@ namespace LangBox.Operaters
             p.WaitForExit();
         }
 
-        private void ReceivedOutput(object sender, DataReceivedEventArgs e)
+        private static void ReceivedOutput(object sender, DataReceivedEventArgs e)
         {
             Logger.Info(e.Data);
             Regex regex = new Regex(@"\[#.*\((.+%)\) CN:1 DL:(.*) ETA:(.*)\]");
@@ -64,11 +65,11 @@ namespace LangBox.Operaters
                 Match match = regex.Match(e.Data);
                 if (match.Success)
                 {
-                    string percent = match.Groups[1].Value;
-                    string speed = match.Groups[2].Value.Replace("i", "");
-                    string eta = match.Groups[3].Value;
+                    int percent = int.Parse(match.Groups[1].Value.Trim('%'));
+                    //string speed = match.Groups[2].Value.Replace("i", "");
+                    //string eta = match.Groups[3].Value;
 
-                    //OnProgressChanged(percent, speed, eta);
+                    OnProgressChanged(percent, "Downloading: " + downloadInfo);
                 }
             }
         }

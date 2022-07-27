@@ -113,7 +113,8 @@ namespace LangBox.Forms
         private void LangInfoShow()
         {
             //右上文本内容
-            WorkingWith.Text = pl.AllText();
+            LangInfo.Text = pl.AllText();
+            WorkingWith.Text = null;
 
             if (WorkingProgress.Visibility != Visibility.Hidden)
             {
@@ -251,26 +252,35 @@ namespace LangBox.Forms
         {
             try
             {
+                DownloadHelper.OnProgressChanged += ProgressChangeSend;
+                ExtractHelper.OnProgressChanged+= ProgressChangeSend;
                 ManageHelper manager = new ManageHelper(LangMap, cfg.GetFilesPath());
-                manager.OnProgressChangeEvent += ProgressChangeSend;
                 manager.Start();
             }
             catch (Exception err)
             {
+                Logger.Error("MainPage", err);
                 worker.CancelAsync();
             }
         }
 
         // 收到Installer的事件调用，将内容发送给worker
-        private void ProgressChangeSend(int percentProgress)
+        private void ProgressChangeSend(int percent,string message)
         {
-            worker.ReportProgress(0);
+            worker.ReportProgress(percent, message);
         }
 
         //worker处理进度
         private void ProgressChanged(object sender, ProgressChangedEventArgs args)
         {
-            WorkingProgress.Value += 25;
+            int percent = args.ProgressPercentage;
+            string? message = args.UserState as string;
+
+            Trace.WriteLine(percent);
+            Trace.WriteLine(message);
+
+            WorkingProgress.Value = percent;
+            WorkingWith.Text = message;
         }
 
         //worker完成或停止
