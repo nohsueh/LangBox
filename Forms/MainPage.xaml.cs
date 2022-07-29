@@ -253,8 +253,9 @@ namespace LangBox.Forms
             try
             {
                 DownloadHelper.OnProgressChanged += ProgressChangeSend;
-                ExtractHelper.OnProgressChanged+= ProgressChangeSend;
+                ExtractHelper.OnProgressChanged += ProgressChangeSend;
                 ManageHelper manager = new ManageHelper(LangMap, cfg.GetFilesPath());
+                manager.OnProgressChangeEvent += TotalProgressChangeSend;
                 manager.Start();
             }
             catch (Exception err)
@@ -265,7 +266,11 @@ namespace LangBox.Forms
         }
 
         // 收到Installer的事件调用，将内容发送给worker
-        private void ProgressChangeSend(int percent,string message)
+        private void TotalProgressChangeSend(string message)
+        {
+            worker.ReportProgress(0, message);
+        }
+        private void ProgressChangeSend(int percent, string message)
         {
             worker.ReportProgress(percent, message);
         }
@@ -275,9 +280,6 @@ namespace LangBox.Forms
         {
             int percent = args.ProgressPercentage;
             string? message = args.UserState as string;
-
-            Trace.WriteLine(percent);
-            Trace.WriteLine(message);
 
             WorkingProgress.Value = percent;
             WorkingWith.Text = message;

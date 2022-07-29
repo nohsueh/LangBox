@@ -51,6 +51,15 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel DockPanel.Dock="Bottom" Width="500">
+                <ProgressBar Margin="0 0 0 5" Name="WorkingProgress" HorizontalAlignment="Stretch"  />
+                <DockPanel>
+                    <TextBlock Margin="0 0 0 5" Name="TotalProgress" HorizontalAlignment="Left" FontSize="10"></TextBlock>
+                    <ScrollViewer Margin="0 0 0 2" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+                        <TextBlock Name="WorkingWith" FontSize="10" HorizontalAlignment="Left"/>
+                    </ScrollViewer>
+                </DockPanel>
+            </StackPanel>
             <TextBlock Name="SelectedPath" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18,0,0,0"></TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Hyperlink Click="Hyperlink_Click">GitHub</Hyperlink>
@@ -125,12 +134,7 @@
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,21,0,0">
-            <TextBlock Name="TotalProgress"></TextBlock>
-            <ProgressBar Margin="0 5 0 5" Name="WorkingProgress" Height="10" Width="225" />
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Disabled">
-                <TextBlock Name="WorkingWith"/>
-            </ScrollViewer>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200" Margin="5">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" Height="270">
                 <TextBlock 
                    Name="LangInfo"
                     VerticalAlignment="Top" HorizontalAlignment="Left" 

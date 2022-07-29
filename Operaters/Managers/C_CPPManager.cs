@@ -7,57 +7,54 @@ namespace LangBox.Operaters.Managers
 {
     internal class C_CPPManager
     {
-        private static string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
-        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ed3c96cc1cfa4966a2585e118bd3a7a5&fileId=750500";
+        private readonly string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
+        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ba594059ea3a4eb2bb2c45a9afd597f0&fileId=750500";
         private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string directoryName = "mingw64";
+        private readonly string filePath;
+        private readonly string directoryPath;
 
-
-        public static void Start(string Path, bool isChecked)
+        public C_CPPManager(string localPath)
         {
-            localPath = Path;
+            this.localPath = localPath;
+            filePath = Path.Combine(localPath, fileName);
+            directoryPath = Path.Combine(localPath, directoryName);
 
-            if (isChecked)
-            {
-                Install();
-            }
-            else
-            {
-                Uninstall();
-            }
-        }
-
-        private static void Install()
-        {
             Logger.Info("调用安装c/cpp");
             if (!Directory.Exists(localPath))
             {
                 Logger.Info("创建c/cpp文件夹");
                 Directory.CreateDirectory(localPath);
             }
+        }
 
-            string filePath = Path.Combine(localPath, fileName);
+        public void Download()
+        {
             if (!File.Exists(filePath))
             {
-                Logger.Info("下载"+ fileName);
+                Logger.Info("下载" + fileName);
                 DownloadHelper.Download(url, localPath);
-                Logger.Info("成功下载"+ fileName);
+                Logger.Info("成功下载" + fileName);
             }
+        }
 
-            Logger.Info("解压"+ fileName);
+        public void Extract()
+        {
+            Logger.Info("解压" + fileName);
             ExtractHelper.Extract(filePath, localPath);
-            //extractHelper.Extract(Path.Combine("data",fileName), localPath);
-            Logger.Info("成功解压"+ fileName);
+            //extractHelper.Extract(localPath.Combine("data",fileName), localPath);
+            Logger.Info("成功解压" + fileName);
+        }
 
-            string directoryPath = Path.Combine(localPath, directoryName);
+        public void AddPath()
+        {
             Logger.Info("添加用户Path路径" + directoryPath);
             PathEditor.AddInUserPath("PATH",Path.Combine(directoryPath, "bin"));
             Logger.Info("成功添加用户Path路径" + directoryPath);
         }
 
-        private static void Uninstall()
+        public void Uninstall()
         {
-            string directoryPath = Path.Combine(localPath, directoryName);
             if (Directory.Exists(localPath))
             {
                 Logger.Info("删除c/cpp文件夹");

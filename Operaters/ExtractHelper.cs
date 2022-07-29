@@ -17,7 +17,6 @@ namespace LangBox.Operaters
         /// <param name="archive">解压文件路径</param>
         public static void Extract(string archive, string directory)
         {
-            string extractInfo = archive;
             var sevenZipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
             SevenZipBase.SetLibraryPath(sevenZipPath);
 
@@ -25,7 +24,7 @@ namespace LangBox.Operaters
             file.Extracting += (sender, args) =>
             {
                 int percent = args.PercentDone;
-                OnProgressChanged(percent, "Extracting: " + extractInfo);
+                OnProgressChanged(percent, file.ArchiveFileData+"Extracting-- " + percent + " % ");
             };
             file.ExtractionFinished += (sender, args) =>
             {
@@ -34,6 +33,22 @@ namespace LangBox.Operaters
 
             //Extract the stuff
             file.ExtractArchive(directory);
+        }
+
+        public void Extract()
+        {
+            using (Stream extractFrom = File.OpenRead("test.7z"))
+            {
+                using (SevenZipExtractor extractor = new SevenZipExtractor(extractFrom))
+                {
+                    extractor.ExtractFile("readme.md", new MemoryStream());
+                }
+            }
+        }
+
+        private void Extractor_Extracting(object? sender, ProgressEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

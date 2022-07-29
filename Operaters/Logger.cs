@@ -5,16 +5,17 @@ namespace LangBox.Operaters
 {
     internal class Logger
     {
+        public static readonly ILog loginfo = LogManager.GetLogger("loginfo");
+        public static readonly ILog logerror = LogManager.GetLogger("logerror");
         /// <summary>
         /// 普通日志
         /// </summary>
         /// <param name="message">日志内容</param>
         public static void Info(string? message)
         {
-            ILog log = LogManager.GetLogger("Info");
-            if (log.IsInfoEnabled)
+            if (loginfo.IsInfoEnabled)
             {
-                log.Info(message);
+                loginfo.Info(message);
             }
         }
         /// <summary>
@@ -23,10 +24,9 @@ namespace LangBox.Operaters
         /// <param name="message">错误日志</param>
         public static void Error(string? message, Exception ex)
         {
-            ILog log = LogManager.GetLogger("Error");
-            if (log.IsErrorEnabled)
+            if (logerror.IsErrorEnabled)
             {
-                log.Error(message, ex);
+                logerror.Error(message, ex);
             }
         }
 
@@ -36,10 +36,9 @@ namespace LangBox.Operaters
         /// <param name="message">错误日志</param>
         public static void Error(string? message)
         {
-            ILog log = LogManager.GetLogger("Error");
-            if (log.IsErrorEnabled)
+            if (logerror.IsErrorEnabled)
             {
-                log.Error(message);
+                logerror.Error(message);
             }
         }
     }

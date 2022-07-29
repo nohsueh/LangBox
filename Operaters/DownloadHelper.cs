@@ -13,10 +13,8 @@ namespace LangBox.Operaters
 
         public static event OnProgressChangedHandler OnProgressChanged;
 
-        private static string? downloadInfo;
         public static void Download(string url, string saveDirectory)
         {
-            downloadInfo = saveDirectory;
             Logger.Info("成功调用Download");
             if (!File.Exists(aria2Path))
             {
@@ -69,7 +67,7 @@ namespace LangBox.Operaters
                     //string speed = match.Groups[2].Value.Replace("i", "");
                     //string eta = match.Groups[3].Value;
 
-                    OnProgressChanged(percent, "Downloading: " + downloadInfo);
+                    OnProgressChanged(percent, "Downloading-- " + e.Data);
                 }
             }
         }

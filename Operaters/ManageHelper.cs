@@ -12,11 +12,31 @@ namespace LangBox.Operaters
         private const string c_cppDirectoryName = "c_cpp";
         private const string pythonDirectoryName = "python";
         private const string javaDirectoryName = "java";
+        private C_CPPManager? c_cppManager;
+        private PythonManager? pythonManager;
+        private JavaManager? javaManager;
+        private int count = 0;
+        private readonly int total = 0;
+
+        /// <summary>
+        /// 显示进度委托
+        /// </summary>
+        /// <param name="progressText">进度信息字符串</param>
+        public delegate void OnProgressChangeHandler(string progressText);
+
+        /// <summary>
+        /// 当进度变化时的事件操作
+        /// </summary>
+        public event OnProgressChangeHandler OnProgressChangeEvent;
 
         public ManageHelper(Dictionary<string, bool> langMap, string localPath)
         {
             this.langMap = langMap;
             this.localPath = localPath;
+
+            total += langMap["C_CPP"] ? 3 : 1;
+            total += langMap["Python"] ? 4 : 1;
+            total += langMap["Java"] ? 3 : 1;
         }
 
         public void Start()
@@ -27,13 +47,71 @@ namespace LangBox.Operaters
                 Directory.CreateDirectory(directoriesPath);
             }
 
-            C_CPPManager.Start(Path.Combine(directoriesPath, c_cppDirectoryName), langMap["C_CPP"]);
+            
 
-            PythonManager.Start(Path.Combine(directoriesPath, pythonDirectoryName), langMap["Python"]);
+            c_cppManager = new C_CPPManager(Path.Combine(directoriesPath, c_cppDirectoryName));
+            if (langMap["C_CPP"])
+            {
+                UpdateProgress();
+                c_cppManager.Download();
 
-            JavaManager.Start(Path.Combine(directoriesPath, javaDirectoryName), langMap["Java"]);
+                UpdateProgress();
+                c_cppManager.Extract();
 
-            //CSharpManager.Start(Path.Combine(directoryName, CSharpDirectoryName), langMap["CSharp"]);
+                UpdateProgress();
+                c_cppManager.AddPath();
+            }
+            else
+            {
+                UpdateProgress();
+                c_cppManager.Uninstall();
+            }
+
+            pythonManager = new PythonManager(Path.Combine(directoriesPath, pythonDirectoryName));
+            if (langMap["Python"])
+            {
+                UpdateProgress();
+                pythonManager.Download();
+
+                UpdateProgress();
+                pythonManager.Extract();
+
+                UpdateProgress();
+                pythonManager.CmdRun();
+
+                UpdateProgress();
+                pythonManager.AddPath();
+            }
+            else
+            {
+                UpdateProgress();
+                pythonManager.Uninstall();
+            }
+
+            javaManager = new JavaManager(Path.Combine(directoriesPath, javaDirectoryName));
+            if (langMap["Java"])
+            {
+                UpdateProgress();
+                javaManager.Download();
+
+                UpdateProgress();
+                javaManager.Extract();
+
+                UpdateProgress();
+                javaManager.AddPath();
+            }
+            else
+            {
+                UpdateProgress();
+                javaManager.Uninstall();
+            }
+
+            
+        }
+
+        private void UpdateProgress()
+        {
+            OnProgressChangeEvent((++count).ToString() + " / " + total.ToString()+" -- ");
         }
     }
 }
