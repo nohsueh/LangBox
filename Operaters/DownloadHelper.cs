@@ -67,7 +67,7 @@ namespace LangBox.Operaters
                     //string speed = match.Groups[2].Value.Replace("i", "");
                     //string eta = match.Groups[3].Value;
 
-                    OnProgressChanged(percent, "Downloading-- " + e.Data);
+                    OnProgressChanged(percent, "Downloading " + percent + "%" + " - " + e.Data);
                 }
             }
         }

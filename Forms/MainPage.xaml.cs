@@ -41,6 +41,7 @@ namespace LangBox.Forms
                     {
                         if (jtem is CheckBox checkBoxItem)
                         {
+                            Trace.WriteLine(checkBoxItem.Name+":"+ LangMap[checkBoxItem.Name].ToString());
                             checkBoxItem.IsChecked = LangMap[checkBoxItem.Name];
                         }
                     }
@@ -272,7 +273,10 @@ namespace LangBox.Forms
         }
         private void ProgressChangeSend(int percent, string message)
         {
-            worker.ReportProgress(percent, message);
+            if (percent!=0)
+            {
+                worker.ReportProgress(percent, message);
+            }
         }
 
         //worker处理进度
@@ -281,8 +285,16 @@ namespace LangBox.Forms
             int percent = args.ProgressPercentage;
             string? message = args.UserState as string;
 
-            WorkingProgress.Value = percent;
-            WorkingWith.Text = message;
+            
+            WorkingProgress.Value = percent; 
+            if(percent == 0)
+            {
+                TotalProgress.Text = message;
+            }
+            else
+            {
+                WorkingWith.Text = message;
+            }
         }
 
         //worker完成或停止

@@ -8,7 +8,7 @@ namespace LangBox.Operaters.Managers
     internal class JavaManager
     {
         private readonly string localPath = "D:\\LangBox Files\\java";  //防止localPath为空
-        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ba594059ea3a4eb2bb2c45a9afd597f0&fileId=750498";
+        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/jdk-18_windows-x64_bin.7z";
         private const string fileName = "jdk-18_windows-x64_bin.7z";
         private const string directoryName = "jdk-18.0.1.1";
         private readonly string filePath;

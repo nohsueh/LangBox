@@ -24,7 +24,7 @@ namespace LangBox.Operaters
             file.Extracting += (sender, args) =>
             {
                 int percent = args.PercentDone;
-                OnProgressChanged(percent, file.ArchiveFileData+"Extracting-- " + percent + " % ");
+                OnProgressChanged(percent, "Extracting "+percent+"%"+" - " + file.FileName);
             };
             file.ExtractionFinished += (sender, args) =>
             {

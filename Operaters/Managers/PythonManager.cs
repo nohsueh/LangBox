@@ -7,7 +7,7 @@ namespace LangBox.Operaters.Managers
     internal class PythonManager
     {
         private readonly string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
-        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ba594059ea3a4eb2bb2c45a9afd597f0&fileId=750499";
+        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/python-3.10.5-embed-amd64.7z";
         private const string fileName = "python-3.10.5-embed-amd64.7z";
         private const string directoryName = "python310";
         private readonly string filePath;

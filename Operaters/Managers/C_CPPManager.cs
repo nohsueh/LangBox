@@ -8,7 +8,7 @@ namespace LangBox.Operaters.Managers
     internal class C_CPPManager
     {
         private readonly string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
-        private static readonly string url = "http://yhz.yhz2000.com/server/DownloadServlet?access_token=ba594059ea3a4eb2bb2c45a9afd597f0&fileId=750500";
+        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string directoryName = "mingw64";
         private readonly string filePath;
