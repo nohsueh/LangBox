@@ -1,54 +1,48 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using System.Reflection;
-using SevenZip;
 
 namespace LangBox.Operaters
 {
     internal class ExtractHelper
     {
-
         public delegate void OnProgressChangedHandler(int percent, string message);
 
         public static event OnProgressChangedHandler OnProgressChanged;
-        /// <summary>
-        /// 解压文件
-        /// </summary>
-        /// <param name="archive">解压文件路径</param>
-        public static void Extract(string archive, string directory)
+
+        private const string szPath = @"libs\7z.exe";
+
+        public static void Extract(string path, string outPutDirectory)
         {
-            var sevenZipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
-            SevenZipBase.SetLibraryPath(sevenZipPath);
-
-            var file = new SevenZipExtractor(archive);
-            file.Extracting += (sender, args) =>
+            if (!File.Exists(szPath))
             {
-                int percent = args.PercentDone;
-                OnProgressChanged(percent, "Extracting "+percent+"%"+" - " + file.FileName);
-            };
-            file.ExtractionFinished += (sender, args) =>
-            {
-                // Do stuff when done
-            };
-
-            //Extract the stuff
-            file.ExtractArchive(directory);
-        }
-
-        public void Extract()
-        {
-            using (Stream extractFrom = File.OpenRead("test.7z"))
-            {
-                using (SevenZipExtractor extractor = new SevenZipExtractor(extractFrom))
-                {
-                    extractor.ExtractFile("readme.md", new MemoryStream());
-                }
+                throw new FileNotFoundException("未能找到7z.exe\n尝试查找的目录为" + szPath);
             }
+
+            Process p = new Process();
+            p.StartInfo.FileName = szPath;
+            p.StartInfo.Arguments = "x " + "\"" + path + "\"" + " -y -o\""  + outPutDirectory + "\"";
+            p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+
+            p.OutputDataReceived += ReceivedOutput;
+            p.ErrorDataReceived += ReceivedOutput;
+
+            p.Start();
+            p.BeginOutputReadLine();
+            p.BeginErrorReadLine();
+
+            p.WaitForExit();
         }
 
-        private void Extractor_Extracting(object? sender, ProgressEventArgs e)
+        private static void ReceivedOutput(object sender, DataReceivedEventArgs e)
         {
-            throw new NotImplementedException();
+            Logger.Info(e.Data);
+            OnProgressChanged(50, "Extracting " + 50 + "%" + " - " + e.Data);
         }
     }
 }
