@@ -79,28 +79,25 @@
                 </LinearGradientBrush>
             </TabControl.Background>
             <TabItem Name="Languages" Header="编程语言" Visibility="Visible" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}" >
-                <StackPanel Margin="10,5">
-                    <CheckBox Name="SelectAll" Click="SelectAll_Checked">全选</CheckBox>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
-                        <WrapPanel Name="LangSelect" Margin="20">
-                            <DockPanel>
-                                <Image Source="/Images/cpp.png" Height="50"/>
-                                <Label Content="C&amp;C++"></Label>
-                                <CheckBox Name="C_CPP" Click="LangSelect_Update"/>
-                            </DockPanel>
-                            <DockPanel>
-                                <Image Source="/Images/python.png" Height="50"/>
-                                <Label Content="Python"></Label>
-                                <CheckBox Name="Python" Click="LangSelect_Update"/>
-                            </DockPanel>
-                            <DockPanel>
-                                <Image Source="/Images/java.png" Height="50"/>
-                                <Label Content="Java"></Label>
-                                <CheckBox Name="Java" Click="LangSelect_Update"/>
-                            </DockPanel>
-                        </WrapPanel>
-                    </ScrollViewer>
-                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <WrapPanel Name="LangSelect" Margin="20">
+                        <DockPanel>
+                            <Image Source="/Images/cpp.png" Height="50"/>
+                            <Label Content="C&amp;C++"></Label>
+                            <CheckBox Name="C_CPP" Click="LangSelect_Update"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Image Source="/Images/python.png" Height="50"/>
+                            <Label Content="Python"></Label>
+                            <CheckBox Name="Python" Click="LangSelect_Update"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Image Source="/Images/java.png" Height="50"/>
+                            <Label Content="Java"></Label>
+                            <CheckBox Name="Java" Click="LangSelect_Update"/>
+                        </DockPanel>
+                    </WrapPanel>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Name="IDE" Header="IDE" BorderBrush="{DynamicResource c1}" Background="{DynamicResource c0}">

@@ -57,26 +57,6 @@ namespace LangBox.Forms
             Process.Start("explorer.exe", GitHubPath);
         }
 
-        //全选
-        private void SelectAll_Checked(object sender, RoutedEventArgs e)
-        {
-            bool flag = SelectAll.IsChecked == true;
-            foreach (var item in LangSelect.Children)
-            {
-                if (item is DockPanel dockPanelItem)
-                {
-                    foreach (var jtem in dockPanelItem.Children)
-                    {
-                        if (jtem is CheckBox checkBoxItem)
-                        {
-                            checkBoxItem.IsChecked = flag;
-                        }
-                    }
-                }
-            }
-            LangSelect_Update(sender, e);
-        }
-
         //检查勾选的语言，更新LangMap
         private void LangSelect_Update(object sender, RoutedEventArgs e)
         {
@@ -223,7 +203,6 @@ namespace LangBox.Forms
             ModifyButton.IsEnabled = false;
             PathInput.IsEnabled = false;
             PathInputButton.IsEnabled = false;
-            SelectAll.IsEnabled = false;
             foreach (var item in LangSelect.Children)
             {
                 if (item is DockPanel dockPanelItem)
@@ -305,7 +284,6 @@ namespace LangBox.Forms
             ModifyButton.IsEnabled = true;
             PathInput.IsEnabled = true;
             PathInputButton.IsEnabled = true;
-            SelectAll.IsEnabled = true;
             foreach (var item in LangSelect.Children)
             {
                 if (item is DockPanel dockPanelItem)
