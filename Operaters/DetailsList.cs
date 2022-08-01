@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace LangBox.Operaters
 {
-    internal class ProgressList
+    internal class DetailsList
     {
         private LinkedList<string> list = new LinkedList<string>();
 

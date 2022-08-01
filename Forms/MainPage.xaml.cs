@@ -19,7 +19,7 @@ namespace LangBox.Forms
         private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
         private static ConfigHelper cfg = new ConfigHelper();
         private BackgroundWorker worker;
-        ProgressList pl = new ProgressList();
+        DetailsList pl = new DetailsList();
         Dictionary<string, bool> LangMap;
 
         public MainPage()
