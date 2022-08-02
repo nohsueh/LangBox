@@ -52,6 +52,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="SevenZipSharp.Interop" Version="19.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,12 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="libs\7z.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="libs\7z.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="libs\aria2c.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

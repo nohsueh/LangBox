@@ -64,10 +64,11 @@ namespace LangBox.Operaters
                 if (match.Success)
                 {
                     int percent = int.Parse(match.Groups[1].Value.Trim('%'));
-                    //string speed = match.Groups[2].Value.Replace("i", "");
-                    //string eta = match.Groups[3].Value;
+                    string speed = match.Groups[2].Value;
+                    string eta = match.Groups[3].Value;
 
-                    OnProgressChanged(percent, "Downloading " + percent + "%" + " - " + e.Data);
+                    OnProgressChanged(percent, "Downloading " + percent + "%" + " - " + speed + "/s  ETA:" + eta);
+                    OnProgressChanged(percent, String.Format("Downloading {0}%  {1}/s  ETA:{2}", percent, speed, eta));
                 }
             }
         }

@@ -1,48 +1,47 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
+using System.Reflection;
+using SevenZip;
 
 namespace LangBox.Operaters
 {
     internal class ExtractHelper
     {
+
         public delegate void OnProgressChangedHandler(int percent, string message);
 
         public static event OnProgressChangedHandler OnProgressChanged;
 
-        private const string szPath = @"libs\7z.exe";
+        private static int MaxValue;
+        private static int CurrentValue;
 
-        public static void Extract(string path, string outPutDirectory)
+        /// <summary>
+        /// 解压文件
+        /// </summary>
+        /// <param name="path">解压文件路径</param>
+        public static void Extract(string filePath, string directoryPath)
         {
-            if (!File.Exists(szPath))
+            // Toggle between the x86 and x64 bit dll
+            var sevenZipPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+            SevenZipBase.SetLibraryPath(sevenZipPath);
+
+            if (File.Exists(filePath) && Directory.Exists(directoryPath))
             {
-                throw new FileNotFoundException("未能找到7z.exe\n尝试查找的目录为" + szPath);
+
+                var extractor = new SevenZipExtractor(filePath);
+                MaxValue = extractor.ArchiveFileData.Count;
+                CurrentValue = 0;
+
+                extractor.FileExtractionStarted += new EventHandler<FileInfoEventArgs>(extr_FileExtractionStarted);
+                extractor.ExtractArchive(directoryPath);
             }
-
-            Process p = new Process();
-            p.StartInfo.FileName = szPath;
-            p.StartInfo.Arguments = "x " + "\"" + path + "\"" + " -y -o\""  + outPutDirectory + "\"";
-            p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-
-            p.OutputDataReceived += ReceivedOutput;
-            p.ErrorDataReceived += ReceivedOutput;
-
-            p.Start();
-            p.BeginOutputReadLine();
-            p.BeginErrorReadLine();
-
-            p.WaitForExit();
         }
 
-        private static void ReceivedOutput(object sender, DataReceivedEventArgs e)
+        private static void extr_FileExtractionStarted(object sender, FileInfoEventArgs e)
         {
-            Logger.Info(e.Data);
-            OnProgressChanged(50, "Extracting " + 50 + "%" + " - " + e.Data);
+            CurrentValue++;
+            int percent = 100 * CurrentValue / MaxValue;
+            OnProgressChanged(percent, string.Format("Extracting {0}%  {1}", percent, e.FileInfo.FileName));
         }
     }
 }

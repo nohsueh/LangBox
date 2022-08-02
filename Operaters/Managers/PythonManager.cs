@@ -29,12 +29,13 @@ namespace LangBox.Operaters.Managers
 
         public void Download()
         {
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                Logger.Info("下载" + fileName);
-                DownloadHelper.Download(url, localPath);
-                Logger.Info("成功下载" + fileName);
+                File.Delete(filePath);
             }
+            Logger.Info("下载" + fileName);
+            DownloadHelper.Download(url, localPath);
+            Logger.Info("成功下载" + fileName);
         }
 
         public void Extract()
