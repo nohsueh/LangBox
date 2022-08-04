@@ -25,10 +25,8 @@ namespace LangBox.Operaters.Managers
             directoryPath = Path.Combine(localPath, directoryName);
             urlMap = cfg.GetUrlMap();
 
-            Logger.Info("调用安装c/cpp");
             if (!Directory.Exists(localPath))
             {
-                Logger.Info("创建c/cpp文件夹");
                 Directory.CreateDirectory(localPath);
             }
         }
@@ -39,38 +37,29 @@ namespace LangBox.Operaters.Managers
             {
                 File.Delete(filePath);
             }
-            Logger.Info("下载" + fileName);
             DownloadHelper.Download(urlMap["C_CPP"], localPath);
-            Logger.Info("成功下载" + fileName);
         }
 
         public void Extract()
         {
-            Logger.Info("解压" + fileName);
             ExtractHelper.Extract(filePath, localPath);
             //extractHelper.Extract(localPath.Combine("data",fileName), localPath);
-            Logger.Info("成功解压" + fileName);
+            File.Delete(filePath);
         }
 
         public void AddPath()
         {
-            Logger.Info("添加用户Path路径" + directoryPath);
             PathEditor.AddInUserPath("PATH",Path.Combine(directoryPath, "bin"));
-            Logger.Info("成功添加用户Path路径" + directoryPath);
         }
 
         public void Uninstall()
         {
             if (Directory.Exists(localPath))
             {
-                Logger.Info("删除c/cpp文件夹");
                 Directory.Delete(localPath, true);
-                Logger.Info("成功删除c/cpp文件夹");
             }
 
-            Logger.Info("删除用户Path路径：" + directoryPath);
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "bin"));
-            Logger.Info("成功删除用户Path路径："+ directoryPath);
         }
     }
 }

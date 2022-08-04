@@ -23,10 +23,8 @@ namespace LangBox.Operaters.Managers
             directoryPath = Path.Combine(localPath, directoryName);
             urlMap = cfg.GetUrlMap();
 
-            Logger.Info("调用安装python");
             if (!Directory.Exists(localPath))
             {
-                Logger.Info("创建python文件夹");
                 Directory.CreateDirectory(localPath);
             }
         }
@@ -37,17 +35,13 @@ namespace LangBox.Operaters.Managers
             {
                 File.Delete(filePath);
             }
-            Logger.Info("下载" + fileName);
             DownloadHelper.Download(urlMap["Python"], localPath);
-            Logger.Info("成功下载" + fileName);
         }
 
         public void Extract()
         {
-            Logger.Info("解压" + fileName);
             ExtractHelper.Extract(filePath, localPath);
-            //extractHelper.Extract(Path.Combine("data", fileName), localPath);
-            Logger.Info("成功解压" + fileName);
+            File.Delete(filePath);
         }
 
         public void CmdRun()
@@ -61,25 +55,19 @@ namespace LangBox.Operaters.Managers
 
         public void AddPath()
         {
-            Logger.Info("添加用户Path路径: " + directoryPath);
             PathEditor.AddInUserPath("PATH", directoryPath);
             PathEditor.AddInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
-            Logger.Info("成功添加用户Path路径: " + directoryPath);
         }
 
         public void Uninstall()
         {
             if (Directory.Exists(localPath))
             {
-                Logger.Info("删除python文件夹");
                 Directory.Delete(localPath, true);
-                Logger.Info("删除python文件夹成功");
             }
 
-            Logger.Info("删除用户Path路径" + directoryPath);
             PathEditor.RemoveInUserPath("PATH", directoryPath);
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
-            Logger.Info("成功删除用户Path路径" + directoryPath);
         }
     }
 }

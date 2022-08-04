@@ -9,6 +9,6 @@
         Height="450" Width="800"
         Background="{StaticResource c0}"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         Loaded="Window_Loaded">
 </Window>

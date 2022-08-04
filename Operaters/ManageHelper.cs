@@ -48,7 +48,6 @@ namespace LangBox.Operaters
             }
 
             
-
             c_cppManager = new C_CPPManager(Path.Combine(directoriesPath, c_cppDirectoryName));
             if (langMap["C_CPP"])
             {
@@ -105,8 +104,6 @@ namespace LangBox.Operaters
                 UpdateProgress();
                 javaManager.Uninstall();
             }
-
-            
         }
 
         private void UpdateProgress()
