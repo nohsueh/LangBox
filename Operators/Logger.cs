@@ -1,7 +1,7 @@
 ﻿using System;
 using log4net;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class Logger
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 
-namespace LangBox.Operaters.Managers
+namespace LangBox.Operators.Managers
 {
     internal class PythonManager
     {
@@ -47,7 +47,7 @@ namespace LangBox.Operaters.Managers
         public void CmdRun()
         {
             Logger.Info("配置pip");
-            string command = "cd " + "\"" + directoryPath + "\"" + "\n" + "python get-pip.py";
+            string command = "cd /d " + "\"" + directoryPath + "\"" + "\n" + "python get-pip.py";
             CmdResult cmdResult = CmdRunner.CmdRun(command);
             Logger.Info(cmdResult.result);
             Logger.Info(cmdResult.error);

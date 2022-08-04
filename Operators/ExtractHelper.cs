@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using SevenZip;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class ExtractHelper
     {
@@ -41,7 +41,9 @@ namespace LangBox.Operaters
         {
             CurrentValue++;
             int percent = 100 * CurrentValue / MaxValue;
-            OnProgressChanged(percent, string.Format("Extract: {0}%  {1}", percent, e.FileInfo.FileName));
+            string message = string.Format("Extract: {0}%  {1}", percent, e.FileInfo.FileName);
+            Logger.Info(message);
+            OnProgressChanged(percent, message);
         }
     }
 }

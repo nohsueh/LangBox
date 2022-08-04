@@ -105,7 +105,7 @@
             </TabItem>
 
             <TabItem Name="Allocation" Header="设置" Background="{DynamicResource c0}" BorderBrush="{DynamicResource c1}" Height="19" VerticalAlignment="Top">
-                <Grid Margin="10,5">
+                <Grid Margin="10">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -113,20 +113,19 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="19"></ColumnDefinition>
-                        <ColumnDefinition Width="356"/>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
 
-                    <TextBlock Grid.Row="0" TextAlignment="Left" HorizontalAlignment="Left" Grid.ColumnSpan="2">选择安装路径：</TextBlock>
+                    <TextBlock Grid.Row="0" TextAlignment="Left" HorizontalAlignment="Left" >选择安装路径：</TextBlock>
                     <TextBlock Grid.Row="2"
                        Name="PathValidity"
                        TextAlignment="Left"
                                Width="300"
-                       Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="375" Grid.ColumnSpan="2"></TextBox>
-                    <Button Grid.Row="1" Grid.Column="2" Name="PathInputButton" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"  Click="Browse_Click" Width="45" Height="20" Margin="45,0,0,0" >浏览</Button>
+                       Foreground="Red" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Row="1" Grid.Column="0" Name="PathInput" TextChanged="PathInput_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left"  Grid.ColumnSpan="2" Width="375"></TextBox>
+                    <Button Grid.Row="1" Grid.Column="1" Name="PathInputButton"  Click="Browse_Click" Width="45" Height="20">浏览</Button>
                 </Grid>
             </TabItem>
         </TabControl>

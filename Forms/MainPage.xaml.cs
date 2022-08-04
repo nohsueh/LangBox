@@ -1,4 +1,4 @@
-﻿using LangBox.Operaters;
+﻿using LangBox.Operators;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -154,19 +154,8 @@ namespace LangBox.Forms
                 PathValidity.Text = "路径包含非法字符。";
                 return false;
             }
-            else if (!Directory.Exists(path) || path == cfg.GetFilesPath())
-            {
-                PathValidity.Text = "";
-                return true;
-            }
-            else if (Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0)
-            {
-                PathValidity.Text = "目录非空";
-                return false;
-            }
 
             PathValidity.Text = "";
-
             return true;
         }
 

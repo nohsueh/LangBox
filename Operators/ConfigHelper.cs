@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class ConfigHelper
     {

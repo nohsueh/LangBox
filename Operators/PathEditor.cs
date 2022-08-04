@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class PathEditor
     {

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class DownloadHelper
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using LangBox.Operaters.Managers;
+using LangBox.Operators.Managers;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class ManageHelper
     {

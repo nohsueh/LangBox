@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class UpdateChecker
     {

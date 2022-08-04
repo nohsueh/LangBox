@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace LangBox.Operaters
+namespace LangBox.Operators
 {
     internal class DetailsList
     {

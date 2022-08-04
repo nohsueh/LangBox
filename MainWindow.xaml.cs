@@ -1,6 +1,7 @@
 ﻿using LangBox.Forms;
-using LangBox.Operaters;
+using LangBox.Operators;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -20,6 +21,12 @@ namespace LangBox
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (Directory.Exists("Logs"))
+            {
+                Directory.Delete("Logs", true);
+            }
+
+
             Title = "LangBox "+cfg.GetVersion();
             Task task = new Task(() =>
             {
