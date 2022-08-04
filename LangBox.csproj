@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\appicon.ico" />
+    <Content Include="Images\appicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\cpp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -69,11 +71,6 @@
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="bin\Debug\net6.0-windows\" />
-    <Folder Include="bin\Release\net6.0-windows\publish\win-x86\" />
   </ItemGroup>
 
 </Project>

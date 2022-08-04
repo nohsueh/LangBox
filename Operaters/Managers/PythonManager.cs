@@ -53,10 +53,10 @@ namespace LangBox.Operaters.Managers
         public void CmdRun()
         {
             Logger.Info("配置pip");
-            string command = "cd " + directoryPath + "\n" + "python get-pip.py";
+            string command = "cd " + "\"" + directoryPath + "\"" + "\n" + "python get-pip.py";
             CmdResult cmdResult = CmdRunner.CmdRun(command);
             Logger.Info(cmdResult.result);
-            Logger.Error(cmdResult.error);
+            Logger.Info(cmdResult.error);
         }
 
         public void AddPath()
@@ -77,7 +77,7 @@ namespace LangBox.Operaters.Managers
             }
 
             Logger.Info("删除用户Path路径" + directoryPath);
-            PathEditor.RemoveInUserPath("PATH",directoryPath);
+            PathEditor.RemoveInUserPath("PATH", directoryPath);
             PathEditor.RemoveInUserPath("PATH", Path.Combine(directoryPath, "Scripts"));
             Logger.Info("成功删除用户Path路径" + directoryPath);
         }

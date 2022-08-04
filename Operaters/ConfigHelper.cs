@@ -30,7 +30,7 @@ namespace LangBox.Operaters
 
             if (config.FilesPath == null)
             {
-                config.FilesPath = @"C:\Program Files";
+                config.FilesPath = @"D:\Program Files";
             }
             if (config.LangMap == null)
             {

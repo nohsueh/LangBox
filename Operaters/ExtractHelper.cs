@@ -41,7 +41,7 @@ namespace LangBox.Operaters
         {
             CurrentValue++;
             int percent = 100 * CurrentValue / MaxValue;
-            OnProgressChanged(percent, string.Format("Extracting {0}%  {1}", percent, e.FileInfo.FileName));
+            OnProgressChanged(percent, string.Format("Extract: {0}%  {1}", percent, e.FileInfo.FileName));
         }
     }
 }

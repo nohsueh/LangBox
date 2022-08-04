@@ -68,7 +68,7 @@ namespace LangBox.Operaters
                     string eta = match.Groups[3].Value;
 
                     OnProgressChanged(percent, "Downloading " + percent + "%" + " - " + speed + "/s  ETA:" + eta);
-                    OnProgressChanged(percent, String.Format("Downloading {0}%  {1}/s  ETA:{2}", percent, speed, eta));
+                    OnProgressChanged(percent, String.Format("Download: {0}%  {1}/s  ETA:{2}", percent, speed, eta));
                 }
             }
         }
