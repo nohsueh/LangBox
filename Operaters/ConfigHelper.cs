@@ -9,6 +9,7 @@ namespace LangBox.Operaters
         class Config
         {
             public string? Version { get; set; }
+            public Dictionary<string, string>? UrlMap { get; set; }
             public string? FilesPath { get; set; }
             public Dictionary<string, bool>? LangMap { get; set; }
         }
@@ -19,11 +20,17 @@ namespace LangBox.Operaters
         {
             Config config = Json2Model();
 
-            config.Version = @"V1.2.0";
+            config.Version = @"V1.3.0";
+
+            config.UrlMap = new Dictionary<string, string> {
+                    { "C_CPP","https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z"},
+                    { "Python","https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/python-3.10.5-embed-amd64.7z"},
+                    {"Java", "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/jdk-18_windows-x64_bin.7z"}
+            };
 
             if (config.FilesPath == null)
             {
-                config.FilesPath = @"D:\Program Files";
+                config.FilesPath = @"C:\Program Files";
             }
             if (config.LangMap == null)
             {
@@ -104,6 +111,12 @@ namespace LangBox.Operaters
                 cfg.LangMap.Add(lang, isCheck);
             }
             Model2Json(cfg);
+        }
+
+        public Dictionary<string, string> GetUrlMap()
+        {
+            Dictionary<string, string> urlMap = Json2Model().UrlMap;
+            return urlMap;
         }
     }
 }

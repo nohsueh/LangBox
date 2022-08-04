@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,17 +9,19 @@ namespace LangBox.Operaters.Managers
     internal class JavaManager
     {
         private readonly string localPath = "D:\\LangBox Files\\java";  //防止localPath为空
-        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/jdk-18_windows-x64_bin.7z";
         private const string fileName = "jdk-18_windows-x64_bin.7z";
         private const string directoryName = "jdk-18.0.1.1";
         private readonly string filePath;
         private readonly string directoryPath;
+        private static ConfigHelper cfg = new ConfigHelper();
+        private readonly Dictionary<string, string> urlMap;
 
         public JavaManager(string localPath)
         {
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);
+            urlMap = cfg.GetUrlMap();
 
             Logger.Info("调用安装java");
             if (!Directory.Exists(localPath))
@@ -34,7 +37,7 @@ namespace LangBox.Operaters.Managers
                 File.Delete(filePath);
             }
             Logger.Info("下载" + fileName);
-            DownloadHelper.Download(url, localPath);
+            DownloadHelper.Download(urlMap["Java"], localPath);
             Logger.Info("成功下载" + fileName);
         }
 

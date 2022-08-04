@@ -1,4 +1,5 @@
 ﻿using LangBox.Operators;
+using System.Collections.Generic;
 using System.IO;
 
 
@@ -7,17 +8,19 @@ namespace LangBox.Operaters.Managers
     internal class PythonManager
     {
         private readonly string localPath = "D:\\LangBox Files\\python";  //防止localPath为空
-        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/python-3.10.5-embed-amd64.7z";
         private const string fileName = "python-3.10.5-embed-amd64.7z";
         private const string directoryName = "python310";
         private readonly string filePath;
         private readonly string directoryPath;
+        private static ConfigHelper cfg = new ConfigHelper();
+        private readonly Dictionary<string, string> urlMap;
 
         public PythonManager(string localPath)
         {
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);
+            urlMap = cfg.GetUrlMap();
 
             Logger.Info("调用安装python");
             if (!Directory.Exists(localPath))
@@ -34,7 +37,7 @@ namespace LangBox.Operaters.Managers
                 File.Delete(filePath);
             }
             Logger.Info("下载" + fileName);
-            DownloadHelper.Download(url, localPath);
+            DownloadHelper.Download(urlMap["Python"], localPath);
             Logger.Info("成功下载" + fileName);
         }
 

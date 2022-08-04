@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,17 +9,20 @@ namespace LangBox.Operaters.Managers
     internal class C_CPPManager
     {
         private readonly string localPath = "D:\\LangBox Files\\c_cpp";  //防止localPath为空
-        private static readonly string url = "https://github.com/NOhsueh/LangBox/releases/download/v1.3.0/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string fileName = "x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z";
         private const string directoryName = "mingw64";
         private readonly string filePath;
         private readonly string directoryPath;
+        private static ConfigHelper cfg = new ConfigHelper();
+        private readonly Dictionary<string, string> urlMap;
+
 
         public C_CPPManager(string localPath)
         {
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);
+            urlMap = cfg.GetUrlMap();
 
             Logger.Info("调用安装c/cpp");
             if (!Directory.Exists(localPath))
@@ -35,7 +39,7 @@ namespace LangBox.Operaters.Managers
                 File.Delete(filePath);
             }
             Logger.Info("下载" + fileName);
-            DownloadHelper.Download(url, localPath);
+            DownloadHelper.Download(urlMap["C_CPP"], localPath);
             Logger.Info("成功下载" + fileName);
         }
 
