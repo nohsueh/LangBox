@@ -19,6 +19,7 @@ namespace LangBox.Operaters.Managers
 
         public C_CPPManager(string localPath)
         {
+            Logger.Info("初始化C_CPP");
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);

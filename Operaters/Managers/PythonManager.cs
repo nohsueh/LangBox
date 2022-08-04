@@ -17,6 +17,7 @@ namespace LangBox.Operaters.Managers
 
         public PythonManager(string localPath)
         {
+            Logger.Info("初始化Python");
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);

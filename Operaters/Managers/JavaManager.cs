@@ -18,6 +18,7 @@ namespace LangBox.Operaters.Managers
 
         public JavaManager(string localPath)
         {
+            Logger.Info("初始化Java");
             this.localPath = localPath;
             filePath = Path.Combine(localPath, fileName);
             directoryPath = Path.Combine(localPath, directoryName);
