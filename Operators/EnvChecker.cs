@@ -9,23 +9,16 @@ namespace LangBox.Operators
 
         public static bool Check(string Name)
         {
-            if(Name.Equals("C_CPP"))
+            return Name switch
             {
-                return CheckGcc();
-            }
-            if (Name.Equals("Python"))
-            {
-                return CheckPip();
-            }
-            if (Name.Equals("Java"))
-            {
-                return CheckJava();
-            }
-
-            return false;
+                "C_CPP" => CheckGcc(),
+                "Python" => CheckPip(),
+                "Java" => CheckJava(),
+                _ => false,
+            };
         }
 
-        public static bool CheckGcc()
+        private static bool CheckGcc()
         {
             CmdResult result = CmdRunner.CmdRun("gcc");
             if (result.error.Contains("no input files"))
@@ -33,7 +26,7 @@ namespace LangBox.Operators
             else
                 return false;
         }
-        public static bool CheckPip()
+        private static bool CheckPip()
         {
             CmdResult result = CmdRunner.CmdRun("pip -V");
             if (result.result.Contains("lib\\site-packages\\pip"))
@@ -42,13 +35,14 @@ namespace LangBox.Operators
                 return false;
         }
 
-        public static bool CheckJava()
+        private static bool CheckJava()
         {
             CmdResult result = CmdRunner.CmdRun("java -version");
-            if (result.error.Contains("java version"))
+            if (result.result.Contains("java version"))
                 return true;
             else
                 return false;
+            
         }
 
         public static string GetCodePath()

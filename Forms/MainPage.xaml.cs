@@ -171,22 +171,6 @@ namespace LangBox.Forms
         {
             //配置
             cfg.SetFilesPath(PathInput.Text);
-            foreach (var item in LangSelect.Children)
-            {
-                if (item is DockPanel dockPanelItem)
-                {
-                    foreach (var jtem in dockPanelItem.Children)
-                    {
-                        if (jtem is CheckBox checkBoxItem)
-                        {
-                            string LMkey = checkBoxItem.Name;
-                            bool LMvalue = (bool)checkBoxItem.IsChecked;
-
-                            cfg.SetLangMap(LMkey, LMvalue);
-                        }
-                    }
-                }
-            }
             WorkingProgress.Value = 0;
             WorkingProgress.Visibility = Visibility.Visible;
             ModifyButton.IsEnabled = false;
@@ -282,6 +266,11 @@ namespace LangBox.Forms
                         if (jtem is CheckBox checkBoxItem)
                         {
                             checkBoxItem.IsEnabled = true;
+
+                            string LMkey = checkBoxItem.Name;
+                            bool LMvalue = EnvChecker.Check(LMkey);
+
+                            cfg.SetLangMap(LMkey, LMvalue);
                         }
                     }
                 }

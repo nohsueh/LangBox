@@ -46,6 +46,7 @@ namespace LangBox.Operators
             string error = p.StandardError.ReadToEnd();
 
             p.WaitForExit();
+
             CmdResult cmdResult = new CmdResult(result, error);
             return cmdResult;
         }
