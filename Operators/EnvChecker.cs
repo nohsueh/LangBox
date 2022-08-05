@@ -20,8 +20,9 @@ namespace LangBox.Operators
 
         private static bool CheckGcc()
         {
-            CmdResult result = CmdRunner.CmdRun("gcc");
-            if (result.error.Contains("no input files"))
+            CmdResult result = CmdRunner.CmdRun("gcc -v");
+            Logger.Info(result.error);
+            if (result.result!=null)
                 return true;
             else
                 return false;
@@ -29,7 +30,8 @@ namespace LangBox.Operators
         private static bool CheckPip()
         {
             CmdResult result = CmdRunner.CmdRun("pip -V");
-            if (result.result.Contains("lib\\site-packages\\pip"))
+            Logger.Info(result.result);
+            if (result.result!= null)
                 return true;
             else
                 return false;
@@ -38,7 +40,8 @@ namespace LangBox.Operators
         private static bool CheckJava()
         {
             CmdResult result = CmdRunner.CmdRun("java -version");
-            if (result.result.Contains("java version"))
+            Logger.Info(result.result);
+            if (result.result!= null)
                 return true;
             else
                 return false;

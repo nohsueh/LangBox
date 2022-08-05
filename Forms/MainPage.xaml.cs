@@ -16,10 +16,10 @@ namespace LangBox.Forms
     /// </summary>
     public partial class MainPage : Page
     {
-        private static string GitHubPath = "https://github.com/NOhsueh/LangBox";
-        private static ConfigHelper cfg = new ConfigHelper();
+        private static readonly string GitHubPath = "https://github.com/NOhsueh/LangBox";
+        private static readonly ConfigHelper cfg = new ConfigHelper();
         private BackgroundWorker worker;
-        DetailsList pl = new DetailsList();
+        private readonly DetailsList pl = new DetailsList();
         Dictionary<string, bool> LangMap;
 
         public MainPage()
@@ -223,6 +223,7 @@ namespace LangBox.Forms
         {
             worker.ReportProgress(0, message);
         }
+
         private void ProgressChangeSend(int percent, string message)
         {
             if (percent!=0)
@@ -268,7 +269,7 @@ namespace LangBox.Forms
                             checkBoxItem.IsEnabled = true;
 
                             string LMkey = checkBoxItem.Name;
-                            bool LMvalue = EnvChecker.Check(LMkey);
+                            bool LMvalue = (bool)checkBoxItem.IsChecked;
 
                             cfg.SetLangMap(LMkey, LMvalue);
                         }

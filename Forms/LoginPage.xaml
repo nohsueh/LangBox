@@ -183,7 +183,7 @@
                     </Grid>
                 </Border>
 
-                <Button Name="LoginButton" Content="登录" Click="login_Click" Style="{StaticResource mainButton}" />
+                <Button Name="LoginButton" Content="登录" Click="Login_Click" Style="{StaticResource mainButton}" />
             </StackPanel>
         </Border>
     </Grid>

@@ -9,13 +9,13 @@ namespace LangBox.Operators
 
         public CmdResult(string r, string e)
         {
-            result = r.Substring(0, r.Length - 1);
+            result = r;
             error = e;
         }
 
         public void Set(string r, string e)
         {
-            result = r.Substring(0, r.Length - 1);
+            result = r;
             error = e;
         }
     }
@@ -24,8 +24,8 @@ namespace LangBox.Operators
     {
         public static CmdResult CmdRun(string command)
         {
-            command += "\nexit";
-            Process p = new Process();
+            command += "&exit";
+            Process p = new();
             p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
             p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
@@ -34,20 +34,20 @@ namespace LangBox.Operators
             p.StartInfo.CreateNoWindow = true;//不显示程序窗口
             p.Start();//启动程序
 
-            //向cmd窗口发送输入信息
-            p.StandardInput.AutoFlush = true;
-
             string[] commands = command.Split('\n');
-
             foreach (string line in commands)
                 p.StandardInput.WriteLine(line);
+
+            //向cmd窗口发送输入信息
+            p.StandardInput.AutoFlush = true;
 
             string result = p.StandardOutput.ReadToEnd();
             string error = p.StandardError.ReadToEnd();
 
             p.WaitForExit();
+            p.Close();
 
-            CmdResult cmdResult = new CmdResult(result, error);
+            CmdResult cmdResult = new(result, error);
             return cmdResult;
         }
     }

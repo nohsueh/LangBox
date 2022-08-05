@@ -61,10 +61,10 @@ namespace LangBox.Forms
             }
         }
 
-        private void login_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
             DataTable dt = PgsqlHelper.ExecuteQuery("SELECT password FROM public.user WHERE username='" + txtEmail.Text + "';");
-            string password = "";
+            string password;
             if (dt.Rows.Count > 0)
             {
                 password = dt.Rows[0]["password"].ToString().Trim();
