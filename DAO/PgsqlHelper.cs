@@ -9,11 +9,11 @@ namespace LangBox.Connections
     internal class PgsqlHelper
     {
         private static readonly string conn = 
-            "Host=localhost;" +
-            "Port=5432;" +
-            "Username=postgres;" +
-            "Password=126652;" +
-            "Database=langbox_db;";
+            "Host=;" +
+            "Port=;" +
+            "Username=;" +
+            "Password=;" +
+            "Database=;";
 
         #region 查询操作
         public static DataTable ExecuteQuery(string sql)
